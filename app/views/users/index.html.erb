@@ -1,0 +1,43 @@
+<%  if session[:user] %>
+  <h3>welcome to <%= session[:user].name %></h3> <h3><%= link_to "logout", {:action => :logout} %></h3>
+  <h3><%= link_to "reset password", {:action => :reset_password} %>  <%= link_to "edit user profile", {:action => :userprofile, :id => session[:user]} %></h3>
+<% else %>
+  <h3>welcome to guest</h3> <%= link_to "login", {:action => :login} %>
+<% end %>
+
+<table>
+  <thead>
+  <th>Image</th>
+  <th>Name</th>
+  <th>Email</th>
+
+</thead>
+<tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <% if user.user_profile.image_url.present? %>
+        <td><%= image_tag user.user_profile.image_url, :size => "24x24" %></td>
+
+      <% else %>
+        <td><%= image_tag ('download.jpg'), :size => "24x24" %></td>
+      <% end %>
+
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= link_to "view", {:action => :show, :id => user.id} %> </td>
+
+      <% if session[:user] && session[:user].name == 'admin' %>
+        <td><%= link_to "edit", {:action => :edit, :id => user.id} %></td>
+        <td><%= link_to "destroy", user, :method => :delete, :confirm => 'Are you sure?' %></td>
+        <td><%= link_to "userprofile", {:action => :userprofilelist, :id => user.user_profile.id} %></td>
+      <% end  %>
+
+      <% if session[:user] && session[:user].name == user.name && session[:user].name != 'admin' %>
+        <td><%= link_to "userprofile", {:action => :userprofilelist, :id => user.user_profile.id} %></td>
+      <% end %>
+    </tr>
+  </tbody>
+<% end %>
+</table>
+<%= will_paginate @users %>
+

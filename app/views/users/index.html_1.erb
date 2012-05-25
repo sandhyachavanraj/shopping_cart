@@ -1,0 +1,78 @@
+<% if session[:user].name == "admin" %>
+
+  <% if flash[:notice] %>
+    <%= flash[:notice] %>
+  <% end %>
+  <h2>Users List</h2>
+
+  <%  if session[:user] %>
+    <h6>welcome to <%= session[:user].name %></h6> <h3><%= link_to "logout", {:action => :logout} %></h3>
+    <h3><%= link_to "reset password", {:action => :reset_password} %>  <%= link_to "edit user profile", {:action => :userprofile, :id => session[:user]} %></h3>
+  <% else %>
+    <h6>welcome to guest</h6> <%= link_to "login", {:action => :login} %>
+  <% end %>
+
+  <table>
+    <thead>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Actions</th>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= link_to "edit", {:action => :edit, :id => user.id} %> </td>
+        <td><%= link_to "show", {:action => :show, :id => user.id} %> </td>
+        <td><%= link_to "destroy", user, :method => :delete, :confirm => 'Are you sure?' %></td>
+      </tr>
+    </tbody>
+  <% end %>
+  </table>
+
+  <%= will_paginate @users %>
+
+<% else %>
+
+  <%  if session[:user] %>
+    <h6>welcome to <%= session[:user].name %></h6> <h3><%= link_to "logout", {:action => :logout} %></h3>
+    <h3><%= link_to "reset password", {:action => :reset_password} %> <%= link_to "edit user profile", {:action => :userprofile, :id => session[:user]} %></h3>
+
+  <% else %>
+    <h6>welcome to guest</h6> <%= link_to "login", {:action => :login} %>
+  <% end %>
+
+
+
+  <table>
+    <thead>
+    <th>Name</th>
+    <th>Email</th>
+
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= link_to "view", {:action => :show1, :id => user.id} %> </td>
+
+      </tr>
+    </tbody>
+  <% end %>
+  </table>
+
+  <%= will_paginate @users %>
+
+
+<% end %>
+
+
+
+
+
+
+

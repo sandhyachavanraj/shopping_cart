@@ -1,0 +1,10 @@
+<h2>New User Registartion from</h2>
+<% @user.errors.full_messages.each do|msg|%>
+  <p><%= msg %></p>
+<% end %>
+
+<%= form_for @user do |s| %>
+  <%= render :partial => "form", :locals => {:s => s} %>
+  <p><%= s.submit  "REGISTER ME"%></p>
+<% end %>
+

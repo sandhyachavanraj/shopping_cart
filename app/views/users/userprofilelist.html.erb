@@ -1,0 +1,22 @@
+<h2>User Profile List</h2>
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+
+<%#= image_tag @userprofile.img.url(:thumb) %>
+
+<% if @userprofile.image_url.present? %>
+  <td><%= image_tag @userprofile.image_url, :size => "150x150" %></td>
+<% else %>
+  <%= image_tag ('download.jpg') %>
+<% end %>
+
+<div><table border="1">
+  <tr><td>Billing Address </td><td><%= @userprofile.billing_address %></td></tr>
+  <tr><td>Permanent Address </td><td> <%= @userprofile.perminent_address %></td></tr>
+  <tr><td>Telephone Number </td><td>  <%= @userprofile.telephone_number %></td></tr>
+  <tr><td>Mobile Number </td><td> <%= @userprofile.mobile_number %></td></tr>  
+  <tr><td>Content Type </td><td> <%= @userprofile.content_type %></td></tr>
+</table></div>
+
+  

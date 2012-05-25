@@ -1,0 +1,127 @@
+class UsersController < ApplicationController
+
+	def index
+    
+		@users = User.all
+   @users = User.paginate(:page => params[:page], :per_page => 8)
+   
+  end
+
+	def new
+		@user = User.new
+	end
+
+  def create    
+    @user = UserProfile.new
+    @user.build_user(params[:user])
+#    raise params.inspect
+    if @user.save!
+      flash[:notice] = "user saved successfully"
+      redirect_to :action => :index
+    else
+      render :new
+    end
+  end
+
+  def edit
+    @user = User.find params[:id]
+  end
+
+  def update
+    @user = User.find params[:id]
+    if @user.update_attributes(params[:user])
+      flash[:notice] = "Success"
+      redirect_to :action => :index
+    else
+      render :edit
+    end
+  end
+
+  def show
+    @user = User.find params[:id]
+  end
+  
+  def destroy
+    @user = User.find params[:id]
+    @user.cleanup
+     flash[:notice] = "Successfully Destroyed"
+    @user.destroy
+    redirect_to :action => :index
+  end
+
+  
+  def authenticate
+    login = User.authenticate(params[:email], params[:password])
+    if login
+      session[:user] = login
+      flash[:notice] = "logged in suceesfully"
+      # name = session[:name]
+      redirect_to :action => :index
+    else
+      flash[:notice] = "incoreect email/password"
+      redirect_to :action => :login
+    end
+  end
+
+  def logout
+    reset_session
+    flash[:notice] = "log out successfully"
+    redirect_to :action => "index"
+  end
+
+  def update_password
+    @user = User.find_by_id_and_password(session[:user].id, params[:old_password])
+  
+    if @user
+      flash[:notice] ="user available"
+      
+      if User.update_password(params[:password], params[:confirm_password])
+        @user.password = params[:password]
+        @user.save!
+         
+        flash[:notice] = "Successfully Updated"
+        redirect_to :action => :index        
+      else
+        flash[:notice] = "password mismatch"
+        redirect_to :action => :reset_password
+      end
+    else
+      flash[:notice] = "user is not available please create ur account"
+      redirect_to :action => :login
+    end
+  end
+
+  def insert
+    @userprofile = UserProfile.find_by_user_id(params[:id])
+    
+    if @userprofile.update_attributes(params[:userprofile])
+      flash[:notice] = "userprofile saved successfully"
+      redirect_to :action => :index
+    else
+      flash[:notice] = "userprofile not saved"
+    end
+  end
+
+
+  def userprofilelist
+    @userprofile = UserProfile.find params[:id]
+  end
+  
+#  def picture
+#    @userprofile = UserProfile.find params[:id]
+#
+#   #    send_data to return the image to the browser.
+#    send_data(@userprofile.data,
+#      :filename => @userprofile.name,
+#      :type => @userprofile.content_type,
+#      :disposition => "inline")
+#  end
+
+  def upload_file
+    UserProfile.save(params[:upload])
+    render :text => "File has been uploaded successfully"
+  end
+
+
+    
+end

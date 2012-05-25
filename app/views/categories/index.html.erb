@@ -1,0 +1,13 @@
+<table>
+  <thead>
+  <th>Category Name</th>
+</thead>
+<tbody>
+  <% @categories.each do |category| %>
+    <tr>
+      <td><%= category.name %> <%= link_to "show", {:action => :show} %></td>
+      
+    </tr>
+  </tbody>
+<% end %>
+</table>
