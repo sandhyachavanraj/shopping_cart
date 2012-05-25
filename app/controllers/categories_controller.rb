@@ -10,8 +10,7 @@ class CategoriesController < ApplicationController
 	end
 
   def create
-    @category = Category.new   
-    @category.products.build(params[:product])
+    @category = Category.new(params[:category])
     if @category.save
       flash[:notice] = "category saved successfully"
       redirect_to :action => :index
