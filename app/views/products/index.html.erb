@@ -1,0 +1,19 @@
+<table border="1">
+  <thead>
+  <th>Category</th>
+  <th>Product Name</th>
+  <th>Product Price</th>
+  <th>Product Description</th>
+</thead>
+<tbody>
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= product.category_id %> </td>
+      <td><%= product.name %> </td>
+      <td><%= product.price %> </td>
+      <td><%= product.description %> </td>
+
+    </tr>
+  </tbody>
+<% end %>
+</table>
