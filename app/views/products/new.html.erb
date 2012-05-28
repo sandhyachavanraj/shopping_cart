@@ -1,4 +1,3 @@
-<%  if session[:user] %>
 <h2>Add New Product</h2>
 <% @product.errors.full_messages.each do|msg|%>
   <p><%= msg %></p>
@@ -20,8 +19,4 @@
     <%= p.file_field :upload_image %> </p>
   
   <%= p.submit "Submit" %>
-<% end %>
-<% else %>
-  <h2 style ="color:red">User Must Be Login</h2>
-   <h3><%= link_to "Login", {:action => :login, :controller => :users} %></h3>
 <% end %>
