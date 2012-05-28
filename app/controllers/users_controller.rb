@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 	def index
     
 		@users = User.all
-   @users = User.paginate(:page => params[:page], :per_page => 8)
+    @users = User.paginate(:page => params[:page], :per_page => 8)
    
   end
 
@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   def create    
     @user = UserProfile.new
     @user.build_user(params[:user])
-#    raise params.inspect
+    #    raise params.inspect
     if @user.save!
       flash[:notice] = "user saved successfully"
       redirect_to :action => :index
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find params[:id]
     @user.cleanup
-     flash[:notice] = "Successfully Destroyed"
+    flash[:notice] = "Successfully Destroyed"
     @user.destroy
     redirect_to :action => :index
   end
@@ -91,37 +91,47 @@ class UsersController < ApplicationController
     end
   end
 
-  def insert
-    @userprofile = UserProfile.find_by_user_id(params[:id])
-    
-    if @userprofile.update_attributes(params[:userprofile])
-      flash[:notice] = "userprofile saved successfully"
+
+  def user_profile
+    @user = User.find params[:id]
+    @user_profile = @user.user_profile   
+  end
+
+  def update_profile
+
+    @user_profile = UserProfile.find_by_id(params[:id])
+
+    if @user_profile.update_attributes(params[:user_profile])
+      flash[:notice] = "Success"
       redirect_to :action => :index
     else
       flash[:notice] = "userprofile not saved"
+      render :edit_profile
     end
   end
-
 
   def userprofilelist
     @userprofile = UserProfile.find params[:id]
   end
   
-#  def picture
-#    @userprofile = UserProfile.find params[:id]
-#
-#   #    send_data to return the image to the browser.
-#    send_data(@userprofile.data,
-#      :filename => @userprofile.name,
-#      :type => @userprofile.content_type,
-#      :disposition => "inline")
-#  end
+  #  def picture
+  #    @userprofile = UserProfile.find params[:id]
+  #
+  #   #    send_data to return the image to the browser.
+  #    send_data(@userprofile.data,
+  #      :filename => @userprofile.name,
+  #      :type => @userprofile.content_type,
+  #      :disposition => "inline")
+  #  end
 
   def upload_file
-    UserProfile.save(params[:upload])
+    raise params[:upload].inspect
+    UserProfile.save(params[:upload])    
     render :text => "File has been uploaded successfully"
   end
 
+  
+  
 
     
 end

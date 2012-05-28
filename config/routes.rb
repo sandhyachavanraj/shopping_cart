@@ -6,22 +6,24 @@ ShoppingCart::Application.routes.draw do
       put :update_password
       post :authenticate
       get :logout
-      get :userprofile
-      put :insert
+      get :user_profile
+      put :update_profile
       get :userprofilelist
-      get :picture
-      
+      get :picture     
+    end
+   
+  end
+
+  resources :categories
+
+  resources :products 
+   
+  
+   
+ 
+
+ 
     
-    end
-  end
-
-  resources :categories do
-    collection do
-      get :products
-     
-    end
-  end
-
   
   match '/login' => 'users#login'
   match '/logout' => 'users#logout'

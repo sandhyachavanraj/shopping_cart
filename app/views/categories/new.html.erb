@@ -1,5 +1,6 @@
-<% if flash[:notice] %>
-  <%= flash[:notice] %>
+<h2>Add New Category</h2>
+<% @category.errors.full_messages.each do|msg|%>
+  <p><%= msg %></p>
 <% end %>
 
 <%= form_for @category do |c| %>

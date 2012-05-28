@@ -1,8 +1,11 @@
 <%  if session[:user] %>
   <h3>welcome to <%= session[:user].name %></h3> <h3><%= link_to "logout", {:action => :logout} %></h3>
-  <h3><%= link_to "reset password", {:action => :reset_password} %>  <%= link_to "edit user profile", {:action => :userprofile, :id => session[:user]} %></h3>
+  <h3><%= link_to "reset password", {:action => :reset_password} %>  
+      <%= link_to "edit user profile", {:action => :user_profile, :id => session[:user]} %>
+      <%= link_to "AddNewProduct", {:action => :new, :controller => :products, :id => session[:user]} %> </h3>
+  
 <% else %>
-  <h3>welcome to guest</h3> <%= link_to "login", {:action => :login} %>
+  <h3>welcome to guest</h3> <%= link_to "login", login_users_path %>
 <% end %>
 
 <table>
@@ -19,7 +22,7 @@
         <td><%= image_tag user.user_profile.image_url, :size => "24x24" %></td>
 
       <% else %>
-        <td><%= image_tag ('download.jpg'), :size => "24x24" %></td>
+        <td><%= image_tag ('avatar.jpg'), :size => "24x24" %></td>
       <% end %>
 
       <td><%= user.name %></td>
@@ -34,6 +37,7 @@
 
       <% if session[:user] && session[:user].name == user.name && session[:user].name != 'admin' %>
         <td><%= link_to "userprofile", {:action => :userprofilelist, :id => user.user_profile.id} %></td>
+        <td><%= link_to "userproductlist", {:action => :index, :controller => :products, :user_id => session[:user].id} %></td>
       <% end %>
     </tr>
   </tbody>

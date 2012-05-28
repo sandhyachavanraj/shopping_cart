@@ -5,9 +5,10 @@
 <tbody>
   <% @categories.each do |category| %>
     <tr>
-      <td><%= category.name %> <%= link_to "show", {:action => :show} %></td>
+      <td><%= category.name %> </td>
       
     </tr>
   </tbody>
 <% end %>
 </table>
+<p><h3><%= link_to "Back", :action => "new" %></h3></p>
