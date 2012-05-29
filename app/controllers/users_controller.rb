@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
 
-	def index
-    
+  before_filter :logged_in, :only => [:edit, :new]
+
+	def index    
 		@users = User.all
-    @users = User.paginate(:page => params[:page], :per_page => 8)
-   
+    @users = User.paginate(:page => params[:page], :per_page => 8)   
   end
 
 	def new
@@ -131,7 +131,11 @@ class UsersController < ApplicationController
   end
 
   
-  
+  private
+
+  def logged_in
+    redirect_to login_users_path
+  end
 
     
 end

@@ -56,6 +56,8 @@ before_filter :logged_in, :unless => :logged_in?
     render :text => "File has been uploaded successfully"
   end
 
+  
+
   private
 
   def logged_in

@@ -12,7 +12,7 @@
     <tr>
 
       <% if product.image_url.present? && product.user_id == session[:user].id %>
-        <td><%= image_tag product.image_url, :size => "50x50" %></td>
+        <td><%= image_tag "products/"+product.image_url, :size => "50x50" %></td>
       <% else %>
           <td><%= image_tag ('inde.jpeg'), :size => "30x30" %></td>
       <% end %>

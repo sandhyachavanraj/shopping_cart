@@ -1,6 +1,7 @@
   Name: <%= @product.name %><br/>
   Price: <%= @product.price %><br/>
   Description: <%= @product.description %><br/>
+  <%= image_tag "products/"+@product.image_url, :size => "100 x 100" %>
   
   <h3><%= link_to "Back", products_path %></h3>
 

@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_one :user_profile
   has_many :products
+  has_many :carts
 
   validates :name, :presence => true
   validates :password, :presence =>true, :confirmation =>true, :length => { :minimum => 5, :maximum => 8}
