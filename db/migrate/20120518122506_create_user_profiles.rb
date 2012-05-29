@@ -1,6 +1,6 @@
-class CreateUserprofiles < ActiveRecord::Migration
+class CreateUserProfiles < ActiveRecord::Migration
   def change
-    create_table :userprofiles do |t|
+    create_table :user_profiles do |t|
       t.references :user
       t.text :billing_address
       t.text :perminent_address
