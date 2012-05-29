@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
 
+before_filter :logged_in, :unless => :logged_in?
 
   def index
 		@categories = Category.all
@@ -19,5 +20,10 @@ class CategoriesController < ApplicationController
     end
   end
 
+  private
+
+  def logged_in
+    redirect_to login_users_path
+  end
  
 end

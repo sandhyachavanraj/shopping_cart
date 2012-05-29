@@ -2,7 +2,8 @@
   <h3>welcome to <%= session[:user].name %></h3> <h3><%= link_to "logout", {:action => :logout} %></h3>
   <h3><%= link_to "reset password", {:action => :reset_password} %>  
       <%= link_to "edit user profile", {:action => :user_profile, :id => session[:user]} %>
-      <%= link_to "AddNewProduct", {:action => :new, :controller => :products, :id => session[:user]} %> </h3>
+      <%= link_to "AddNewProduct", {:action => :new, :controller => :products, :id => session[:user]} %>
+      <td><%= link_to "AddCategory", {:action => :new, :controller => :categories} %></td></h3>
   
 <% else %>
   <h3>welcome to guest</h3> <%= link_to "login", login_users_path %>
@@ -29,13 +30,13 @@
       <td><%= user.email %></td>
       <td><%= link_to "view", {:action => :show, :id => user.id} %> </td>
 
-      <% if session[:user] && session[:user].name == 'admin' %>
+      <% if session[:user] && session[:user].name == true %>
         <td><%= link_to "edit", {:action => :edit, :id => user.id} %></td>
         <td><%= link_to "destroy", user, :method => :delete, :confirm => 'Are you sure?' %></td>
-        <td><%= link_to "userprofile", {:action => :userprofilelist, :id => user.user_profile.id} %></td>
+        <td><%= link_to "userprofile", {:action => :userprofilelist, :id => user.user_profile.id} %></td>       
       <% end  %>
 
-      <% if session[:user] && session[:user].name == user.name && session[:user].name != 'admin' %>
+      <% if session[:user] && session[:user].name == user.name && session[:user].name != true %>
         <td><%= link_to "userprofile", {:action => :userprofilelist, :id => user.user_profile.id} %></td>
         <td><%= link_to "userproductlist", {:action => :index, :controller => :products, :user_id => session[:user].id} %></td>
       <% end %>
@@ -44,4 +45,5 @@
 <% end %>
 </table>
 <%= will_paginate @users %>
+  
 
