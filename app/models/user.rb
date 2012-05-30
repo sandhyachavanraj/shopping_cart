@@ -24,6 +24,9 @@ class User < ActiveRecord::Base
     find_by_id(id)
   end
 
+ def item_status
+    return :no_such_item
+  end
 
 
 end
