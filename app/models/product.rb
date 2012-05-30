@@ -1,6 +1,9 @@
 class Product < ActiveRecord::Base
   belongs_to :category
   belongs_to :user
+  has_many :cart_items
+  has_many :carts, :through => :cart_items  
+
 
   validates :name,:price,:description, :presence => true
 

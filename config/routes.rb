@@ -16,10 +16,11 @@ ShoppingCart::Application.routes.draw do
 
   resources :categories
 
-  resources :products  do
-  end
-   
+  resources :products  
   
+   
+  resources :carts
+  resources :cart_items
    
  
 

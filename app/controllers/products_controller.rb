@@ -54,9 +54,7 @@ before_filter :logged_in, :unless => :logged_in?
   def upload_file
     Product.save(params[:upload])
     render :text => "File has been uploaded successfully"
-  end
-
-  
+  end  
 
   private
 

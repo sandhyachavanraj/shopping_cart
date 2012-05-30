@@ -1,6 +1,8 @@
 <h1>Products List</h1>
 <table border="1">
+
   <thead>
+  <th>CheckBoxes</th>
   <th>Product Image</th>
   <th>Category</th>
   <th>Product Name</th>
@@ -10,30 +12,63 @@
 <tbody>
   <% @products.each do |product| %>
     <tr>
+      <td><%= check_box_tag 'product_id[]', product.id %></td>
 
       <% if product.image_url.present? && product.user_id == session[:user].id %>
-        <td><%= image_tag "products/"+product.image_url, :size => "50x50" %></td>
+
+        <td><%= image_tag "products/"+product.image_url, :size => "20x20" %></td>
       <% else %>
-          <td><%= image_tag ('inde.jpeg'), :size => "30x30" %></td>
+        <td><%= image_tag ('inde.jpeg'), :size => "10x10" %></td>
       <% end %>
 
       <td><%= product.category_id %> </td>
       <td><%= product.name %> </td>
       <td><%= product.price %> </td>
-      <td><%= product.description %> </td>      
+      <td><%= product.description %> </td>
 
       <% if session[:user] && session[:user].id == product.user_id %>
         <td><%= link_to "Show", product_path(product)%></td>
         <td><%= link_to "Edit", edit_product_path(product) %></td>
         <td><%= link_to "Destroy", product_path(product), :method => :delete, :confirm => "Are you sure?" %></td>
       <% else %>
-        <td><%= link_to "Show", product_path(product)%></td>  
+        <td><%= link_to "Show", product_path(product)%></td>
       <% end %>
     </tr>
   </tbody>
 <% end %>
 </table>
 
-<p><h3><%= link_to "Back", :action => :index, :controller => :users %></h3></p>
+<p><h3><%= link_to "Add To Cart", "JavaScript:void(0);", :onclick => "delete_photo()" %></h3></p>
+
+
+
+
+<script type="text/javascript" language="JavaScript">
+
+  function delete_photo(){
+    var idList = new Array();
+    var count = 0;
+    jQuery('input[name=product_id[]]:checked').each(function(){
+      idList[count] = jQuery(this).val();
+      count += 1;
+    });
+    if(count == 0){
+      alert("Please select atleast 1 product");
+    }
+    else{
+      check = confirm("Are you sure you want to add these products to cart?");
+      if(check){
+          
+        jQuery.ajax({
+          type: "POST",
+          url: '<%= carts_path %>',
+          data:  "id=" + idList,
+        });
+      }else{
+        return false;
+      }
+    }
+  }
+</script>
 
 

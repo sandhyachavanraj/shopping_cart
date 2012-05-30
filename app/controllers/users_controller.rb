@@ -55,8 +55,8 @@ class UsersController < ApplicationController
     if login
       session[:user] = login
       flash[:notice] = "logged in suceesfully"
-      # name = session[:name]
-      redirect_to :action => :index
+      redirect_to  :controller => :products, :action => :index
+      
     else
       flash[:notice] = "incoreect email/password"
       redirect_to :action => :login
@@ -134,7 +134,7 @@ class UsersController < ApplicationController
   private
 
   def logged_in
-    redirect_to login_users_path
+    redirect_to login_users_path unless session[:user]
   end
 
     
