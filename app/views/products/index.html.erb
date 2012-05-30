@@ -1,3 +1,4 @@
+<!--
 <h1>Products List</h1>
 <table border="1">
 
@@ -7,40 +8,40 @@
   <th>Category</th>
   <th>Product Name</th>
   <th>Product Price</th>
-  <th>Product Description</th>  
+  <th>Product Description</th>
 </thead>
 <tbody>
-  <% @products.each do |product| %>
-    <tr>
-      <td><%= check_box_tag 'product_id[]', product.id %></td>
+  <%# @products.each do |product| %>
+    <%#*<tr>%>
+      <%#*<td><%= check_box_tag 'product_id[]', product.id %></td>%>
 
-      <% if product.image_url.present? && product.user_id == session[:user].id %>
+      <%# if product.image_url.present? && product.user_id == session[:user].id %>
 
-        <td><%= image_tag "products/"+product.image_url, :size => "20x20" %></td>
-      <% else %>
-        <td><%= image_tag ('inde.jpeg'), :size => "10x10" %></td>
-      <% end %>
+        <%#*<td><%= image_tag "products/"+product.image_url, :size => "20x20" %></td>%>
+      <%# else %>
+        <%#*<td><%= image_tag ('inde.jpeg'), :size => "10x10" %></td>%>
+      <%# end %>
 
-      <td><%= product.category_id %> </td>
-      <td><%= product.name %> </td>
-      <td><%= product.price %> </td>
-      <td><%= product.description %> </td>
+      <%#*<td><%= product.category_id %> </td>%>
+      <%#*<td><%= product.name %> </td>%>
+      <%#*<td><%= product.price %> </td>%>
+      <%#*<td><%= product.description %> </td>%>
 
-      <% if session[:user] && session[:user].id == product.user_id %>
-        <td><%= link_to "Show", product_path(product)%></td>
-        <td><%= link_to "Edit", edit_product_path(product) %></td>
-        <td><%= link_to "Destroy", product_path(product), :method => :delete, :confirm => "Are you sure?" %></td>
-      <% else %>
-        <td><%= link_to "Show", product_path(product)%></td>
-      <% end %>
-    </tr>
-  </tbody>
-<% end %>
+      <%# if session[:user] && session[:user].id == product.user_id %>
+        <%#*<td><%= link_to "Show", product_path(product)%></td>%>
+        <%#*<td><%= link_to "Edit", edit_product_path(product) %></td>%>
+        <%#*<td><%= link_to "Destroy", product_path(product), :method => :delete, :confirm => "Are you sure?" %></td>%>
+      <%# else %>
+        <%#*<td><%= link_to "Show", product_path(product)%></td>%>
+      <%# end %>
+    <%#*</tr>%>
+  <%#*</tbody>%>
+<%# end %>
 </table>
+-->
+
 
 <p><h3><%= link_to "Add To Cart", "JavaScript:void(0);", :onclick => "delete_photo()" %></h3></p>
-
-
 
 
 <script type="text/javascript" language="JavaScript">
@@ -75,14 +76,20 @@
   <h2>Product list</h2>
   <ul class="product_list"  >
     <% @products.each do |product|%>
+
       <li class="product_image" id="product_image_<%=product.id%>">
-        <%= image_tag "#{product.image_url}", :size=>"100x100" %><br/>
-        <%= product.name %>
+        <%= check_box_tag 'product_id[]', product.id %>
+        <% if product.image_url.present? && product.user_id == session[:user].id %>
+          <%= image_tag (product.image_url), :size=>"100x100" %><br/>
+        <% else %>
+        <td><%= image_tag ('inde.jpeg'), :size => "50x50" %></td>
+      <% end %>
+      <%= product.name %>
       </li>
     <% end %>
   </ul>
   <div class="clear"></div>
- 
+    
   <p> <%=  link_to "new product", new_product_path %></p>
 </div>
 
