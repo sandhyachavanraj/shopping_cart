@@ -5,20 +5,18 @@
   <th>  Action: </th>
 </thead>
 <body>
- <p>Image_url: <%=@product.image_url%></p>
- <p>Name: <%=@product.image_name%></p>
- <p>Size: <%=@product.image_size%></p>
- <p>ContentType: <%=@product.image_content_type%></p>
- <p>Title: <%=@product.name%></p>
- <p>Description: <%=@product.description%></p>
-  <td style="background-color:#EEEEEE">  <%= truncate(strip_tags(product.description),:length => 100) %></td>
+ <p>Image_url: <%=@product.image_url%></p>  
+ <p>Name: <%=@product.name%></p>
  <p>Price: <%=@product.price%></p>
- <td style="background-color:#FFD700"> <%= product.price %> </td>
+ <p>Description: <%=@product.description%></p>
+  <td style="background-color:#EEEEEE">  <%= truncate(strip_tags(@product.description),:length => 100) %></td>
+ <p>Price: <%=@product.price%></p>
+ <td style="background-color:#FFD700"> <%= @product.price %> </td>
 
 
-      <td style="background-color:#FFD700">  <%=  link_to "edit",{:action => :edit, :id => product.id}    %> </td>
-      <td style="background-color:#FFD700"> <%=  link_to "show",{ :action => :show, :id => product.id}   %> </td>
-      <td style="background-color:#FFD700">  <%=  link_to "destroy",product, :confirm => "Are you sure?", :method => :delete  %>  </td>
+      <td style="background-color:#FFD700">  <%=  link_to "edit",{:action => :edit, :id => @product.id}    %> </td>
+      <td style="background-color:#FFD700"> <%=  link_to "show",{ :action => :show, :id => @product.id}   %> </td>
+      <td style="background-color:#FFD700">  <%=  link_to "destroy",@product, :confirm => "Are you sure?", :method => :delete  %>  </td>
 </body>
 </table>
 
