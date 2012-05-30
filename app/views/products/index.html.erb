@@ -54,12 +54,15 @@
       <% end %>
       <span><%= product.name %></span>
       </li>
+      
+        
+      
     <% end %>
   </ul>
   <div class="clear"></div>
   <p><%= will_paginate @products %></p>
  
-  <h3><%= link_to "Add To Cart", "JavaScript:void(0);", :onclick => "delete_photo()" %>
+  <h3><%= link_to "Add To Cart", "JavaScript:void(0);", :onclick => "javascript:delete_photo()" %>
       <%=  link_to "New Product", new_product_path %></h3>
 </div>
 
