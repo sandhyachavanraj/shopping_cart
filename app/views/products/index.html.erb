@@ -71,4 +71,20 @@
   }
 </script>
 
+<div class="right1" style="float:right">
+  <h2>Product list</h2>
+  <ul class="product_list"  >
+    <% @products.each do |product|%>
+      <li class="product_image" id="product_image_<%=product.id%>">
+        <%= image_tag "#{product.image_url}", :size=>"100x100" %><br/>
+        <%= product.name %>
+      </li>
+    <% end %>
+  </ul>
+  <div class="clear"></div>
+ 
+  <p> <%=  link_to "new product", new_product_path %></p>
+</div>
+
+
 

@@ -22,7 +22,7 @@
 <tbody>
   <% @users.each do |user| %>
     <tr>
-      <% if user.user_profile.image_url.present? %>
+      <% if user.try(:user_profile).try(:image_url).present? %>
         <td><%= image_tag user.user_profile.image_url, :size => "24x24" %></td>
 
       <% else %>
@@ -36,7 +36,7 @@
       <% if session[:user] && session[:user].admin == true %>
         <td><%= link_to "edit", {:action => :edit, :id => user.id} %></td>
         <td><%= link_to "destroy", user, :method => :delete, :confirm => 'Are you sure?' %></td>
-        <td><%= link_to "userprofile", {:action => :userprofilelist, :id => user.user_profile.id} %></td>
+        <td><%= link_to "userprofile", {:action => :userprofilelist, :id => user.try(:user_profile).try(:id)} %></td>
         
       <% end  %>
 
