@@ -50,9 +50,9 @@
         <% if product.image_url.present? && product.user_id == session[:user].id %>
           <%= image_tag (product.image_url), :size=>"100x100" %><br/>
         <% else %>
-        <td><%= image_tag ('inde.jpeg'), :size => "50x50" %></td>
+        <%= image_tag ('inde.jpeg'), :size => "50x50" %>
       <% end %>
-      <%= product.name %>
+      <span><%= product.name %></span>
       </li>
     <% end %>
   </ul>
@@ -60,7 +60,7 @@
   <p><%= will_paginate @products %></p>
  
   <h3><%= link_to "Add To Cart", "JavaScript:void(0);", :onclick => "delete_photo()" %>
-      <%=  link_to "new product", new_product_path %></h3>
+      <%=  link_to "New Product", new_product_path %></h3>
 </div>
 
 <script type="text/javascript" language="JavaScript">

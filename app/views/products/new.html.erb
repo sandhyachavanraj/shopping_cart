@@ -6,10 +6,10 @@
   <p><%=msg%></p>
 <%end%>
 
-<%=  form_for(@product, :url=>{:action=>'create'}, :html => {:multipart => true})  do |p| %>
+<%=  form_for(@product, :url=>{:action=>'create'})  do |p| %>
   <%=  render :partial =>"form", :locals => {:p => p} %>
   <p><%=  p.submit "Submitted"%> </p>
 <%end%>
-<%= link_to 'Back',{:action => :new} %>
+<%= link_to 'Back',products_path %>
 
 </div>

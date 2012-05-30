@@ -1,62 +1,62 @@
 
 #container
 {
-  color: #660000;
-  width: 100%;
+    color: #660000;
+    width: 100%;
 }
 
 
 div.top
 {
-  height:260px;
-  background: #9c9;
-  width: 100%;
+    height:260px;
+    background: #9c9;
+    width: 100%;
 }
 
 
 div.text
 {
-  margin-top:150px;
-  margin-right: 100px;
-  float: left;
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 21px;
-  font-style: italic;
-  text-align: left;
-  font-weight: bold;
-  color: #660033;
+    margin-top:150px;
+    margin-right: 100px;
+    float: left;
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-size: 21px;
+    font-style: italic;
+    text-align: left;
+    font-weight: bold;
+    color: #660033;
 }
 
 .sidebar{
-  padding-top: 40px;
-  background: #141;
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 20px;
-  font-style: italic;
-  line-height: 70px;
-  color: 	#ffffff;
-  text-decoration: none;
-  width:20%;
-  float: left;
+    padding-top: 40px;
+    background: #141;
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-size: 20px;
+    font-style: italic;
+    line-height: 70px;
+    color: 	#ffffff;
+    text-decoration: none;
+    width:20%;
+    float: left;
 }
 
 .bottom {
-  width: 100%;
+    width: 100%;
 }
 div  .right
 {
-  float:right;
-  width:60%;
+    float:right;
+    width:60%;
 
 
 }
 
 div.clear{
-  clear: both;
+    clear: both;
 
 }
 ul.login {
-  margin: 0px;
+    margin: 0px;
 }
 
 
@@ -66,84 +66,99 @@ ul.login {
 div .rightheader
 {
 
-  margin-top : 60px;
-  width: 500px;
-  float:left;
-  height:130px;
-  font-size: 50px;
-  text-transform:capitalize;
-  text-align: center;
-  color: #282;
+    margin-top : 60px;
+    width: 500px;
+    float:left;
+    height:130px;
+    font-size: 50px;
+    text-transform:capitalize;
+    text-align: center;
+    color: #282;
 }
 
 
 
 div.logo
 {
-  float: left;
-  margin-left: 20px;
-  margin-top:60px;
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 21px;
-  text-align: left;
-  font-weight: bold;
-  color: #660033;
-  font-style: italic;
-  width: 30%;
+    float: left;
+    margin-left: 20px;
+    margin-top:60px;
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-size: 21px;
+    text-align: left;
+    font-weight: bold;
+    color: #660033;
+    font-style: italic;
+    width: 30%;
 }
 
 
 div.login
 {
-  margin-top:180px;
-  float:left;
-  margin-left:2px;
+    margin-top:180px;
+    float:left;
+    margin-left:2px;
 }
 
 
 div ul li
 {
-  color: 	#FFA500;
-  font-size:20px;
-  list-style-type: none;
+    color: 	#FFA500;
+    font-size:20px;
+    list-style-type: none;
 }
 
 
 
 div ul li a
 {
-  text-decoration:  none;
-  color:	#FAFAD2;
+    text-decoration:  none;
+    color:	#FAFAD2;
 }
 
 .col2
 {
-  margin-left:300px;
+    margin-left:300px;
 }
 
 .col3
 {
-  margin-left:500px;
+    margin-left:500px;
 }
 
 .top
 {
-  margin-top:-2.6em;
+    margin-top:-2.6em;
 }
 
 ul li.product_image{
-  width: 30%;
-  height: 140px;
-  border: 0px solid #ccc;
-  float: left;
-  margin: 10px;
+    width: 30%;
+    height: 140px;
+    border: 1px solid #ccc;
+    float: left;
+    margin: 10px;
 }
 
 
 div  .right1
 {
-  float:right;
-  width:80%;
+    float:right;
+    width:80%;
 
 
+}
+div.right1 ul.product_list li.product_image img{
+    position :relative;
+    top : 20px;
+    left:90px
+}
+div.right1 ul.product_list li.product_image input{
+    position: relative;
+    left: 81px;
+    top: 44px;
+}
+div.right1 ul.product_list li.product_image span{
+    position: relative;
+    left: 28px;
+    top: 43px;
 }
