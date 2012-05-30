@@ -8,7 +8,7 @@
 
 div.top
 {
-    height:260px;
+    height:300px;
     background: #9c9;
     width: 100%;
 }
@@ -161,4 +161,18 @@ div.right1 ul.product_list li.product_image span{
     position: relative;
     left: 28px;
     top: 43px;
+}
+div.top div.logo ul.login li h3{
+    color:blue;
+    font-size: 22px;
+    font-family: 'Verdana';
+    
+}
+div.top div.logo ul.login li h2 a{
+    font-size: 22px;
+    font-family: 'Verdana';
+    color:red;
+    float:right;
+    margin-right: 140px;
+    text-decoration: underline;
 }

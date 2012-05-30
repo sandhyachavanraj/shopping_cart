@@ -4,16 +4,16 @@
     <%= "Shopping Cart" %><br/>
     <ul class="login">
       <li>
-        <%=  link_to "Login", {:action=> :new} %>
-      </li>
-      <li>
-        <%=  link_to "Register", {:action=> :new} %>
+        <%  if session[:user] %>
+          <h2><%= link_to "logout", logout_users_path %></h2>
+          <h3>welcome to <%= session[:user].name %></h3>
+        <% end %>
       </li>
     </ul>
   </div><br/>
 
   <div  class="rightheader" >
-    <%= "SHOPPING MART" %>
+    <%= "SHOPPING CART" %>
   </div>
 
 </div>
