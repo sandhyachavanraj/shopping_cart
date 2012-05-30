@@ -3,7 +3,7 @@ class Product < ActiveRecord::Base
   belongs_to :user
   has_many :cart_items
   has_many :carts, :through => :cart_items  
-  validates  :image_content_type, :format=>{:with => /^image/}
+
   validates :name, :description, :price, :presence => true
   validates :price, :numericality => true
   validates :name, :uniqueness => true
@@ -24,4 +24,9 @@ class Product < ActiveRecord::Base
       File.delete("#{Rails.root}/app/assets/images/#{self.image_url}")
     end
   end
+
+
+
+
+
 end
