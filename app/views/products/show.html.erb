@@ -9,7 +9,7 @@
  <p>Name: <%=@product.image_name%></p>
  <p>Size: <%=@product.image_size%></p>
  <p>ContentType: <%=@product.image_content_type%></p>
- <p>Title: <%=@product.title%></p>
+ <p>Title: <%=@product.name%></p>
  <p>Description: <%=@product.description%></p>
   <td style="background-color:#EEEEEE">  <%= truncate(strip_tags(product.description),:length => 100) %></td>
  <p>Price: <%=@product.price%></p>

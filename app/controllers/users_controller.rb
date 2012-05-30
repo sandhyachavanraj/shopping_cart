@@ -2,14 +2,14 @@ class UsersController < ApplicationController
 
   before_filter :logged_in, :only => [:edit, :new]
 
-	def index    
-		@users = User.all
+  def index
+    @users = User.all
     @users = User.paginate(:page => params[:page], :per_page => 8)   
   end
 
-	def new
-		@user = User.new
-	end
+  def new
+    @user = User.new
+  end
 
   def create    
     @user = UserProfile.new
@@ -71,14 +71,14 @@ class UsersController < ApplicationController
 
   def update_password
     @user = User.find_by_id_and_password(session[:user].id, params[:old_password])
-  
+
     if @user
       flash[:notice] ="user available"
       
       if User.update_password(params[:password], params[:confirm_password])
         @user.password = params[:password]
         @user.save!
-         
+
         flash[:notice] = "Successfully Updated"
         redirect_to :action => :index        
       else
@@ -114,16 +114,6 @@ class UsersController < ApplicationController
     @userprofile = UserProfile.find params[:id]
   end
   
-  #  def picture
-  #    @userprofile = UserProfile.find params[:id]
-  #
-  #   #    send_data to return the image to the browser.
-  #    send_data(@userprofile.data,
-  #      :filename => @userprofile.name,
-  #      :type => @userprofile.content_type,
-  #      :disposition => "inline")
-  #  end
-
   def upload_file
     raise params[:upload].inspect
     UserProfile.save(params[:upload])    
