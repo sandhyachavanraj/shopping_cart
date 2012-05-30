@@ -11,31 +11,31 @@
   <th>Product Description</th>
 </thead>
 <tbody>
-  <%# @products.each do |product| %>
-    <%#*<tr>%>
-      <%#*<td><%= check_box_tag 'product_id[]', product.id %></td>%>
+<%# @products.each do |product| %>
+<%#*<tr>%>
+<%#*<td><%= check_box_tag 'product_id[]', product.id %></td>%>
 
-      <%# if product.image_url.present? && product.user_id == session[:user].id %>
+<%# if product.image_url.present? && product.user_id == session[:user].id %>
 
-        <%#*<td><%= image_tag "products/"+product.image_url, :size => "20x20" %></td>%>
-      <%# else %>
-        <%#*<td><%= image_tag ('inde.jpeg'), :size => "10x10" %></td>%>
-      <%# end %>
+<%#*<td><%= image_tag "products/"+product.image_url, :size => "20x20" %></td>%>
+<%# else %>
+<%#*<td><%= image_tag ('inde.jpeg'), :size => "10x10" %></td>%>
+<%# end %>
 
-      <%#*<td><%= product.category_id %> </td>%>
-      <%#*<td><%= product.name %> </td>%>
-      <%#*<td><%= product.price %> </td>%>
-      <%#*<td><%= product.description %> </td>%>
+<%#*<td><%= product.category_id %> </td>%>
+<%#*<td><%= product.name %> </td>%>
+<%#*<td><%= product.price %> </td>%>
+<%#*<td><%= product.description %> </td>%>
 
-      <%# if session[:user] && session[:user].id == product.user_id %>
-        <%#*<td><%= link_to "Show", product_path(product)%></td>%>
-        <%#*<td><%= link_to "Edit", edit_product_path(product) %></td>%>
-        <%#*<td><%= link_to "Destroy", product_path(product), :method => :delete, :confirm => "Are you sure?" %></td>%>
-      <%# else %>
-        <%#*<td><%= link_to "Show", product_path(product)%></td>%>
-      <%# end %>
-    <%#*</tr>%>
-  <%#*</tbody>%>
+<%# if session[:user] && session[:user].id == product.user_id %>
+<%#*<td><%= link_to "Show", product_path(product)%></td>%>
+<%#*<td><%= link_to "Edit", edit_product_path(product) %></td>%>
+<%#*<td><%= link_to "Destroy", product_path(product), :method => :delete, :confirm => "Are you sure?" %></td>%>
+<%# else %>
+<%#*<td><%= link_to "Show", product_path(product)%></td>%>
+<%# end %>
+<%#*</tr>%>
+<%#*</tbody>%>
 <%# end %>
 </table>
 -->
@@ -89,7 +89,7 @@
     <% end %>
   </ul>
   <div class="clear"></div>
-    
+  <p><%= will_paginate @products %></p>
   <p> <%=  link_to "new product", new_product_path %></p>
 </div>
 

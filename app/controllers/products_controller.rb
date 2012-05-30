@@ -1,36 +1,39 @@
 class ProductsController < ApplicationController
 
-before_filter :logged_in, :unless => :logged_in?
+  before_filter :logged_in, :unless => :logged_in?
 
   def index
     return @products = User.find(params[:user_id]).products unless params[:user_id].blank?
-		@products = Product.all
+    @products = Product.all
+
+    @products=Product.paginate(:per_page => 5, :page => params[:page])
   end
 
-	def new
-		@product = Product.new
-	end
+  def new
+    @product = Product.new
+  end
 
   def create
     @product = Product.new(params[:product])    
     @product.user_id = session[:user].id
     
     if @product.save
-      flash[:notice] = "product saved successfully"
+      flash[:notice] = "New prduct is created and saved successfully"
       redirect_to :action => :index
     else
+      flash[:notice] = "New prduct is  not created "
       render :new
     end
   end
 
   def edit
-     @product = Product.find params[:id]
+    @product = Product.find params[:id]
   end
 
   def update
     @product = Product.find params[:id]
     if @product.update_attributes(params[:product])
-      flash[:notice] = "Success"
+      flash[:notice] = "Updated Successfully"
       redirect_to :action => :index
     else
       render :edit
@@ -46,8 +49,11 @@ before_filter :logged_in, :unless => :logged_in?
 
   def destroy
     @product = Product.find params[:id]
-    @product.destroy
+    
+
+    @product.cleanup
     flash[:notice] = "Successfully Destroyed"
+    @product.destroy
     redirect_to :action => :index
   end 
 
