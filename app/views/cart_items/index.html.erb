@@ -1,0 +1,17 @@
+<h1>CartItems List</h1>
+<table border="1">
+  <thead>
+  <th>CartId</th>
+  <th>ProductId</th>
+</thead>
+<tbody>
+  <% @cart_items.each do |ci| %>
+    <tr>
+      <td><%= ci.cart_id %> </td>
+      <td><%= ci.product_id %> </td>
+    </tr>
+  </tbody>
+<% end %>
+</table>
+
+<td><%= link_to "Back", :action => :index, :controller => :products %></td>
