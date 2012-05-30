@@ -68,5 +68,11 @@ class ProductsController < ApplicationController
     redirect_to login_users_path
   end
 
-  
+
+
+def updateCart
+
+  TemporaryCart.new(session[:user]).add_item
+end
+
 end
