@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :logged_in, :only => [:edit, :new]
+  before_filter :logged_in, :only => [:edit]
 
   def index
     @users = User.all
