@@ -41,8 +41,11 @@
 -->
 
 <div class="right1" style="float:right">
-  <h2 class="list">Product list</h2>
+  <h2 class="list">Product list
+    <span>Count Of Products For This User :<%= current_user.cart.cart_items.count %></span></h2>
   <ul class="product_list"  >
+    <li></li>
+
     <% @products.each do |product|%>
       <% cart_item = current_user.cart.cart_items.find_by_product_id(product.id);
       checked = cart_item.present? ? true : false %>
@@ -51,9 +54,9 @@
         <% if product.image_url.present? && product.user_id == session[:user].id %>
           <%= link_to (image_tag 'products/'+(product.image_url), :size=>"50x50"), product_path(product) %>
         <% else %>
-        <%= link_to (image_tag 'products/'+('inde.jpeg'), :size => "50x50"), product_path(product) %>
-      <% end %>
-      <span><%= product.name %></span>
+          <%= link_to (image_tag 'products/'+('inde.jpeg'), :size => "50x50"), product_path(product) %>
+        <% end %>
+        <span><%= product.name %></span>
       </li>
     <% end %>
   </ul>
@@ -61,19 +64,15 @@
   <p><%= will_paginate @products %></p>
 
   <%if @products.size > 0 && session[:user] %>
-        <h3><%= link_to "Add To Cart", "JavaScript:void(0);", :onclick => "javascript:delete_photo()" %></h3>
-  <% end %> 
+    <h3><%= link_to "Add To Cart", "JavaScript:void(0);", :onclick => "javascript:checked()" %></h3>
+  <% end %>
 
   <h3><%=  link_to "New Product", new_product_path %></h3>
 </div>
 
- 
-
-
-
 <script type="text/javascript" language="JavaScript">
 
-  function delete_photo(){
+  function checked(){
     var idList = new Array();
     var count = 0;
     jQuery('input[name=product_id[]]:checked').each(function(){

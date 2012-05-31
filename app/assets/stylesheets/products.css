@@ -206,3 +206,17 @@ div#editform h2{
 
 }
 
+div.right1 h2.list{
+    width:650px;
+}
+div.right1 h2.list ul.product_list li h6{
+    float: right;
+    margin-right: 78px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+div.right1 h2.list span{
+    color:black;
+    margin-left:330px;
+    font-size:12px;   
+}
