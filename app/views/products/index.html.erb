@@ -1,6 +1,6 @@
 <div class="right1" style="float:right">
   <h2 class="list">Product list
-    <span>Count Of Products For This User :<%= current_user.cart.cart_items.count %></span></h2>
+    <button> Count Of Products For This User :<%= current_user.cart.cart_items.count %></button></h2>
   <ul class="product_list"  >
     <% @products.each do |product|%>
       <% cart_item = current_user.cart.cart_items.find_by_product_id(product.id);
