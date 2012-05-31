@@ -10,15 +10,12 @@
 
     <div id="container">
       <%= render :partial => 'layouts/header' %>
-       <% if session[:user].admin == true %>
-      
-      <%end%>
-
-      <div class="bottom"  >
+    
+       <div class="bottom"  >
         <%= render :partial => 'layouts/sidebar' %>
-        
+        </div>
         <%=yield%>
-      </div>
+      
     </div>
   </body>
 </html>

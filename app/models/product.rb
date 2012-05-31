@@ -3,8 +3,8 @@ class Product < ActiveRecord::Base
   belongs_to :user
   has_many :cart_items
   has_many :carts, :through => :cart_items  
-  validates :name, :description, :price, :presence => true
-  validates :price, :numericality => true  
+#  validates :name, :description, :price, :presence => true
+#  validates :price, :numericality => true
 
   def upload_image=(upload)
     self.image_url = upload.original_filename.to_s

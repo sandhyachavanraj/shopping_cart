@@ -1,10 +1,13 @@
+
+
+
 <div class="top">
   <div class="logo" >
     <%= image_tag "rails.png", :size=>"120x120"%><br/>
     <%= "Shopping Cart" %><br/>
     <ul class="login">
       <li>
-        <%  if session[:user] %>
+        <%  if session[:user]!="admin" %>
           <h2><%= link_to "logout", logout_users_path %></h2>
           <h3>welcome to <%= session[:user].name %></h3>
         <% end %>

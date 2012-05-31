@@ -7,11 +7,7 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <% if session[:user] == "admin" %>
-      <%= link_to "", {:action => :users, :controller => :products, :layout => "admin"} %>
-    <% else %>
-      <%= link_to  "", {:action => :users, :controller => :products, :layout => "products"} %>
-    <%end%>
+
     <%= yield %>
   </body>
 </html>

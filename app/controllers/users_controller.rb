@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  layout "admin"
   before_filter :logged_in, :only => [:edit]
 
   def index
@@ -53,8 +53,11 @@ class UsersController < ApplicationController
   def authenticate
     login = User.authenticate(params[:email], params[:password])
     if login
+     
       session[:user] = login
+      
       flash[:notice] = "logged in suceesfully"
+
       redirect_to  products_path
       
     else
@@ -127,5 +130,5 @@ class UsersController < ApplicationController
     redirect_to login_users_path unless session[:user]
   end
 
-    
+   
 end
