@@ -1,96 +1,55 @@
-<!--
-<h1>Products List</h1>
-<table border="1">
-
-  <thead>
-  <th>CheckBoxes</th>
-  <th>Product Image</th>
-  <th>Category</th>
-  <th>Product Name</th>
-  <th>Product Price</th>
-  <th>Product Description</th>
-</thead>
-<tbody>
-<%# @products.each do |product| %>
-<%#*<tr>%>
-<%#*<td><%= check_box_tag 'product_id[]', product.id %></td>%>
-
-<%# if product.image_url.present? && product.user_id == session[:user].id %>
-
-<%#*<td><%= image_tag "products/"+product.image_url, :size => "20x20" %></td>%>
-<%# else %>
-<%#*<td><%= image_tag ('inde.jpeg'), :size => "10x10" %></td>%>
-<%# end %>
-
-<%#*<td><%= product.category_id %> </td>%>
-<%#*<td><%= product.name %> </td>%>
-<%#*<td><%= product.price %> </td>%>
-<%#*<td><%= product.description %> </td>%>
-
-<%# if session[:user] && session[:user].id == product.user_id %>
-<%#*<td><%= link_to "Show", product_path(product)%></td>%>
-<%#*<td><%= link_to "Edit", edit_product_path(product) %></td>%>
-<%#*<td><%= link_to "Destroy", product_path(product), :method => :delete, :confirm => "Are you sure?" %></td>%>
-<%# else %>
-<%#*<td><%= link_to "Show", product_path(product)%></td>%>
-<%# end %>
-<%#*</tr>%>
-<%#*</tbody>%>
-<%# end %>
-</table>
--->
 <div class="right1" style="float:right">
-  <h2 class="list">Product list</h2>
+  <h2 class="list">Product list
+    <span>Count Of Products For This User :<%= current_user.cart.cart_items.count %></span></h2>
   <ul class="product_list"  >
-    <% @products.each do |product|%>      
-      
-    
+    <% @products.each do |product|%>
+      <% cart_item = current_user.cart.cart_items.find_by_product_id(product.id);
+      checked = cart_item.present? ? true : false %>
       <li class="product_image" id="product_image_<%=product.id%>">
-        <%= check_box_tag 'product_id[]', product.id %>
-
+        <%= check_box_tag 'product_id[]', product.id, checked%>
         <% if product.image_url.present? && product.user_id == session[:user].id %>
           <%= link_to (image_tag 'products/'+(product.image_url), :size=>"50x50"), product_path(product) %>
         <% else %>
-        <%= link_to (image_tag 'products/'+('inde.jpeg'), :size => "50x50"), product_path(product) %>
-      <% end %>
-      <span><%= product.name %></span>
-      </li>      
+          <%= link_to (image_tag 'products/'+('inde.jpeg'), :size => "50x50"), product_path(product) %>
+        <% end %>
+        <span><%= product.name %></span>
+      </li>
     <% end %>
   </ul>
   <div class="clear"></div>
   <p><%= will_paginate @products %></p>
 
   <%if @products.size > 0 && session[:user] %>
-        <h3><%= link_to "Add To Cart", "JavaScript:void(0);", :onclick => "javascript:delete_photo()" %></h3>
-  <% end %> 
+    <h3><%= link_to "Add To Cart", "JavaScript:void(0);", :onclick => "javascript:checked()" %></h3>
+  <% end %>
 
   <h3><%=  link_to "New Product", new_product_path %></h3>
 </div>
 
 <script type="text/javascript" language="JavaScript">
-  function delete_photo(){
-    var idList = new Array();
-    var count = 0;
-    jQuery('input[name=product_id[]]:checked').each(function(){
-      idList[count] = jQuery(this).val();
-      count += 1;
-    });
-    if(count == 0){
-      alert("Please select atleast 1 product");
-    }
-    else{
-      check = confirm("Are you sure you want to add these products to cart?");
-      if(check){
-          
-        jQuery.ajax({
-          type: "POST",
-          url: '<%= carts_path %>',
-          data:  "id=" + idList,
-        });
-      }else{
-        return false;
-      }
-    }
+  function checked(){
+  var idList = new Array();
+  var count = 0;
+  jQuery('input[name=product_id[]]:checked').each(function(){
+  idList[count] = jQuery(this).val();
+  count += 1;
+  });
+  if(count == 0){
+  alert("Please select atleast 1 product");
+  }
+  else{
+  check = confirm("Are you sure you want to add these products to cart?");
+  if(check){
+
+  jQuery.ajax({
+  type: "POST",
+  url: '<%= carts_path %>',
+  data:  "id=" + idList,
+  });
+  }else{
+  return false;
+  }
+  }
   }
 </script>
 

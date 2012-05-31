@@ -11,8 +11,7 @@ class CartItemsController < ApplicationController
 
   def create
     @cart_item = CartItem.new(params[:cart_item])
-    @cart_item = Cart.find params[:id]    
-
+    @cart_item = Cart.find params[:id]
     if @cart_item.save
       flash[:notice] = "cart_item saved successfully"
       redirect_to cart_items_path
