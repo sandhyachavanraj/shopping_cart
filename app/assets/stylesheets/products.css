@@ -129,52 +129,36 @@ div  .right1
 {
     float:right;
     width:80%;
-
-
 }
 
 div  .right
 {
-  float:right;
-  width:60%;
- margin-top:100px;
-
+    float:right;
+    width:60%;
+    margin-top: 37px;
 }
-
 
 button.buttons  
 {
 
-  background: #9c9;
-  margin-top:20px;
- width:110px;
-  height:50px;
+    background: #9c9;
+    margin-top:20px;
+    width:110px;
+    height:50px;
 
 }
 
 .buttons  a:visited
 {
- background: #6B8E23;
-
-
+    background: #6B8E23;
 }
-
-
-
-
-
 .menu
-
 {
-
-  margin-top:120px;
-
+    margin-top:120px;
 }
 
-
-.list{
- margin-top: 180px;
-margin-left: 380px;
+.list{    
+    margin-left: 380px;
 }
 
 div.right1 ul.product_list li.product_image img{
@@ -219,6 +203,6 @@ div#editform{
     margin-left: 35px;
 }
 div#editform h2{
-    
+
 }
 
