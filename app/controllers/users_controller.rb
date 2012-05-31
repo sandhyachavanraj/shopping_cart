@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   def authenticate
     login = User.authenticate(params[:email], params[:password])
     if login
-      session[:user] = login
+      session[:user] = login      
       flash[:notice] = "logged in suceesfully"
       redirect_to  products_path
       
