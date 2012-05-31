@@ -3,11 +3,10 @@ class Product < ActiveRecord::Base
   belongs_to :user
   has_many :cart_items
   has_many :carts, :through => :cart_items  
-  validates  :image_content_type, :format=>{:with => /^image/}
+#  validates  :image_content_type, :format=>{:with => /^image/}
   validates :name, :description, :price, :presence => true
-  validates :price, :numericality => true
-  validates :name, :uniqueness => true
-  validates :image_url, :format => { :with=> %r{\.(gif|jpg|png)$}i,:message => 'must be a URL for GIF, JPG or PNG image.'}
+  validates :price, :numericality => true  
+#  validates :image_url, :format => { :with=> %r{\.(gif|jpg|png)$}i,:message => 'must be a URL for GIF, JPG or PNG image.'}
 
   
 

@@ -31,7 +31,7 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product = Product.find params[:id]
+    @product = Product.find params[:id]    
     if @product.update_attributes(params[:product])
       flash[:notice] = "Updated Successfully"
       redirect_to :action => :index
