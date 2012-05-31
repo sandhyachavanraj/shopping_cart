@@ -3,8 +3,6 @@
   <%= flash[:notice] %>
 <% end %>
 
-<%#= image_tag @userprofile.img.url(:thumb) %>
-
 <% if @userprofile.image_url.present? %>
   <td><%= image_tag @userprofile.image_url, :size => "150x150" %></td>
 <% else %>

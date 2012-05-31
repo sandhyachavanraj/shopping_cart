@@ -39,20 +39,15 @@
 <%# end %>
 </table>
 -->
-
 <div class="right1" style="float:right">
   <h2 class="list">Product list</h2>
   <ul class="product_list"  >
     <% @products.each do |product|%>      
-      <% cart_item = current_user.cart.cart_items.find_by_product_id(product.id);
-      checked = cart_item.present? ? true : false %>
-    <p class="length"> <%=  cart_item.length%> </p>
+      
+    
       <li class="product_image" id="product_image_<%=product.id%>">
-<<<<<<< HEAD
-        <%= check_box_tag 'product_id[]', product.id ,checked=true %>
-=======
-        
->>>>>>> c386afc27e5d569fbcfa1cd7997b1074e2e5af00
+        <%= check_box_tag 'product_id[]', product.id %>
+
         <% if product.image_url.present? && product.user_id == session[:user].id %>
           <%= link_to (image_tag 'products/'+(product.image_url), :size=>"50x50"), product_path(product) %>
         <% else %>
@@ -72,12 +67,7 @@
   <h3><%=  link_to "New Product", new_product_path %></h3>
 </div>
 
- 
-
-
-
 <script type="text/javascript" language="JavaScript">
-
   function delete_photo(){
     var idList = new Array();
     var count = 0;
