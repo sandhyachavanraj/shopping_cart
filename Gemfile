@@ -38,7 +38,7 @@ gem 'jquery-rails'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 gem 'execjs'
 gem 'therubyracer'
-gem 'mysql2'
+gem 'mysql'
 gem 'client_side_validations'
 # gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 # gem 'will_paginate', '~> 3.0'

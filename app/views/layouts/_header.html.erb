@@ -4,13 +4,22 @@
     <%= "Shopping Cart" %><br/>
     <ul class="login">
       <li>
+<<<<<<< HEAD
         <%=  link_to "Login", {:action=> :new} %>
       </li>
      
+=======
+        <%  if session[:user] %>
+          <h2><%= link_to "logout", logout_users_path %></h2>
+          <h3>welcome to <%= session[:user].name %></h3>
+        <% end %>
+      </li>
+>>>>>>> c386afc27e5d569fbcfa1cd7997b1074e2e5af00
     </ul>
   </div><br/>
 
   <div  class="rightheader" >
+<<<<<<< HEAD
     <%= "SHOPPING MART" %>
     <div class="counting" >
       <%           %>
@@ -29,6 +38,9 @@
   <%end%>
 </div>
 
+=======
+    <%= "SHOPPING CART" %>
+>>>>>>> c386afc27e5d569fbcfa1cd7997b1074e2e5af00
   </div>
 
 </div>

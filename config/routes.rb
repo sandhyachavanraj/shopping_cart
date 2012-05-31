@@ -27,7 +27,7 @@ ShoppingCart::Application.routes.draw do
   match '/login' => 'users#login'
   match '/logout' => 'users#logout'
   match '/reset_password' => 'users#reset_password'
-  
+  match '/products' => 'products#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
