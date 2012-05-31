@@ -2,8 +2,6 @@
   <h2 class="list">Product list
     <button> Count Of Products For This User :<%= current_user.cart.cart_items.count %></button></h2>
   <ul class="product_list"  >
-    <li></li>
-
     <% @products.each do |product|%>
       <% cart_item = current_user.cart.cart_items.find_by_product_id(product.id);
       checked = cart_item.present? ? true : false %>
@@ -29,30 +27,29 @@
 </div>
 
 <script type="text/javascript" language="JavaScript">
-
   function checked(){
-    var idList = new Array();
-    var count = 0;
-    jQuery('input[name=product_id[]]:checked').each(function(){
-      idList[count] = jQuery(this).val();
-      count += 1;
-    });
-    if(count == 0){
-      alert("Please select atleast 1 product");
-    }
-    else{
-      check = confirm("Are you sure you want to add these products to cart?");
-      if(check){
-          
-        jQuery.ajax({
-          type: "POST",
-          url: '<%= carts_path %>',
-          data:  "id=" + idList,
-        });
-      }else{
-        return false;
-      }
-    }
+  var idList = new Array();
+  var count = 0;
+  jQuery('input[name=product_id[]]:checked').each(function(){
+  idList[count] = jQuery(this).val();
+  count += 1;
+  });
+  if(count == 0){
+  alert("Please select atleast 1 product");
+  }
+  else{
+  check = confirm("Are you sure you want to add these products to cart?");
+  if(check){
+
+  jQuery.ajax({
+  type: "POST",
+  url: '<%= carts_path %>',
+  data:  "id=" + idList,
+  });
+  }else{
+  return false;
+  }
+  }
   }
 </script>
 
