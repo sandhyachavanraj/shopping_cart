@@ -8,7 +8,7 @@
         <%=  link_to "Login", {:action=> :new} %>
       </li>
      
-=======
+=======<li>
         <%  if session[:user] %>
           <h2><%= link_to "logout", logout_users_path %></h2>
           <h3>welcome to <%= session[:user].name %></h3>
@@ -21,22 +21,7 @@
   <div  class="rightheader" >
 <<<<<<< HEAD
     <%= "SHOPPING MART" %>
-    <div class="counting" >
-      <%           %>
-    </div>
-<div class="form1" >
-  <% if session[:user].admin == true %>
- <%= link_to "", {:action => :admin, :controller => :products} %>
-<form name="myform" >
-<p class="menu">
-  <button type="button"  name="mybutton"class="buttons" > <%=  link_to "Users", {:action => :index , :controller=> :users}%> </button>
- <button type="button" name="mybutton1" class="buttons" ><%=  link_to "Products", {:action => :index , :controller=> :products}%></button>
- <button type="button" name="mybutton2" class="buttons" ><%=  link_to "Categories", {:action => :index , :controller=> :categories}%></button>
- <button type="button" name="mybutton3" class="buttons" ><%=  link_to "Cart", {:action => :index , :controller=> :carts}%> </button></p>
-
-</form>
-  <%end%>
-</div>
+    
 
 =======
     <%= "SHOPPING CART" %>
