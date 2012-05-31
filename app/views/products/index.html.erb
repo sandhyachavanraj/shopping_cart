@@ -46,11 +46,12 @@
     <% @products.each do |product|%>
       <% cart_item = current_user.cart.cart_items.find_by_product_id(product.id);
       checked = cart_item.present? ? true : false %>
+    <p class="length"> <%=  cart_item.length%> </p>
       <li class="product_image" id="product_image_<%=product.id%>">
 <<<<<<< HEAD
         <%= check_box_tag 'product_id[]', product.id ,checked=true %>
 =======
-        <%= check_box_tag 'product_id[]', product.id, checked%>
+        
 >>>>>>> c386afc27e5d569fbcfa1cd7997b1074e2e5af00
         <% if product.image_url.present? && product.user_id == session[:user].id %>
           <%= image_tag (product.image_url), :size=>"100x100" %><br/>
