@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :logged_in, :only => [:edit, :new]
+  before_filter :logged_in, :only => [:edit]
 
   def index
     @users = User.all
@@ -17,9 +17,9 @@ class UsersController < ApplicationController
     #    raise params.inspect
     if @user.save!
       flash[:notice] = "user saved successfully"
-      redirect_to :action => :index
+      redirect_to users_path
     else
-      render :new
+      render new_user_path
     end
   end
 
@@ -31,9 +31,9 @@ class UsersController < ApplicationController
     @user = User.find params[:id]
     if @user.update_attributes(params[:user])
       flash[:notice] = "Success"
-      redirect_to :action => :index
+      redirect_to users_path
     else
-      render :edit
+      render edit_user_path
     end
   end
 
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     @user.cleanup
     flash[:notice] = "Successfully Destroyed"
     @user.destroy
-    redirect_to :action => :index
+    redirect_to users_path
   end
 
   
@@ -55,18 +55,18 @@ class UsersController < ApplicationController
     if login
       session[:user] = login
       flash[:notice] = "logged in suceesfully"
-      redirect_to  :controller => :products, :action => :index
+      redirect_to  products_path
       
     else
       flash[:notice] = "incoreect email/password"
-      redirect_to :action => :login
+      redirect_to login_users_path
     end
   end
 
   def logout
     reset_session
     flash[:notice] = "log out successfully"
-    redirect_to :action => "index"
+    redirect_to users_path
   end
 
   def update_password
@@ -80,14 +80,14 @@ class UsersController < ApplicationController
         @user.save!
 
         flash[:notice] = "Successfully Updated"
-        redirect_to :action => :index        
+        redirect_to users_path
       else
         flash[:notice] = "password mismatch"
         redirect_to :action => :reset_password
       end
     else
       flash[:notice] = "user is not available please create ur account"
-      redirect_to :action => :login
+      redirect_to login_users_path
     end
   end
 
@@ -103,7 +103,7 @@ class UsersController < ApplicationController
 
     if @user_profile.update_attributes(params[:user_profile])
       flash[:notice] = "Success"
-      redirect_to :action => :index
+      redirect_to users_path
     else
       flash[:notice] = "userprofile not saved"
       render :edit_profile

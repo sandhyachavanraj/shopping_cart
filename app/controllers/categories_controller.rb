@@ -14,9 +14,9 @@ before_filter :logged_in, :unless => :logged_in?
     @category = Category.new(params[:category])
     if @category.save
       flash[:notice] = "category saved successfully"
-      redirect_to :action => :index
+      redirect_to categories_path
     else
-      render :new
+      render new_category_path
     end
   end
 

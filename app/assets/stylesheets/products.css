@@ -1,10 +1,8 @@
-
 #container
 {
     color: #660000;
     width: 100%;
 }
-
 
 div.top
 {
@@ -12,7 +10,6 @@ div.top
     background: #9c9;
     width: 100%;
 }
-
 
 div.text
 {
@@ -43,16 +40,12 @@ div.text
 .bottom {
     width: 100%;
 }
-<<<<<<< HEAD
-=======
+
 div  .right
 {
     float:right;
     width:60%;
-
-
 }
->>>>>>> c386afc27e5d569fbcfa1cd7997b1074e2e5af00
 
 div.clear{
     clear: both;
@@ -61,10 +54,6 @@ div.clear{
 ul.login {
     margin: 0px;
 }
-
-
-
-
 
 div .rightheader
 {
@@ -78,8 +67,6 @@ div .rightheader
     text-align: center;
     color: #282;
 }
-
-
 
 div.logo
 {
@@ -95,7 +82,6 @@ div.logo
     width: 30%;
 }
 
-
 div.login
 {
     margin-top:180px;
@@ -103,15 +89,12 @@ div.login
     margin-left:2px;
 }
 
-
 div ul li
 {
     color: 	#FFA500;
     font-size:20px;
     list-style-type: none;
 }
-
-
 
 div ul li a
 {
@@ -142,7 +125,6 @@ ul li.product_image{
     margin: 10px;
 }
 
-
 div  .right1
 {
     float:right;
@@ -150,7 +132,6 @@ div  .right1
 
 
 }
-<<<<<<< HEAD
 
 div  .right
 {
@@ -195,12 +176,13 @@ button.buttons
  margin-top: 180px;
 margin-left: 380px;
 }
-=======
+
 div.right1 ul.product_list li.product_image img{
     position :relative;
     top : 20px;
     left:90px
 }
+
 div.right1 ul.product_list li.product_image input{
     position: relative;
     left: 81px;
@@ -215,7 +197,7 @@ div.top div.logo ul.login li h3{
     color:blue;
     font-size: 22px;
     font-family: 'Verdana';
-    
+
 }
 div.top div.logo ul.login li h2 a{
     font-size: 22px;
@@ -225,4 +207,18 @@ div.top div.logo ul.login li h2 a{
     margin-right: 140px;
     text-decoration: underline;
 }
->>>>>>> c386afc27e5d569fbcfa1cd7997b1074e2e5af00
+
+div#productdetails{
+    width: 233px;
+    float: left;
+    margin-left: 40px;
+    margin-top: 32px;
+}
+div#editform{
+    float: left;
+    margin-left: 35px;
+}
+div#editform h2{
+    
+}
+

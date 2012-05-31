@@ -43,7 +43,7 @@
 <div class="right1" style="float:right">
   <h2 class="list">Product list</h2>
   <ul class="product_list"  >
-    <% @products.each do |product|%>
+    <% @products.each do |product|%>      
       <% cart_item = current_user.cart.cart_items.find_by_product_id(product.id);
       checked = cart_item.present? ? true : false %>
     <p class="length"> <%=  cart_item.length%> </p>
@@ -54,20 +54,22 @@
         
 >>>>>>> c386afc27e5d569fbcfa1cd7997b1074e2e5af00
         <% if product.image_url.present? && product.user_id == session[:user].id %>
-          <%= image_tag (product.image_url), :size=>"100x100" %><br/>
+          <%= link_to (image_tag 'products/'+(product.image_url), :size=>"50x50"), product_path(product) %>
         <% else %>
-        <%= image_tag ('inde.jpeg'), :size => "50x50" %>
+        <%= link_to (image_tag 'products/'+('inde.jpeg'), :size => "50x50"), product_path(product) %>
       <% end %>
       <span><%= product.name %></span>
-      </li> 
-      
+      </li>      
     <% end %>
   </ul>
   <div class="clear"></div>
   <p><%= will_paginate @products %></p>
- 
-  <h3><%= link_to "Add To Cart", "JavaScript:void(0);", :onclick => "javascript:delete_photo()" %>
-      <%=  link_to "New Product", new_product_path %></h3>
+
+  <%if @products.size > 0 && session[:user] %>
+        <h3><%= link_to "Add To Cart", "JavaScript:void(0);", :onclick => "javascript:delete_photo()" %></h3>
+  <% end %> 
+
+  <h3><%=  link_to "New Product", new_product_path %></h3>
 </div>
 
  
