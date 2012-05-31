@@ -207,7 +207,7 @@ div#editform h2{
 }
 
 div.right1 h2.list{
-    width:650px;
+    width:651px;
 }
 div.right1 h2.list ul.product_list li h6{
     float: right;
@@ -215,8 +215,8 @@ div.right1 h2.list ul.product_list li h6{
     margin-top: 0px;
     margin-bottom: 0px;
 }
-div.right1 h2.list span{
+div.right1 h2.list button{
     color:black;
-    margin-left:330px;
+    margin-left:445px;
     font-size:12px;   
 }
