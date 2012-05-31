@@ -19,10 +19,10 @@ class ProductsController < ApplicationController
     
     if @product.save
       flash[:notice] = "New prduct is created and saved successfully"
-      redirect_to :action => :index
+      redirect_to products_path
     else
       flash[:notice] = "New prduct is  not created "
-      render :new
+      render new_product_path
     end
   end
 
@@ -34,9 +34,9 @@ class ProductsController < ApplicationController
     @product = Product.find params[:id]    
     if @product.update_attributes(params[:product])
       flash[:notice] = "Updated Successfully"
-      redirect_to :action => :index
+      redirect_to products_path
     else
-      render :edit
+      render edit_product_path
     end
   end
 
@@ -52,7 +52,7 @@ class ProductsController < ApplicationController
     @product.cleanup
     flash[:notice] = "Successfully Destroyed"
     @product.destroy
-    redirect_to :action => :index
+    redirect_to products_path
   end 
 
   def upload_file

@@ -15,7 +15,7 @@ class CartItemsController < ApplicationController
 
     if @cart_item.save
       flash[:notice] = "cart_item saved successfully"
-      redirect_to :action => :index
+      redirect_to cart_items_path
     else
       flas[:notice] = "not saved"
     end
