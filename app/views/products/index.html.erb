@@ -20,14 +20,14 @@
   <p><%= will_paginate @products %></p>
 
   <%if @products.size > 0 && session[:user] %>
-    <h3><%= link_to "Add To Cart", "JavaScript:void(0);", :onclick => "javascript:checked()" %></h3>
+    <h3><%= link_to "Add To Cart", "JavaScript:void(0);", :onclick => "javascript:checking_products()" %></h3>
   <% end %>
 
   <h3><%=  link_to "New Product", new_product_path %></h3>
 </div>
 
 <script type="text/javascript" language="JavaScript">
-  function checked(){
+  function checking_products(){
   var idList = new Array();
   var count = 0;
   jQuery('input[name=product_id[]]:checked').each(function(){
@@ -40,11 +40,10 @@
   else{
   check = confirm("Are you sure you want to add these products to cart?");
   if(check){
-
-  jQuery.ajax({
+  var res = jQuery.ajax({
   type: "POST",
   url: '<%= carts_path %>',
-  data:  "id=" + idList,
+  data:  "id=" + idList, 
   });
   }else{
   return false;

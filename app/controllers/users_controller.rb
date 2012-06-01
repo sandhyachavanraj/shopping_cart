@@ -53,9 +53,13 @@ class UsersController < ApplicationController
   def authenticate
     login = User.authenticate(params[:email], params[:password])
     if login
+<<<<<<< HEAD
      
       session[:user] = login
       
+=======
+      session[:user] = login      
+>>>>>>> 1c50cf93e94d9887d91e9e9424052e72b2f62870
       flash[:notice] = "logged in suceesfully"
 
       redirect_to  products_path

@@ -19,4 +19,9 @@ class CartItemsController < ApplicationController
       flash[:notice] = "not saved"
     end
   end
+
+  def show
+    raise params[:id].inspect
+    @cart_item = CartItem.find params[:id]
+  end
 end
