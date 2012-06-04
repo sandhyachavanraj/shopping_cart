@@ -1,3 +1,4 @@
+<div class="form">
 <h2>New User Registartion from</h2>
 <% @user.errors.full_messages.each do|msg|%>
   <p><%= msg %></p>
@@ -7,4 +8,6 @@
   <%= render :partial => "form", :locals => {:s => s} %>
   <p><%= s.submit  "REGISTER ME"%></p>
 <% end %>
+</div>
 
+ <%= link_to "Back", login_users_path %>

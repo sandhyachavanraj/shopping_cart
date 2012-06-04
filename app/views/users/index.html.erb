@@ -1,3 +1,5 @@
+<div class="form">
+
 <%  if session[:user] %>
   <h3>welcome to <%= session[:user].name %></h3> <h3><%= link_to "logout", {:action => :logout} %></h3>
   <h3><%= link_to "reset password", {:action => :reset_password} %>
@@ -49,4 +51,4 @@
 </table>
 <%= will_paginate @users %>
 
-
+</div>

@@ -215,8 +215,25 @@ div.right1 h2.list ul.product_list li h6{
     margin-top: 0px;
     margin-bottom: 0px;
 }
-div.right1 h2.list button{
-    color:black;
-    margin-left:445px;
-    font-size:12px;   
+div.right1 button#one{
+    color: black;
+    font-size: 12px;
+    margin-left: 866px;
+    position: relative;
+    margin-bottom: 0px;
+    bottom: 45px;
+}
+div.right1 h6{
+    color: black;
+    font-size: 12px;
+    position: relative;
+    bottom: 95px;
+    margin-left: 950px;
+}
+
+div .form{
+    margin-left: 30px;
+    width: 300px;
+    float: left;
+    margin-top: 46px;
 }

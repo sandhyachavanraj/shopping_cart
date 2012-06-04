@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-
+  layout 'products'
   before_filter :logged_in, :only => [:edit]
 
+  
   def index
     @users = User.all
     @users = User.paginate(:page => params[:page], :per_page => 8)   
@@ -119,13 +120,14 @@ class UsersController < ApplicationController
     UserProfile.save(params[:upload])    
     render :text => "File has been uploaded successfully"
   end
-
+  
+  
   
   private
 
   def logged_in
     redirect_to login_users_path unless session[:user]
   end
-
+  
     
 end

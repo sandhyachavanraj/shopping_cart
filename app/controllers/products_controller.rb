@@ -47,8 +47,6 @@ class ProductsController < ApplicationController
 
   def destroy
     @product = Product.find params[:id]
-    
-
     @product.cleanup
     flash[:notice] = "Successfully Destroyed"
     @product.destroy
