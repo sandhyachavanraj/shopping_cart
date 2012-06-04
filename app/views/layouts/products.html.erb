@@ -3,28 +3,14 @@
   <head>
     <title>Productapp</title>
     <%= stylesheet_link_tag 'products' %>
-    <%= javascript_include_tag 'application' %>
-    <%= csrf_meta_tags %>
   </head>
   <body>
-
     <div id="container">
       <%= render :partial => 'layouts/header' %>
-<<<<<<< HEAD
-    
-       <div class="bottom"  >
-        <%= render :partial => 'layouts/sidebar' %>
-        </div>
-=======
-       <% if session[:user].admin == true %>
-      
-      <%end%>
-
       <div class="bottom"  >
-        <%= render :partial => 'layouts/sidebar' %>        
->>>>>>> 1c50cf93e94d9887d91e9e9424052e72b2f62870
+        <%= render :partial => 'layouts/sidebar' %>
         <%=yield%>
-      
+      </div>
     </div>
   </body>
 </html>

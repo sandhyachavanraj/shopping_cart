@@ -25,7 +25,7 @@ div.text
 }
 
 .sidebar{
-    padding-top: 40px;
+    padding-top: 30px;
     background: #141;
     font-family: verdana, arial, helvetica, sans-serif;
     font-size: 20px;
@@ -35,10 +35,13 @@ div.text
     text-decoration: none;
     width:20%;
     float: left;
+    margin-top: -2px;
 }
 
 .bottom {
     width: 100%;
+    height:530px;
+  
 }
 
 div  .right
@@ -52,7 +55,7 @@ div.clear{
 
 }
 ul.login {
-    margin: 0px;
+    margin: -20px;
 }
 
 div .rightheader
@@ -72,7 +75,7 @@ div.logo
 {
     float: left;
     margin-left: 20px;
-    margin-top:60px;
+    margin-top:40px;
     font-family: verdana, arial, helvetica, sans-serif;
     font-size: 21px;
     text-align: left;
@@ -154,7 +157,9 @@ button.buttons
 }
 .menu
 {
-    margin-top:120px;
+    margin-top:30px;
+    margin-left: 120px;
+   
 }
 
 .list{    
@@ -219,4 +224,19 @@ div.right1 h2.list button{
     color:black;
     margin-left:445px;
     font-size:12px;   
+}
+
+div .top1
+{
+
+   height:283px;
+    background: #DAA520;
+    width: 100%;
+
+}
+
+h2.loginform
+{
+  margin-top:1px;
+
 }

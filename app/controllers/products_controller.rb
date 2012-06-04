@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
-        layout "products"
-
+       
   before_filter :logged_in, :unless => :logged_in?
+  layout :change_layout
 
   def index
     return @products = User.find(params[:user_id]).products unless params[:user_id].blank?
@@ -41,15 +41,12 @@ class ProductsController < ApplicationController
     end
   end
 
-
   def show    
     @product = Product.find params[:id]    
   end
 
   def destroy
     @product = Product.find params[:id]
-    
-
     @product.cleanup
     flash[:notice] = "Successfully Destroyed"
     @product.destroy
@@ -62,12 +59,8 @@ class ProductsController < ApplicationController
   end  
 
   private
-
   def logged_in
     redirect_to login_users_path
   end
-
-
-
 
 end

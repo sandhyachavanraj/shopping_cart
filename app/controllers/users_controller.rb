@@ -1,17 +1,18 @@
 class UsersController < ApplicationController
-  layout "admin"
+        
   before_filter :logged_in, :only => [:edit]
+  layout :change_layout
 
   def index
     @users = User.all
-    @users = User.paginate(:page => params[:page], :per_page => 8)   
+    @users = User.paginate(:page => params[:page], :per_page => 8)
   end
 
   def new
     @user = User.new
   end
 
-  def create    
+  def create
     @user = UserProfile.new
     @user.build_user(params[:user])
     #    raise params.inspect
@@ -53,13 +54,7 @@ class UsersController < ApplicationController
   def authenticate
     login = User.authenticate(params[:email], params[:password])
     if login
-<<<<<<< HEAD
-     
       session[:user] = login
-      
-=======
-      session[:user] = login      
->>>>>>> 1c50cf93e94d9887d91e9e9424052e72b2f62870
       flash[:notice] = "logged in suceesfully"
 
       redirect_to  products_path
@@ -74,6 +69,7 @@ class UsersController < ApplicationController
     reset_session
     flash[:notice] = "log out successfully"
     redirect_to users_path
+    
   end
 
   def update_password
@@ -101,7 +97,7 @@ class UsersController < ApplicationController
 
   def user_profile
     @user = User.find params[:id]
-    @user_profile = @user.user_profile   
+    @user_profile = @user.user_profile
   end
 
   def update_profile
@@ -123,15 +119,15 @@ class UsersController < ApplicationController
   
   def upload_file
     raise params[:upload].inspect
-    UserProfile.save(params[:upload])    
+    UserProfile.save(params[:upload])
     render :text => "File has been uploaded successfully"
   end
-
-  
+ 
   private
 
   def logged_in
     redirect_to login_users_path unless session[:user]
+
   end
 
    
