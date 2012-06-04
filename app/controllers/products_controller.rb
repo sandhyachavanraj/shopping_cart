@@ -5,8 +5,7 @@ class ProductsController < ApplicationController
   def index
     return @products = User.find(params[:user_id]).products unless params[:user_id].blank?
     @products = Product.all
-
-    @products=Product.paginate(:per_page => 5, :page => params[:page])
+    @products=Product.paginate(:per_page => 12, :page => params[:page])
   end
 
   def new
@@ -56,7 +55,12 @@ class ProductsController < ApplicationController
   def upload_file
     Product.save(params[:upload])
     render :text => "File has been uploaded successfully"
-  end  
+  end
+  
+  def disp_products
+    @products =  current_user.products.find_all_by_category_id(params[:id])
+   
+  end
 
   private
 
@@ -66,9 +70,11 @@ class ProductsController < ApplicationController
 
 
 
-def updateCart
+  def updateCart
 
-  TemporaryCart.new(session[:user]).add_item
-end
+    TemporaryCart.new(session[:user]).add_item
+  end
+
+
 
 end

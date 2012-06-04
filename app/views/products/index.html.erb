@@ -1,14 +1,13 @@
 <div class="right1" style="float:right">
-  <h2 class="list">Product list</h2>
-  
- 
-    <button id="one"> Count :<%= current_user.cart.cart_items.count %></button>
-    <h6><%=  button_to "EmptyCart", { :controller => :cart_items, :action => :delete_items, :id => current_user.cart.cart_items.find(:all, :select => :id) }, :confirm => "are you sure", :remote => true, :disabled => ('false' unless current_user.cart.cart_items.count > 0) %></h6>
- 
+  <h2 class="list">Product list</h2>  
+
+  <button id="one"> Count :<%= current_user.cart.cart_items.count %></button>
+  <h6><%=  button_to "EmptyCart", { :controller => :cart_items, :action => :delete_items, :id => current_user.cart.cart_items.find(:all, :select => :id) }, :confirm => "are you sure", :remote => true, :disabled => ('false' unless current_user.cart.cart_items.count > 0) %></h6>
+
   <ul class="product_list"  >
     <% @products.each do |product|%>
-    <% cart_item = current_user.cart.cart_items.find_by_product_id(product.id);
-    checked = cart_item.present? ? true : false %>
+      <% cart_item = current_user.cart.cart_items.find_by_product_id(product.id);
+      checked = cart_item.present? ? true : false %>
       <li class="product_image" id="product_image_<%=product.id%>">
         <%= check_box_tag 'product_id[]', product.id, checked%>
         <% if product.image_url.present? && product.user_id == session[:user].id %>
@@ -33,36 +32,36 @@
   <% end %>
 
   <h3><%=  link_to "New Product", new_product_path %></h3>
-  </p>
-  </div>
+</p>
+</div>
 
-  <script type="text/javascript" language="JavaScript">
-    function checking_products(){
-      var idList = new Array();
-      var count = 0;
-      jQuery('input[name=product_id[]]:checked').each(function(){
-        idList[count] = jQuery(this).val();
-        count += 1;
-      });
-      if(count == 0){
-        alert("Please select atleast 1 product");
-      }
-      else{
-        check = confirm("Are you sure you want to add these products to cart?");
-        if(check){
-          var res = jQuery.ajax({
-            type: "POST",
-            url: '<%= carts_path %>',
-            data:  "id=" + idList,
-          });
-        }else{
-          return false;
-        }
+<script type="text/javascript" language="JavaScript">
+  function checking_products(){
+    var idList = new Array();
+    var count = 0;
+    jQuery('input[name=product_id[]]:checked').each(function(){
+      idList[count] = jQuery(this).val();
+      count += 1;
+    });
+    if(count == 0){
+      alert("Please select atleast 1 product");
+    }
+    else{
+      check = confirm("Are you sure you want to add these products to cart?");
+      if(check){
+        var res = jQuery.ajax({
+          type: "POST",
+          url: '<%= carts_path %>',
+          data:  "id=" + idList,
+        });
+      }else{
+        return false;
       }
     }
+  }
 
     
-  </script>
+</script>
 
 
 

@@ -1,9 +1,10 @@
 <div class="sidebar" >
   <ul  class="categories"> <%= "Categories" %>
-    <li  class="list1"> <%=  link_to "Books", users_path %></li>
-    <li   class="list1" >   <%=  link_to "Toys", {:action=> :new}  %></li>
-    <li  class="list1" >  <%=  link_to "Mobiles", {:action=> :new} %></li>
-    <li class="list1" > <%=  link_to "Electronics", {:action=> :new} %></li>
-    <li   class="list1"> <%=  link_to "Food", {:action=> :new} %></li>
+    <% c = Category.find(:all)%>    
+    <% c.each do |category| %>
+     <li><%= link_to category.name , disp_products_product_path(category.id) %></li>
+    <% end  %>
   </ul>
 </div>
+
+
