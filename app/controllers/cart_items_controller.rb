@@ -16,7 +16,7 @@ class CartItemsController < ApplicationController
       flash[:notice] = "cart_item saved successfully"
       redirect_to cart_items_path
     else
-      flas[:notice] = "not saved"
+      flash[:notice] = "not saved"
     end
   end
 

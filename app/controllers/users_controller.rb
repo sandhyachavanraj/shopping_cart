@@ -54,8 +54,9 @@ class UsersController < ApplicationController
   def authenticate
     login = User.authenticate(params[:email], params[:password])
     if login
-      session[:user] = login      
+      session[:user] = login
       flash[:notice] = "logged in suceesfully"
+
       redirect_to  products_path
       
     else
@@ -119,15 +120,11 @@ class UsersController < ApplicationController
     raise params[:upload].inspect
     UserProfile.save(params[:upload])    
     render :text => "File has been uploaded successfully"
-  end
-  
-  
+  end  
   
   private
 
   def logged_in
     redirect_to login_users_path unless session[:user]
   end
-  
-    
 end

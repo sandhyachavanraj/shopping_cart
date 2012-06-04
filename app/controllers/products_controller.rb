@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  layout "products"
 
   before_filter :logged_in, :unless => :logged_in?
 
@@ -69,12 +70,7 @@ class ProductsController < ApplicationController
   end
 
 
-
   def updateCart
-
     TemporaryCart.new(session[:user]).add_item
   end
-
-
-
 end
