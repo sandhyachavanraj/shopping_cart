@@ -1,12 +1,11 @@
 class CartItemsController < ApplicationController
 
   def new
-		@cart_item = CartItem.new
-	end
+    @cart_item = CartItem.new
+  end
 
   def index
-		@cart_items = CartItem.all
-    
+    @cart_items = CartItem.all
   end
 
   def create
@@ -20,7 +19,7 @@ class CartItemsController < ApplicationController
     end
   end
 
-  def show    
+  def show
     @cart_item = CartItem.find params[:id]
   end
   

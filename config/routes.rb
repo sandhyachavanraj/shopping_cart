@@ -15,9 +15,21 @@ ShoppingCart::Application.routes.draw do
   end
 
   resources :categories
-  resources :products 
-  resources :carts
-  resources :cart_items
+  resources :products do
+    member do
+      get :disp_products
+    end
+  end
+  resources :carts   
+  resources :cart_items  do
+    collection do
+      post :delete_items
+    end
+  end
+
+    
+  
+  
    
  
 

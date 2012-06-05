@@ -1,8 +1,8 @@
 <div class="sidebar" >
   <ul  class="categories"> <%= "Categories" %>
-    <% c = Category.find(:all)%>    
+    <% c = Category.find(:all)%>
     <% c.each do |category| %>
-     <li><%= link_to category.name , disp_products_product_path(category.id) %></li>
+      <li><%= link_to category.name , disp_products_product_path(category.id) %></li>
     <% end  %>
   </ul>
 </div>

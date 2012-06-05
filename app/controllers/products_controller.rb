@@ -1,7 +1,9 @@
 class ProductsController < ApplicationController
+
   layout "products"
 
   before_filter :logged_in, :unless => :logged_in?
+  
 
   def index
     return @products = User.find(params[:user_id]).products unless params[:user_id].blank?
@@ -40,7 +42,6 @@ class ProductsController < ApplicationController
     end
   end
 
-
   def show    
     @product = Product.find params[:id]    
   end
@@ -59,18 +60,12 @@ class ProductsController < ApplicationController
   end
   
   def disp_products
-    @products =  current_user.products.find_all_by_category_id(params[:id])
-   
+    @products =  current_user.products.find_all_by_category_id(params[:id])   
   end
 
   private
-
   def logged_in
     redirect_to login_users_path
   end
-
-
-  def updateCart
-    TemporaryCart.new(session[:user]).add_item
-  end
+  
 end
