@@ -1,3 +1,5 @@
+<div class="form">
+
 <%  if session[:user] %>
 
   <h3><%= link_to "reset password", {:action => :reset_password} %>
@@ -21,10 +23,10 @@
   <% @users.each do |user| %>
     <tr>
       <% if user.try(:user_profile).try(:image_url).present? %>
-        <td><%= image_tag user.user_profile.image_url, :size => "35x35" %></td>
+        <td><%= image_tag user.user_profile.image_url, :size => "25x25" %></td>
 
       <% else %>
-        <td><%= image_tag ('avatar.jpg'), :size => "60x60" %></td>
+        <td><%= image_tag ('avatar.jpg'), :size => "20x20" %></td>
       <% end %>
 
       <td><%= user.name %></td>
@@ -49,4 +51,5 @@
 </table>
 <%= will_paginate @users %>
 
-
+  <%= link_to "Back", products_path %>
+</div>

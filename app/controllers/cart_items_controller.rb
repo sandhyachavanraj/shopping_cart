@@ -9,7 +9,7 @@ class CartItemsController < ApplicationController
   end
 
   def create
-    @cart_item = CartItem.new(params[:cart_item])
+    @cart_item = CartItem.new(params[:cart_item])    
     @cart_item = Cart.find params[:id]
     if @cart_item.save
       flash[:notice] = "cart_item saved successfully"
@@ -22,4 +22,10 @@ class CartItemsController < ApplicationController
   def show
     @cart_item = CartItem.find params[:id]
   end
+  
+  def delete_items
+    current_user.cart.cart_items.destroy_all
+    flash[:notice] = "Successfully Destroyed"
+  end
+  
 end

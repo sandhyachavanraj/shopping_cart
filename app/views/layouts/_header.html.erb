@@ -3,12 +3,15 @@
     <%= image_tag "rails.png", :size=>"120x120"%><br/>
     <%= "Shopping Cart" %><br/>
     <ul class="login">
-      <li>
-        <%  if session[:user]%>
+
+      <li>      
+        <%  if session[:user] %>
+          <h2><%= link_to "logout", logout_users_path %></h2>
           <h3>welcome to <%= session[:user].name %></h3>
-      <p  style="color:red">    <%= link_to "logout", logout_users_path %></p>
         <% else %>
-          <h3>welcome to guest</h3> <%= link_to "login", login_users_path %>
+          <h2><%= link_to "login", login_users_path %></h2>
+          <h3>welcome to guest</h3>
+
         <% end %>
       </li>
     </ul>

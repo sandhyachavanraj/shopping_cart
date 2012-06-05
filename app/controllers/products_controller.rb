@@ -1,13 +1,14 @@
 class ProductsController < ApplicationController
-       
+
+  layout "products"
+
   before_filter :logged_in, :unless => :logged_in?
-  layout :change_layout
+  
 
   def index
     return @products = User.find(params[:user_id]).products unless params[:user_id].blank?
     @products = Product.all
-
-    @products=Product.paginate(:per_page => 5, :page => params[:page])
+    @products=Product.paginate(:per_page => 12, :page => params[:page])
   end
 
   def new
@@ -56,11 +57,15 @@ class ProductsController < ApplicationController
   def upload_file
     Product.save(params[:upload])
     render :text => "File has been uploaded successfully"
-  end  
+  end
+  
+  def disp_products
+    @products =  current_user.products.find_all_by_category_id(params[:id])   
+  end
 
   private
   def logged_in
     redirect_to login_users_path
   end
-
+  
 end
