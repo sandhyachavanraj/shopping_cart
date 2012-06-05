@@ -1,6 +1,8 @@
 class CategoriesController < ApplicationController
 
-before_filter :logged_in, :unless => :logged_in?
+  layout 'products'
+  
+  before_filter :logged_in, :unless => :logged_in?
 
   def index
 		@categories = Category.all
@@ -19,6 +21,11 @@ before_filter :logged_in, :unless => :logged_in?
       render new_category_path
     end
   end
+
+  def list
+    @products = current_user.products.find_all_by_category_id(params[:id])
+  end
+  
 
   private
 

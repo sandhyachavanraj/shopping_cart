@@ -57,11 +57,7 @@ class ProductsController < ApplicationController
   def upload_file
     Product.save(params[:upload])
     render :text => "File has been uploaded successfully"
-  end
-  
-  def disp_products
-    @products =  current_user.products.find_all_by_category_id(params[:id])   
-  end
+  end  
 
   private
   def logged_in
