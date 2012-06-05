@@ -23,7 +23,8 @@ class CategoriesController < ApplicationController
   end
 
   def list
-    @products = current_user.products.find_all_by_category_id(params[:id])
+    @category = Category.find params[:id]
+    @products = @category.products
   end
   
 
