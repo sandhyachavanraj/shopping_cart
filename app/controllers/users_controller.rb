@@ -57,7 +57,7 @@ class UsersController < ApplicationController
       session[:user] = login
       flash[:notice] = "logged in suceesfully"
 
-      redirect_to  products_path
+      redirect_to  users_path
       
     else
       flash[:notice] = "incoreect email/password"
@@ -121,6 +121,12 @@ class UsersController < ApplicationController
     raise params[:upload].inspect
     UserProfile.save(params[:upload])
     render :text => "File has been uploaded successfully"
+  end
+
+  def admin
+    redirect_to users_path
+    
+    flash[:notice]= "Welcome Admin"
   end
  
   private

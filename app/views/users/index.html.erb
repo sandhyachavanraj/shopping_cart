@@ -34,7 +34,7 @@
 
       <% if session[:user] && session[:user].admin == true %>
         <td><%= link_to "edit", {:action => :edit, :id => user.id} %></td>
-        <td><%= link_to "destroy", user, :method => :delete, :confirm => 'Are you sure?' %></td>
+        <td><%= link_to "destroy", user, :confirm => 'Are you sure?',:method => :delete %></td>
         <td><%= link_to "userprofile", {:action => :userprofilelist, :id => user.try(:user_profile).try(:id)} %></td>
 
       <% end  %>
