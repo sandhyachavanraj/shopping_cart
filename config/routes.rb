@@ -17,17 +17,14 @@ ShoppingCart::Application.routes.draw do
   resources :categories
   resources :products 
   resources :carts
-  resources :cart_items
-   
- 
+  resources :cart_items    
+  resources :admin, :path => "users/admin"
 
- 
-    
-  
   match '/login' => 'users#login'
   match '/logout' => 'users#logout'
   match '/reset_password' => 'users#reset_password'
   match '/products' => 'products#index'
+  match '/admin'    => 'users#admin' 
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
