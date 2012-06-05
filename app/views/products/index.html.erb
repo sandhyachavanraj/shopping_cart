@@ -28,45 +28,42 @@
   <% end %>
 
   <%if @products.size > 0 && session[:user] && session[:user].admin == false%>
-    <h3><%= link_to "Add To Cart" %></h3>
+    <h3><%= link_to "Add To Cart", "JavaScript:void(0);", :class => "cart" %></h3>
   <% end %>
 
   <h3><%=  link_to "New Product", new_product_path %></h3>
 </p>
 </div>
 
-<%#*<script type="text/javascript" language="JavaScript">%>
-<%#*function checking_products(){%>
+ <script type="text/javascript">
+      $("a.cart").click(function(){
+        var idList = new Array();
+        var count = 0;
 
-<%#*var idList = new Array();%>
-<%#*var count = 0;%>
+        jQuery('input[name=product_id[]]:checked').each(function(){
+          idList.push(jQuery(this).val());
+          count += 1;
+        });
+        if(count == 0){
+          alert("Please select atleast 1 product");
+        }
+        else{
+          check = confirm("Are you sure you want to add these products to cart?");
+          if(check){
+            jQuery.ajax({
+              type: "POST",
+              url: '<%= carts_path %>',
+              data:  "id=" + idList
+            });
+          }
+          else{
+            return false;
+          }
+        }
+      });
+    </script>
 
-<%#*jQuery('input[name=product_id[]]:checked').each(function(){%>
-<%#*idList[count] = jQuery(this).val();%>
-<%#*count += 1;%>
-<%#*});%>
-<%#*if(count == 0){%>
-<%#*alert("Please select atleast 1 product");%>
-<%#*}%>
-<%#*else{%>
-<%#*check = confirm("Are you sure you want to add these products to cart?");%>
-<%#*if(check){%>
-<%#*var res = jQuery.ajax({%>
-<%#*type: "POST",%>
-<%#*url: '<%= carts_path %>',%>
-<%#*data:  "id=" + idList,%>
-<%#*});%>
-<%#*}else{%>
-<%#*return false;%>
-<%#*}%>
-<%#*}%>
-<%#*}%>
-
-<%#*</script>%>
-
-
-
-<script>
   
-</script>
+
+
 

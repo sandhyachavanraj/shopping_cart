@@ -169,17 +169,17 @@ button.buttons
 div.right1 ul.product_list li.product_image img{
     position :relative;
     top : 20px;
-    left:90px
+    left:43px
 }
 
 div.right1 ul.product_list li.product_image input{
     position: relative;
-    left: 81px;
+    left: 56px;
     top: 44px;
 }
 div.right1 ul.product_list li.product_image span{
     position: relative;
-    left: 28px;
+    
     top: 43px;
 }
 div.top div.logo ul.login li h3{
