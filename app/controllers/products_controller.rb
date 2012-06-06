@@ -57,8 +57,9 @@ class ProductsController < ApplicationController
   def upload_file
     Product.save(params[:upload])
     render :text => "File has been uploaded successfully"
-  end  
+  end
 
+  
   private
   def logged_in
     redirect_to login_users_path
