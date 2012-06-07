@@ -5,6 +5,7 @@
     <button id="one"> Count :<%= current_user.cart.cart_items.count %></button>
     <%= button_to "EmptyCart", "JavaScript:void(0);", :class => "emptycart" %>
   </div>
+  <%= hidden_field_tag 'c', current_user.cart.cart_items.count %>
 
   <ul class="product_list"  >
     <% @products.each do |product|%>
@@ -33,7 +34,7 @@
     <h3><%= link_to "Add To Cart", "JavaScript:void(0);", :class => "cart" %></h3>
   <% end %>
 
-  
+
 </p>
 </div>
 
@@ -64,25 +65,22 @@
       else{
         return false;
       }
-      $('#one').text("count :" + count);
+      $('#one').text("count :" + count);      
       $("input.emptycart").attr("disabled", false);
       
     }
   });
+    
+  $(document).ready(function(){
   
-
-  
-   $(document).ready(function(){
-   
+   if (document.getElementById('c').value == 0){
+     $("input.emptycart").attr("disabled", true);
+   }
     $("input.emptycart").click(function(){
       var idList = new Array();
       var count;
       count = jQuery('input[name=product_id[]]:checked').length;
-
-      if(count == 0){
-        alert("Fsdsf")
-        $("input.emptycart").attr("disabled", true);
-      }
+      
       if(count > 0){
         check = confirm("Are you sure?");
         if(check){
@@ -97,14 +95,14 @@
           });
         
         }
-       $("input.emptycart").attr("disabled", true);
+        $("input.emptycart").attr("disabled", true);        
         $('#one').text("count :0");
       
       }     
 
     });
-     $("input.emptycart").attr("disabled", true);
-    });
+    
+  });
    
 
   

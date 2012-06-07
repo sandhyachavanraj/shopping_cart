@@ -70,19 +70,13 @@
     }
   });
 
-
-
    $(document).ready(function(){
 
     $("input.emptycart").click(function(){
       var idList = new Array();
       var count;
       count = jQuery('input[name=product_id[]]:checked').length;
-
-      if(count == 0){
-        alert("Fsdsf")
-        $("input.emptycart").attr("disabled", true);
-      }
+      
       if(count > 0){
         check = confirm("Are you sure?");
         if(check){
