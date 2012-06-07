@@ -10,7 +10,7 @@ class CartsController < ApplicationController
   
   def create
     @cart = Cart.find_or_create_by_user_id(current_user.id)
-    @cart.product_ids = params[:id].split(',').collect{|n| n.to_i}    
+    @cart.product_ids = params[:id].split(',').collect{|n| n.to_i}   
   end
 
   def show
