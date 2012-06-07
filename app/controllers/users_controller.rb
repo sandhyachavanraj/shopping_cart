@@ -1,12 +1,18 @@
 class UsersController < ApplicationController
-  layout 'products'
 
+  layout "products"
+
+ 
+  
   before_filter :logged_in, :only => [:edit]
   
   def index
+
     @users = User.all
+
     @users = User.paginate(:page => params[:page], :per_page => 8)
   end
+
 
   def new
     @user = User.new
@@ -44,7 +50,7 @@ class UsersController < ApplicationController
   
   def destroy
     @user = User.find params[:id]
-    @user.cleanup
+    #@user.cleanup
     flash[:notice] = "Successfully Destroyed"
     @user.destroy
     redirect_to users_path
@@ -56,9 +62,11 @@ class UsersController < ApplicationController
     if login
       session[:user] = login
       flash[:notice] = "logged in suceesfully"
-
-      redirect_to  users_path
-      
+      if session[:user].admin == true
+        redirect_to  admin_path
+      else
+        redirect_to  users_path
+      end
     else
       flash[:notice] = "incoreect email/password"
       redirect_to login_users_path
@@ -110,6 +118,8 @@ class UsersController < ApplicationController
     else
       flash[:notice] = "userprofile not saved"
       render :edit_profile
+
+    
     end
   end
 
@@ -118,16 +128,11 @@ class UsersController < ApplicationController
   end
   
   def upload_file
-    #raise params[:upload].inspect
     UserProfile.save(params[:upload])
     render :text => "File has been uploaded successfully"
   end
 
-  def admin
-    redirect_to users_path
-    
-    flash[:notice]= "Welcome Admin"
-  end
+  
  
   private
 
@@ -135,4 +140,7 @@ class UsersController < ApplicationController
     redirect_to login_users_path unless session[:user]
 
   end
+
+  
+   
 end

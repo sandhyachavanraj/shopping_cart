@@ -8,11 +8,12 @@
         <%  if session[:user] %>
           <h2><%= link_to "logout", logout_users_path %></h2>
           <h3>welcome to <%= session[:user].name %></h3>
-        <% else %>
+          <% else %>
+          <%  session[:user] %>
           <h2><%= link_to "login", login_users_path %></h2>
           <h3>welcome to guest</h3>
 
-        <% end %>
+          <%end%>
       </li>
     </ul>
   </div><br/>
