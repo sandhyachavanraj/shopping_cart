@@ -5,7 +5,7 @@
     <button id="one"> Count :<%= current_user.cart.cart_items.count %></button>
     <%= button_to "EmptyCart", "JavaScript:void(0);", :class => "emptycart" %>
   </div>
-
+  <%= hidden_field_tag 'c', current_user.cart.cart_items.count %>
   <ul class="product_list"  >
     <% @products.each do |product|%>
       <% cart_item = current_user.cart.cart_items.find_by_product_id(product.id);
@@ -23,7 +23,7 @@
 
   </ul>
   <div class="clear"></div>
-  
+
   <p>
     <% if session[:user] && session[:user].admin == true %>
     <h3><%= link_to "AddCategory", {:action => :new, :controller => :categories} %></h3>
@@ -33,7 +33,7 @@
     <h3><%= link_to "Add To Cart", "JavaScript:void(0);", :class => "cart" %></h3>
   <% end %>
 
-<%= link_to "Back", products_path %>
+  <%= link_to "Back", products_path %>
 </p>
 </div>
 
@@ -70,7 +70,11 @@
     }
   });
 
-   $(document).ready(function(){
+  $(document).ready(function(){
+
+    if (document.getElementById('c').value == 0){
+      $("input.emptycart").attr("disabled", true);
+    }
 
     $("input.emptycart").click(function(){
       var idList = new Array();
@@ -91,14 +95,14 @@
           });
 
         }
-       $("input.emptycart").attr("disabled", true);
+        $("input.emptycart").attr("disabled", true);
         $('#one').text("count :0");
 
       }
 
     });
-     $("input.emptycart").attr("disabled", true);
-    });
+   
+  });
 
 
 
