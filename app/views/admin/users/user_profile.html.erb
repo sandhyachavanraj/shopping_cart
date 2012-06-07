@@ -1,0 +1,5 @@
+<%= #render :partial=> "shared/user_profile" %>
+
+<%= form_for :user, :url => admin_user_path(@user) , :html => {:method => :get } %>
+
+<%= render :partial => "shared/user_profile"%>
