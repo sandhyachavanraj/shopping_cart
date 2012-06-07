@@ -22,7 +22,7 @@
 
   </ul>
   <div class="clear"></div>
-  <p><%= will_paginate @products %></p>
+ 
   <p>
     <% if session[:user] && session[:user].admin == true %>
     <h3><%= link_to "AddCategory", {:action => :new, :controller => :categories} %></h3>
@@ -78,8 +78,7 @@
           url: '<%= delete_items_cart_items_path %>',
           data:  "id=" + idList1
         });
-        jQuery('input[name=product_id[]]:checked').each(function(){
-          alert(jQuery(this).val())
+        jQuery('input[name=product_id[]]:checked').each(function(){          
           jQuery(this).attr("checked", false);    
 
         });
