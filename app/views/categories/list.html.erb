@@ -6,7 +6,6 @@
     <%= button_to "EmptyCart", "JavaScript:void(0);", :class => "emptycart" %>
   </div>
   <%= hidden_field_tag 'c', current_user.cart.cart_items.count %>
-
   <ul class="product_list"  >
     <% @products.each do |product|%>
       <% cart_item = current_user.cart.cart_items.find_by_product_id(product.id);
@@ -34,73 +33,75 @@
     <h3><%= link_to "Add To Cart", "JavaScript:void(0);", :class => "cart" %></h3>
   <% end %>
 
-
+  <%= link_to "Back", products_path %>
 </p>
 </div>
 
 <script type="text/javascript">
 
-  $("a.cart").click(function(){   
+  $("a.cart").click(function(){
 
-  var idList = new Array();
-  var count = 0;
+    var idList = new Array();
+    var count = 0;
 
-  jQuery('input[name=product_id[]]:checked').each(function(){
-  idList.push(jQuery(this).val());
-  count += 1;
-  });
+    jQuery('input[name=product_id[]]:checked').each(function(){
+      idList.push(jQuery(this).val());
+      count += 1;
+    });
 
-  if(count == 0){
-  alert("Please select atleast 1 product");
-  }
-  else{
-  check = confirm("Are you sure you want to add these products to cart?");
-  if(check){
-  jQuery.ajax({
-  type: "POST",
-  url: '<%= carts_path %>',
-  data:  "id=" + idList
-  });
-  }
-  else{
-  return false;
-  }
-  $('#one').text("count :" + count);
-  $("input.emptycart").attr("disabled", false);
+    if(count == 0){
+      alert("Please select atleast 1 product");
+    }
+    else{
+      check = confirm("Are you sure you want to add these products to cart?");
+      if(check){
+        jQuery.ajax({
+          type: "POST",
+          url: '<%= carts_path %>',
+          data:  "id=" + idList
+        });
+      }
+      else{
+        return false;
+      }
+      $('#one').text("count :" + count);
+      $("input.emptycart").attr("disabled", false);
 
-  }
+    }
   });
 
   $(document).ready(function(){
 
-  if (document.getElementById('c').value == 0){
-  $("input.emptycart").attr("disabled", true);
-  }
-  $("input.emptycart").click(function(){
-  var idList = new Array();
-  var count;
-  count = jQuery('input[name=product_id[]]:checked').length;
+    if (document.getElementById('c').value == 0){
+      $("input.emptycart").attr("disabled", true);
+    }
 
-  if(count > 0){
-  check = confirm("Are you sure?");
-  if(check){
-  jQuery.ajax({
-  type: "POST",
-  url: '<%= delete_items_cart_items_path %>',
-  data:  "id=" + idList
-  });
-  jQuery('input[name=product_id[]]:checked').each(function(){
-  jQuery(this).attr("checked", false);
+    $("input.emptycart").click(function(){
+      var idList = new Array();
+      var count;
+      count = jQuery('input[name=product_id[]]:checked').length;
+      
+      if(count > 0){
+        check = confirm("Are you sure?");
+        if(check){
+          jQuery.ajax({
+            type: "POST",
+            url: '<%= delete_items_cart_items_path %>',
+            data:  "id=" + idList
+          });
+          jQuery('input[name=product_id[]]:checked').each(function(){
+            jQuery(this).attr("checked", false);
 
-  });
+          });
 
-  }
-  $("input.emptycart").attr("disabled", true);
-  $('#one').text("count :0");
+        }
+        $("input.emptycart").attr("disabled", true);
+        $('#one').text("count :0");
 
-  } 
-  });
+      }
 
+    });
+   
   });
 
 

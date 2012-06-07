@@ -2,23 +2,19 @@
   <div class="logo" >
     <%= image_tag "rails.png", :size=>"120x120"%><br/>
     <%= "Shopping Cart" %><br/>
-    <ul class="login">
-
-      <li>      
-        <%  if session[:user] %>
-          <h2><%= link_to "logout", logout_users_path %></h2>
-          <h3>welcome to <%= session[:user].name %></h3>
-          <% else %>
-          <%  session[:user] %>
-          <h2><%= link_to "login", login_users_path %></h2>
-          <h3>welcome to guest</h3>
-
-          <%end%>
-      </li>
-    </ul>
-  </div><br/>
-  <div  class="rightheader" >
-    <%= "Shopping Mart" %>
   </div>
+
+  <h1>Shopping Mart</h1>
+
+  <div id="welcome">    
+    <%  if session[:user] %>
+      <%= link_to "logout", logout_users_path %>
+      <h3>welcome to <%= session[:user].name %> <%=  link_to "Products", products_path %> <%=  link_to "New Product", new_product_path %></h3>
+    <% else %>
+      <%= link_to "login", login_users_path %>
+      <h3>welcome to guest</h3>
+    <% end %>
+  </div>
+
 </div>
 <div class="clear"></div>
