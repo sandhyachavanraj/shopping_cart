@@ -25,7 +25,7 @@ class CartItemsController < ApplicationController
   
   def delete_items
     current_user.cart.cart_items.destroy_all
-    flash[:notice] = "Successfully Destroyed"
+      
   end
   
 end
