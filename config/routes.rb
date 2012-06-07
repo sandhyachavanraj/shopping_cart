@@ -18,8 +18,11 @@ ShoppingCart::Application.routes.draw do
     member do
       get :list
     end
-
   end
+
+  
+  resources :admin, :path => "users/admin"
+
   resources :products do
     member do
       get :disp_products      
@@ -31,12 +34,12 @@ ShoppingCart::Application.routes.draw do
       post :delete_items
     end
   end
-    
-  
+
   match '/login' => 'users#login'
   match '/logout' => 'users#logout'
   match '/reset_password' => 'users#reset_password'
   match '/products' => 'products#index'
+
 
   match '/admin' => 'admin/users#index'
 
@@ -49,6 +52,7 @@ ShoppingCart::Application.routes.draw do
     end
   end
   
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,11 +1,11 @@
 class CartsController < ApplicationController
 
-	def new
-		@cart = Cart.new
-	end
+  def new
+    @cart = Cart.new
+  end
 
   def index
-		@carts = Cart.all   
+    @carts = Cart.all
   end
   
   def create

@@ -28,6 +28,13 @@ class User < ActiveRecord::Base
     return :no_such_item
   end
 
+  def is_admin?
+    self.admin == true ? true:false
+  end
+
+  
+  
+
 end
  
 

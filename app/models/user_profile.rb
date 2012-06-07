@@ -9,10 +9,6 @@ class UserProfile < ActiveRecord::Base
     File.open(path, "wb") { |f| f.write(upload.read) }
   end
 
-  def cleanup
-    if File.exists?("#{Rails.root}/app/assets/images/#{self.image_url}")
-      File.delete("#{Rails.root}/app/assets/images/#{self.image_url}")
-    end
-  end
+  
   
 end

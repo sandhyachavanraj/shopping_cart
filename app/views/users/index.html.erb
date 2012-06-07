@@ -1,7 +1,14 @@
-<div class="form">
 
-<%  if session[:user] %>
+<!DOCTYPE html>
+<html>
+  <head>
 
+    <%= stylesheet_link_tag 'products' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+  <body>
+
+ <%  if current_user %>
   <h3><%= link_to "reset password", {:action => :reset_password} %>
     <%= link_to "edit user profile", {:action => :user_profile, :id => session[:user]} %>
     <%= link_to "AddNewProduct", {:action => :new, :controller => :products, :id => session[:user]} %>
@@ -9,47 +16,14 @@
       <%= link_to "AddCategory", {:action => :new, :controller => :categories} %>
     <% end %>
   </h3>
+    <%end%>
+    <div class="form">
+     <%= render :partial => 'shared/index' %>
+      <%yield%>
+    </div>
+  </body>
+</html>
 
 
-<% end %>
 
-<table>
-  <thead>
-  <th>User</th>
-  <th>Name</th>
-  <th>Email</th>
-</thead>
-<tbody>
-  <% @users.each do |user| %>
-    <tr>
-      <% if user.try(:user_profile).try(:image_url).present? %>
-        <td><%= image_tag user.user_profile.image_url, :size => "25x25" %></td>
 
-      <% else %>
-        <td><%= image_tag ('avatar.jpg'), :size => "20x20" %></td>
-      <% end %>
-
-      <td><%= user.name %></td>
-      <td><%= user.email %></td>
-  
-      <td><%= link_to "view", {:action => :show, :id => user.id} %> </td>
-
-      <% if session[:user] && session[:user].admin == true %>
-        <td><%= link_to "edit", {:action => :edit, :id => user.id} %></td>
-        <td><%= link_to "destroy", user, :method => :delete, :confirm => 'Are you sure?' %></td>
-        <td><%= link_to "userprofile", {:action => :userprofilelist, :id => user.try(:user_profile).try(:id)} %></td>
-
-      <% end  %>
-
-      <% if session[:user] && session[:user].name == user.name && session[:user].admin != true %>
-        <td><%= link_to "userprofile", {:action => :userprofilelist, :id => user.user_profile.id} %></td>
-        <td><%= link_to "userproductlist", {:action => :index, :controller => :products, :user_id => session[:user].id} %></td>
-      <% end %>
-    </tr>
-  </tbody>
-<% end %>
-</table>
-<%= will_paginate @users %>
-
-  <%= link_to "Back", products_path %>
-</div>
