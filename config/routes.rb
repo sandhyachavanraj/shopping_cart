@@ -14,32 +14,41 @@ ShoppingCart::Application.routes.draw do
    
   end
 
-  resources :categories
+  resources :categories do
+    member do
+      get :list
+    end
+
+  end
   resources :products do
     member do
-      get :disp_products
+      get :disp_products      
     end
   end
-  resources :carts   
+  resources :carts
   resources :cart_items  do
     collection do
       post :delete_items
     end
   end
-
-    
-  
-  
-   
- 
-
- 
     
   
   match '/login' => 'users#login'
   match '/logout' => 'users#logout'
   match '/reset_password' => 'users#reset_password'
   match '/products' => 'products#index'
+
+  match '/admin' => 'admin/users#index'
+
+  namespace :admin do
+    resources :users do
+      collection do
+        get :user_profile
+        get :userprofilelist
+      end
+    end
+  end
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
