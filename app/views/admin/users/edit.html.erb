@@ -1,0 +1,12 @@
+<h2>Edit <%=@user.name%> details</h2>
+<% @user.errors.full_messages.each do|msg|%>
+  <p><%= msg %></p>
+<% end %>
+  
+<%= form_for :user, :url => admin_user_path(@user), :html => {:method => :put } do |s| %>
+
+<%= render :partial => "shared/form", :locals => {:s => s}%>
+<p><%= s.submit  "UPDATE ME"%></p>
+<% end %>
+
+

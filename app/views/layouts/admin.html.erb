@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin</title>
+    <%= stylesheet_link_tag 'products' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+  <body>
+    <div id="container">
+      <div class="top1">
+        <div class="logo" >
+          <%= image_tag "rails.png", :size=>"130x130"%><br/>
+          <%= "Shopping_Cart" %><br/>
+          <%  if session[:user] %>
+            <h2><%= link_to "logout", logout_users_path %></h2>
+            <%else%>
+            <h2><%= link_to "login", login_users_path %></h2>
+            <h3>welcome to Admin</h3>
+              <%end%>
+          </div><br/>
+          <div  class="rightheader" >
+            <%= "Shopping Mart" %>
+          </div>
+        </div>
+        <div class="bottom"  >
+          <%= render :partial => 'layouts/menu' %>
+        </div>
+        <div
+          class="clear">
+        </div>
+      </div>
+    
+    </body>
+  </html>
+

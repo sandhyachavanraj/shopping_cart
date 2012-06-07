@@ -1,0 +1,13 @@
+
+
+<html>
+  <head>
+  </head>
+  <body>
+
+<%= form_for @user, :method => :put do |s| %>
+<%= render :partial=> 'shared/form',:locals => {:s => s} %>
+
+<% end %>
+</body>
+</html>
