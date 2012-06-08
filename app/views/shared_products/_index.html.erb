@@ -14,10 +14,11 @@
       checked = cart_item.present? ? true : false %>
       <li class="product_image" id="product_image_<%=product.id%>">
         <%= check_box_tag 'product_id[]', product.id, checked%>
+        
         <% if product.image_url.present? %>
-          <%= link_to (image_tag 'products/'+(product.image_url), :size=>"50x50"), product_path(product) %>
+          <%= link_to (image_tag 'products/'+(product.image_url), :size=>"50x50"), admin_product_path(product) %>
         <% else %>
-          <%= link_to (image_tag 'products/'+('inde.jpeg'), :size => "50x50"), product_path(product) %>
+          <%= link_to (image_tag 'products/'+('inde.jpeg'), :size => "50x50"), admin_product_path(product) %>
         <% end %>
         <span><%= product.name %></span>
       </li>

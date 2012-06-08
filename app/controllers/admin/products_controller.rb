@@ -1,8 +1,6 @@
 class Admin::ProductsController < ApplicationController
   layout "admin"
 
-
-
   def index
     return @products = User.find(params[:user_id]).products unless params[:user_id].blank?
     @products = Product.all
