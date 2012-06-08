@@ -129,7 +129,7 @@ div  .right
     margin-top: 37px;
 }
 
-button.buttons  
+button.buttons
 {
 
     background: #9c9;
@@ -173,7 +173,7 @@ div.top div#welcome{
 div.top div#welcome h3{
     color:blue;
     font-size: 22px;
-    font-family: 'Verdana';   
+    font-family: 'Verdana';
     font-size: 27px;
 
 }
@@ -181,11 +181,11 @@ div.top div#welcome a{
     font-size: 23px;
     font-family: 'Verdana';
     color:#FF0099;
-    float:right;    
+    float:right;
     text-decoration: underline;
     position: relative;
     margin-right: 30px;
-    
+
 }
 
 div#productdetails{
@@ -254,16 +254,26 @@ div.top   h1{
     font-size: 50px;
 
 }
+
+
+div#container div.top1 div.rightheader h1{
+    font-size: 56px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+div#container div.top1 div.logo a{
+    font-size: 25px;
+
+}
+div#container div.top1 div.logo h3{
+    width: 250px;
+}
+
 div table a:visited{
 
   text-decoration: none;
      color:red;
 }
 
-
-div.righthead2{
-
-  float:right;
-  margin-right:10px;
-}
 

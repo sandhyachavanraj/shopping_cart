@@ -6,6 +6,7 @@
     <!--
     <button id="one"> Count :<#= current_user.cart.cart_items.count > </button>
     <=# button_to "EmptyCart", "JavaScript:void(0);", :class => "emptycart" >
+>>>>>>> a537b2b810b4496385a04308238287529b945f10
 
   <# hidden_field_tag 'c', current_user.cart.cart_items.count >
 -->
@@ -19,7 +20,9 @@
       <th>Action</th>
       <tbody>
     <% @products.each do |product|%>
+
       <tr> <td><% if current_user.admin == true && product.image_url.present? %>
+
           <%= link_to (image_tag 'products/'+(product.image_url), :size=>"50x50"), admin_product_path(product) %>
         <% else %>
           <% if current_user.admin == false && product.image_url.present? %>
@@ -27,6 +30,7 @@
           <% else %>
             <%= link_to (image_tag 'products/'+('inde.jpeg'), :size => "50x50"), admin_product_path(product) %>
           <% end %>
+
        <%end%>
         </td>
         <td><%= product.name %></td>
@@ -48,69 +52,6 @@
   <div class="clear"></div>
   <p><%= will_paginate @products %></p>
 
+
 </div>
 
-<script type="text/javascript">
-
-  $("a.cart").click(function(){
-
-    var idList = new Array();
-    var count = 0;
-
-    jQuery('input[name=product_id[]]:checked').each(function(){
-      idList.push(jQuery(this).val());
-      count += 1;
-    });
-
-    if(count == 0){
-      alert("Please select atleast 1 product");
-    }
-    else{
-      check = confirm("Are you sure you want to add these products to cart?");
-      if(check){
-        jQuery.ajax({
-          type: "POST",
-          url: '<%= carts_path %>',
-          data:  "id=" + idList
-        });
-      }
-      else{
-        return false;
-      }
-      $('#one').text("count :" + count);
-      $("input.emptycart").attr("disabled", false);
-
-    }
-  });
-
-
-  $("input.emptycart").click(function(){
-    var idList = new Array();
-    var count;
-    count = jQuery('input[name=product_id[]]:checked').length;
-
-    if(count > 0){
-      check = confirm("Are you sure?");
-      if(check){
-        jQuery.ajax({
-          type: "POST",
-          url: '<%= delete_items_cart_items_path %>',
-          data:  "id=" + idList
-        });
-        jQuery('input[name=product_id[]]:checked').each(function(){
-          jQuery(this).attr("checked", false);
-
-        });
-
-      }
-      $("input.emptycart").attr("disabled", true);
-      $('#one').text("count :0");
-
-    }
-  });
-
-
-
-
-
-</script>

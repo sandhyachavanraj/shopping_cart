@@ -28,10 +28,5 @@ class CategoriesController < ApplicationController
   end
   
 
-  private
-
-  def logged_in
-    redirect_to login_users_path
-  end
- 
+  
 end

@@ -57,13 +57,13 @@ class UsersController < ApplicationController
   end
 
   
-  def authenticate
+  def authenticate   
     login = User.authenticate(params[:email], params[:password])
     if login
-      session[:user] = login
+      session[:user] = login      
       flash[:notice] = "logged in suceesfully"
-      if session[:user].admin == true
-        redirect_to  admin_path
+      if current_user.admin == true
+        redirect_to  admin_users_path
       else
         redirect_to  users_path
       end

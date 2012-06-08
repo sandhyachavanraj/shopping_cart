@@ -9,9 +9,8 @@
   <% @categories.each do |category| %>
     <tr>
       <td><%= category.name %> </td>
-      <td> <%= link_to "edit",{:action => :edit}     %></td>
-      <td><%= link_to "destroy",category, :method => :delete, :confirm => 'Are You Sure?' %></td>
- 
+      <td><%= link_to "Edit", edit_admin_category_path(category.id) %></td>
+      <td><%= link_to "Destroy", admin_category_path(category), :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
     <% end %>
 
@@ -19,8 +18,12 @@
  </tbody>
 
 </table>
-<h3><%= link_to "Add New Category", {:action => :new, :controller => :categories} %></h3>
+
+<%= link_to "Add Category", new_admin_category_path %>
+<p><h3><%= link_to "Back", admin_users_path %></h3></p>
+
 </div>
+
 
 
 

@@ -1,7 +1,6 @@
 class Admin::CategoriesController < ApplicationController
   layout 'admin'
 
-  before_filter :logged_in, :unless => :logged_in?
   def index
 		@categories = Category.all
   end
@@ -20,11 +19,31 @@ class Admin::CategoriesController < ApplicationController
     end
   end
 
+  def edit
+    @category = Category.find params[:id]
+  end
+
+  def update   
+    @category = Category.find params[:id]
+    if @category.update_attributes(params[:category])
+      flash[:notice] = "Success"
+      redirect_to admin_categories_path
+    else
+      render edit_admin_category_path
+
+    end
+  end
+
+  def destroy
+    @category = Category.find params[:id]
+    @category.destroy
+    flash[:notice] = "Successfully Destroyed"
+    redirect_to admin_categories_path
+  end
+
   def list
     @category = Category.find params[:id]
     @products = @category.products
   end
-
-
-
+  
 end

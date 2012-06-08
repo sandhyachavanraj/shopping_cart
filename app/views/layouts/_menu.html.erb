@@ -1,12 +1,17 @@
-
 <div>
+
   <table class="menu">
     <div class="welcome"> <h3>welcome to Admin</h3></div>
-    <td class="btn"  > <%= button_to("Users", admin_path, :method => :get ) %></td>
-    <td class="btn" >  <%=  button_to("Products", admin_products_path , :method => :get)%></td>
-    <td class="btn" ><%=  button_to("Categories", admin_categories_path, :method => :get)%></td>
-    <td class="btn" >  <%=  button_to("Cart", admin_carts_path, :method => :get)%> </td>
+    <td   > <%= button_to("Users", admin_path, :method => :get ) %></td>
+    <td >  <%=  button_to("Products", admin_products_path , :method => :get)%></td>
+    <td  ><%=  button_to("Categories", admin_categories_path, :method => :get)%></td>
+    <td  >  <%=  button_to("Cart", admin_carts_path, :method => :get)%> </td>
    
+
   </table>
   <%=yield%>
 </div>
+
+
+
+

@@ -1,5 +1,8 @@
 class CartsController < ApplicationController
- layout "products"
+
+  layout 'products'
+before_filter :logged_in, :unless => :logged_in?
+
   def new
     @cart = Cart.new
   end
@@ -8,9 +11,9 @@ class CartsController < ApplicationController
     @carts = Cart.all
   end
   
-  def create
-    @cart = Cart.find_or_create_by_user_id(current_user.id)
-    @cart.product_ids = params[:id].split(',').collect{|n| n.to_i}   
+  def create   
+    @cart = Cart.find_or_create_by_user_id(current_user.id)    
+    @cart.product_ids = params[:id].split(',').collect{|n| n.to_i}
   end
 
   def show

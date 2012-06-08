@@ -1,7 +1,9 @@
 class Admin::ProductsController < ApplicationController
   layout "admin"
 
+
   before_filter :logged_in, :unless => :logged_in?
+
 
   def index
     return @products = User.find(params[:user_id]).products unless params[:user_id].blank?
@@ -13,10 +15,9 @@ class Admin::ProductsController < ApplicationController
     @product = Product.new
   end
 
-  def create
+  def create    
     @product = Product.new(params[:product])
     @product.user_id = session[:user].id
-
     if @product.save
       flash[:notice] = "New prduct is created and saved successfully"
       redirect_to admin_products_path
@@ -56,7 +57,10 @@ class Admin::ProductsController < ApplicationController
     Product.save(params[:upload])
     render :text => "File has been uploaded successfully"
   end
-
+  private
+  def logged_in
+    redirect_to login_users_path
+  end
 
 end
 
