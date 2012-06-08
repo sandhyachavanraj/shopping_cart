@@ -1,6 +1,7 @@
 class CartsController < ApplicationController
+
+  layout 'products'
 before_filter :logged_in, :unless => :logged_in?
-layout 'products'
 
   def new
     @cart = Cart.new

@@ -1,0 +1,40 @@
+<div class="form">
+<table>
+  <thead>
+  <th>Image</th>
+  <th>Name</th>
+  <th>Email</th>
+</thead>
+<tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <% if user.try(:user_profile).try(:image_url).present? %>
+        <td><%= image_tag user.user_profile.image_url, :size => "25x25" %></td>
+
+      <% else %>
+        <td><%= image_tag ('avatar.jpg'), :size => "20x20" %></td>
+      <% end %>
+
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+
+      <td><%= link_to "view", {:action => :show, :id => user.id} %> </td>
+
+      <% if session[:user] && session[:user].admin == true %>
+        <td><%= link_to "edit", {:action => :edit, :id => user.id} %></td>
+        <td><%= link_to "destroy", admin_user_path(user), :confirm => 'Are you sure?',:method => :delete %></td>
+        <td><%= link_to "userprofile", {:action => :userprofilelist, :id => user.try(:user_profile).try(:id)} %></td>
+
+      <% end  %>
+
+      <% if session[:user] && session[:user].name == user.name && session[:user].admin != true %>
+        <td><%= link_to "userprofile", {:action => :userprofilelist, :id => user.user_profile.id} %></td>
+        <td><%= link_to "userproductlist", {:action => :index, :controller => :products, :user_id => session[:user].id} %></td>
+      <% end %>
+    </tr>
+  </tbody>
+<% end %>
+</table>
+<%= will_paginate @users %>
+
+</div>

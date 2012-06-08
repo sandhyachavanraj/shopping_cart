@@ -1,21 +1,28 @@
+
 <div class="right1" style="float:right">
-  <h2 class="list">Product list</h2>
+  <h2 class="list">Product List</h2>
 
   <div id="buttons">
-    <button id="one"> Count :<%= current_user.cart.cart_items.count %></button>
-    <%= button_to "EmptyCart", "JavaScript:void(0);", :class => "emptycart" %>
+    <!--
+    <button id="one"> Count :<#= current_user.cart.cart_items.count > </button>
+    <=# button_to "EmptyCart", "JavaScript:void(0);", :class => "emptycart" >
+>>>>>>> a537b2b810b4496385a04308238287529b945f10
+
+  <# hidden_field_tag 'c', current_user.cart.cart_items.count >
+-->
   </div>
-  <%= hidden_field_tag 'c', current_user.cart.cart_items.count %>
-
   <ul class="product_list"  >
+    <table>
+      <th>Product Image</th>
+      <th>Product Name</th>
+      <th>Price</th>
+      <th>Description</th>
+      <th>Action</th>
+      <tbody>
     <% @products.each do |product|%>
-      <% cart_item = current_user.cart.cart_items.find_by_product_id(product.id);
-      checked = cart_item.present? ? true : false %>
-      <li class="product_image" id="product_image_<%=product.id%>">
-        <%= check_box_tag 'product_id[]', product.id, checked%>
 
+      <tr> <td><% if current_user.admin == true && product.image_url.present? %>
 
-        <% if current_user.admin == true && product.image_url.present? %>
           <%= link_to (image_tag 'products/'+(product.image_url), :size=>"50x50"), admin_product_path(product) %>
         <% else %>
           <% if current_user.admin == false && product.image_url.present? %>
@@ -23,96 +30,28 @@
           <% else %>
             <%= link_to (image_tag 'products/'+('inde.jpeg'), :size => "50x50"), admin_product_path(product) %>
           <% end %>
+
+       <%end%>
+        </td>
+        <td><%= product.name %></td>
+    
+       <td> <%= product.price %></td>
+      <td><%= truncate(product.description, :length => 2) %></td>
+
+      <td><% cart_item = current_user.cart.cart_items.find_by_product_id(product.id);
+      checked = cart_item.present? ? true : false %></td>
+      <td class="product_image" id="product_image_<%=product.id%>"></td>
+       
+      <td><%=  link_to "edit",{:action => :edit, :id => product.id}    %> </td>
+          <td> <%=  link_to "show",{ :action => :show, :id => product.id}   %> </td>
+          <td><%=  link_to "destroy",product, :confirmation => "Are you sure?", :method => :delete  %>  </td></tr>
         <% end %>
-
-
-        <span><%= product.name %></span>
-      </li>
-    <% end %>
-
+        </tbody>
+    </table>
   </ul>
   <div class="clear"></div>
   <p><%= will_paginate @products %></p>
-  <p>
-    <% if session[:user] && session[:user].admin == true %>
-    <h3><%= link_to "AddCategory", {:action => :new, :controller => :categories} %></h3>
-  <% end %>
-
-  <%if @products.size > 0 && session[:user] && session[:user].admin == false%>
-    <h3><%= link_to "Add To Cart", "JavaScript:void(0);", :class => "cart" %></h3>
-  <% end %>
 
 
-</p>
 </div>
 
-<script type="text/javascript">
-
-  $("a.cart").click(function(){
-
-    var idList = new Array();
-    var count = 0;
-
-    jQuery('input[name=product_id[]]:checked').each(function(){
-      idList.push(jQuery(this).val());
-      count += 1;
-    });
-
-    if(count == 0){
-      alert("Please select atleast 1 product");
-    }
-    else{
-      check = confirm("Are you sure you want to add these products to cart?");
-      if(check){
-       
-        jQuery.ajax({
-
-          type: "POST",
-          url: '<%= carts_path %>',
-          data:  "id=" + idList
-        });
-      }
-      else{
-        return false;
-      }
-      $('#one').text("count :" + count);
-      $("input.emptycart").attr("disabled", false);
-
-    }
-  });
-
-  $(document).ready(function(){
-
-    if (document.getElementById('c').value == 0){
-      $("input.emptycart").attr("disabled", true);
-    }
-    $("input.emptycart").click(function(){
-      var idList = new Array();
-      var count;
-      count = jQuery('input[name=product_id[]]:checked').length;
-
-      if(count > 0){
-        check = confirm("Are you sure?");
-        if(check){
-          jQuery.ajax({
-            type: "POST",
-            url: '<%= delete_items_cart_items_path %>',
-            data:  "id=" + idList
-          });
-          jQuery('input[name=product_id[]]:checked').each(function(){
-            jQuery(this).attr("checked", false);
-
-          });
-
-        }
-        $("input.emptycart").attr("disabled", true);
-        $('#one').text("count :0");
-
-      }
-    });
-
-  });
-
-
-
-</script>

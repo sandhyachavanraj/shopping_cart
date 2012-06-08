@@ -1,6 +1,5 @@
 class Admin::CategoriesController < ApplicationController
   layout 'admin'
-  
 
   def index
 		@categories = Category.all
@@ -46,10 +45,5 @@ class Admin::CategoriesController < ApplicationController
     @category = Category.find params[:id]
     @products = @category.products
   end
-
-
-
- 
-
-
+  
 end

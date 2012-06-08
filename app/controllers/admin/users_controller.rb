@@ -1,6 +1,8 @@
 class Admin::UsersController < ApplicationController
   layout "admin"
- 
+
+  before_filter :logged_in, :unless => :logged_in?
+
   def index
     @users = User.all
     @users = User.paginate(:page => params[:page], :per_page => 8)
@@ -74,6 +76,13 @@ class Admin::UsersController < ApplicationController
     @userprofile = UserProfile.find params[:id]
   end
 
-  
-  
+
+   private
+
+  def logged_in
+    redirect_to login_users_path unless session[:user]
+
+  end
+
+
 end

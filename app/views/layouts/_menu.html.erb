@@ -1,9 +1,9 @@
 <div>
   <table class="menu">    
-    <td><%= link_to("Users", admin_users_path) %></td>
-    <td>  <%= link_to("Products", admin_products_path )%></td>
-    <td><%= link_to("Categories", admin_categories_path)%></td>
-    <td>  <%= link_to("Cart", admin_carts_path)%> </td>
+    <td><%= button_to("Users", admin_users_path) %></td>
+    <td>  <%= button_to("Products", admin_products_path )%></td>
+    <td><%= button_to("Categories", admin_categories_path, :method => :get)%></td>
+    <td>  <%= button_to("Cart", admin_carts_path, :method => :get)%> </td>
   </table>
   <%=yield%>
 </div>

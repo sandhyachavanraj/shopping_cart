@@ -1,17 +1,24 @@
+
 <h1>Carts List</h1>
-<table border="1">
-  <thead>
-  <th>CartId</th>
-  <th>UserId</th>
-</thead>
-<tbody>
-  <% @carts.each do |cart| %>
-    <tr>
-      <td><%= cart.id %> </td>
-      <td><%= cart.user_id %> </td>
-      <td><%= link_to "destroy", admin_cart_path(cart), :confirm => "Are you sure?", :method => :delete %></td>
-    </tr>
-  </tbody>
-<% end %>
-</table>
+<div class="right1">
+  
+  <table border="1">
+    <thead>
+    <th>CartId</th>
+    <th>UserNAme</th>
+    </thead>
+    <tbody>
+      <% @carts.each do |cart| %>
+        <tr>
+          <td><%= cart.id %> </td>
+          <td><%= cart.user_id %> </td>
+          <td><%= link_to "destroy", admin_cart_path(cart), :confirm => "Are you sure?", :method => :delete %></td>
+        </tr>
+         <% end %>
+      </tbody>
+   
+  </table>
+
+</div>
 <%= link_to "Back", admin_users_path %>
+
