@@ -63,7 +63,7 @@ class UsersController < ApplicationController
       session[:user] = login
       flash[:notice] = "logged in suceesfully"
       if session[:user].admin == true
-        redirect_to  admin_path
+        redirect_to  admin_users_path
       else
         redirect_to  users_path
       end

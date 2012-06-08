@@ -37,8 +37,7 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  def show
-    
+  def show    
     @user = User.find params[:id]
   end
 
@@ -74,4 +73,6 @@ class Admin::UsersController < ApplicationController
   def userprofilelist
     @userprofile = UserProfile.find params[:id]
   end
+
+  
 end
