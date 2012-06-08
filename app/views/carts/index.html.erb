@@ -1,16 +1,1 @@
-<h1>Carts List</h1>
-<table border="1">
-  <thead>
-  <th>CartId</th>
-  <th>UserId</th>
-</thead>
-<tbody>
-  <% @carts.each do |cart| %>
-    <tr>
-      <td><%= cart.id %> </td>
-      <td><%= cart.user_id %> </td>
-    </tr>
-  </tbody>
-<% end %>
-  <td><%= link_to "Back", :action => :index, :controller => :products %></td>
-</table>
+<%= render :partial => "shared_carts/index" %>

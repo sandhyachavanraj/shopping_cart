@@ -18,9 +18,11 @@
   </h3>
     <%end%>
     <div class="form">
-     <%= render :partial => 'shared/index' %>
+     <%= render :partial => 'shared_users/index' %>
       <%yield%>
     </div>
+    <%= link_to "Back", products_path %>
+
   </body>
 </html>
 

@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-
+ layout "products"
   def new
     @cart = Cart.new
   end
