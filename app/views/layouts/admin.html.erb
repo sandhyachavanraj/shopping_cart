@@ -13,16 +13,18 @@
         <div class="logo" >
           <%= image_tag "rails.png", :size=>"130x130"%><br/>
           <%= "Shopping_Cart" %><br/>
-          <%  if session[:user] %>
-            <h2><%= link_to "logout", logout_users_path %></h2>
-            <h3>welcome to Admin</h3>
-            <%else%>
-            <h2><%= link_to "login", login_users_path %></h2>
-            
-              <%end%>
+       
           </div><br/>
           <div  class="rightheader" >
-            <h1> Shopping Mart </h1>
+            <div class="righthead1">  <h1> Shopping Mart </h1></div>
+            <div class="righthead2" >  <%  if session[:user] %>
+            <h2><%= link_to "logout", logout_users_path %></h2>
+           
+            <%else%>
+            <h2><%= link_to "login", login_users_path %></h2>
+
+              <%end%>
+          </div>
           </div>
         </div>
         <div class="bottom"  >

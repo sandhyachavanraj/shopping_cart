@@ -259,3 +259,11 @@ div table a:visited{
   text-decoration: none;
      color:red;
 }
+
+
+div.righthead2{
+
+  float:right;
+  margin-right:10px;
+}
+
