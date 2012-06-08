@@ -3,10 +3,6 @@
  <p>Name: <%=@product.name%></p>
  <p>Price: <%=@product.price%></p>
  <p>Description: <%=@product.description%></p>
- <table>
- <td style="background-color:#FFD700">  <%=  link_to "edit",{:action => :edit_admin_products_path, :id => @product.id} %> </td>
- <td style="background-color:#FFD700">  <%=  link_to "destroy",admin_product_path(@product), :confirm => "Are you sure?", :method => :delete  %>  </td>
-</table>
  <h3> <%=  link_to "Back", admin_products_path %></h3>
 </div>
 
