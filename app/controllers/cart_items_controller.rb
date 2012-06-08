@@ -8,7 +8,7 @@ class CartItemsController < ApplicationController
     @cart_items = CartItem.all
   end
 
-  def create
+  def create  
     @cart_item = CartItem.new(params[:cart_item])    
     @cart_item = Cart.find params[:id]
     if @cart_item.save

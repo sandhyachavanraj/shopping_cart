@@ -1,5 +1,6 @@
 class Admin::ProductsController < ApplicationController
   layout "admin"
+  before_filter :logged_in, :only => [:edit]
 
   def index
     return @products = User.find(params[:user_id]).products unless params[:user_id].blank?
@@ -54,7 +55,10 @@ class Admin::ProductsController < ApplicationController
     Product.save(params[:upload])
     render :text => "File has been uploaded successfully"
   end
-
+  private
+  def logged_in
+    redirect_to login_users_path
+  end
 
 end
 

@@ -59,10 +59,4 @@ class ProductsController < ApplicationController
     render :text => "File has been uploaded successfully"
   end
 
-  
-  private
-  def logged_in
-    redirect_to login_users_path
-  end
-  
 end

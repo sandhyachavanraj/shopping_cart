@@ -6,6 +6,8 @@
   <% @categories.each do |category| %>
     <tr>
       <td><%= category.name %> </td>
+      <td><%= link_to "Edit" %></td>
+      <td><%= link_to "Destroy" %></td>
     </tr>
   </tbody>
 <% end %>
