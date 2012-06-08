@@ -1,0 +1,15 @@
+<h2>Edit <%=@category.name%> details</h2>
+<% @category.errors.full_messages.each do|msg|%>
+  <p><%= msg %></p>
+<% end %>
+
+ 
+<%= form_for @category, :url => admin_category_path(@category), :html => { :method => :put} do |c| %>
+ <%= c.label :name %><br/>
+  <%= c.text_field :name %>
+  <%= c.submit "Edit" %> 
+<% end %>
+ <%= link_to "Back", admin_categories_path %>
+
+
+
