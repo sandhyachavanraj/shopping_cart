@@ -252,6 +252,7 @@ div.top   h1{
     font-size: 50px;
 
 }
+
 div#container div.top1 div.rightheader h1{
     font-size: 56px;
     text-align: center;
@@ -268,3 +269,4 @@ div#container div.top1 div.logo h3{
 div.menu table.menu td:visited{
    background-color:#FF0066;
 }
+

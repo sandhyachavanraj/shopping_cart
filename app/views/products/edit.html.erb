@@ -1,12 +1,13 @@
-<div id="editform">
-<h2> Edit <%= @product.name%> details </h2>
-<% @product.errors.full_messages.each do |msg| %>
-<p><%=msg%></p>
-<%end%>
-<%=  form_for @product do |p|%>
-<%=  render :partial =>"form", :locals =>{:p => p}%>
-<p> <%=  p.submit "Edit"%> </p>
-<%end%>
 
-<%= link_to 'Back', product_path %>
-</div>
+
+<h2>Edit <%=@product.name%> details</h2>
+<% @product.errors.full_messages.each do|msg|%>
+  <p><%= msg %></p>
+<% end %>
+
+<%= form_for @product, :method => :put do |p| %>
+
+<%= render :partial => "shared_products/form", :locals => {:p => p}%>
+<p><%= s.submit  "UPDATE ME"%></p>
+<% end %>
+

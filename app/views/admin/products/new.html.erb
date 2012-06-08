@@ -6,7 +6,7 @@
 <%end%>
 
 <%=  form_for(@product, :url=>{:action=>'create'})  do |p| %>
-  <%=  render :partial =>"shared_products/form", :locals => {:p => p} %>
+  <%=  render :partial =>"form", :locals => {:p => p} %>
   <p><%= p.label :category %>
     <%= p.collection_select(:category_id, Category.all, :id, :name , :prompt => "Select") %></p>
   <p><%=  p.submit "Submitted"%> </p>

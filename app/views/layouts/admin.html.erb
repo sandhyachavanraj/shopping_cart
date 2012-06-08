@@ -12,24 +12,23 @@
           <%= image_tag "rails.png", :size=>"130x130"%><br/>
           <%= "Shopping_Cart" %><br/>
           <%  if session[:user] %>
-            <%= link_to "logout", logout_users_path %>
+            <h2><%= link_to "logout", logout_users_path %></h2>
             <h3>welcome to Admin</h3>
-          <%  else %>
-            <%= link_to "login", login_users_path %>
-
+          <%else%>
+            <h2><%= link_to "login", login_users_path %></h2>
           <%end%>
         </div><br/>
         <div  class="rightheader" >
-          <h1>Shopping Mart</h1>
+          <h1> Shopping Mart </h1>
         </div>
       </div>
       <div class="bottom"  >
         <%= render :partial => 'layouts/menu' %>
       </div>
-      <div
-        class="clear">
+      <div class="clear">
       </div>
     </div>
+
 
   </body>
 </html>

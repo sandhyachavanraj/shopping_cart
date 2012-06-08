@@ -1,9 +1,9 @@
-<div class="menu">
+<div>
   <table class="menu">
-    <td> <%= button_to "Users", admin_path%></td>
-    <td>  <%= button_to("Products", admin_products_path )%></td>
-    <td><%= button_to("Categories", admin_categories_path)%></td>
-    <td>  <%= button_to("Cart", admin_carts_path)%> </td>
+    <td class="btn"  > <%= button_to("Users", admin_path) %></td>
+    <td class="btn" >  <%= button_to("Products", admin_products_path )%></td>
+    <td class="btn" ><%= button_to("Categories", admin_categories_path)%></td>
+    <td class="btn" >  <%= button_to("Cart", carts_path)%> </td>  
   </table>
   <%=yield%>
 </div>

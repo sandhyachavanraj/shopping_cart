@@ -1,17 +1,4 @@
-<div id ="productdetails">
- <p>Image_url: <%=@product.image_url%></p>  
- <p>Name: <%=@product.name%></p>
- <p>Price: <%=@product.price%></p>
- <p>Description: <%=@product.description%></p>
- <table>
- <td style="background-color:#FFD700">  <%=  link_to "edit",{:action => :edit, :id => @product.id} %> </td> 
- <td style="background-color:#FFD700">  <%=  link_to "destroy",@product, :confirm => "Are you sure?", :method => :delete  %>  </td>
-</table>
- <h3> <%=  link_to "Back", products_path %></h3>
-</div>
-
-
-
+<%= render :partial => 'shared_products/show' %>
 
 
 
