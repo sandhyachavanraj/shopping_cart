@@ -1,3 +1,5 @@
+
+<div class="right1">
 <h2>Add New Category</h2>
 <% @category.errors.full_messages.each do|msg|%>
   <p><%= msg %></p>
@@ -8,4 +10,4 @@
   <%= c.text_field :name %>
   <%= c.submit "Submit" %>
 <% end %>
-
+</div>

@@ -1,7 +1,7 @@
 class Admin::ProductsController < ApplicationController
   layout "admin"
 
-
+  before_filter :logged_in, :unless => :logged_in?
 
   def index
     return @products = User.find(params[:user_id]).products unless params[:user_id].blank?

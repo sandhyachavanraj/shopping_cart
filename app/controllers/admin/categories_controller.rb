@@ -1,7 +1,7 @@
 class Admin::CategoriesController < ApplicationController
   layout 'admin'
 
-
+  before_filter :logged_in, :unless => :logged_in?
   def index
 		@categories = Category.all
   end

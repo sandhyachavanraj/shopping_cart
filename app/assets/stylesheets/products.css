@@ -119,7 +119,7 @@ ul li.product_image{
 div  .right1
 {
     float:right;
-    width:80%;
+    width:99%;
 }
 
 div  .right
@@ -204,9 +204,11 @@ div#editform h2{
 
 div.right1 h2.list{
     width:150px;
-    text-align: center;
+    text-align: left;
     margin-left: auto;
     margin-right: auto;
+    margin-left:10px;
+    color:brown;
 }
 
 
@@ -252,6 +254,8 @@ div.top   h1{
     font-size: 50px;
 
 }
-.bgClr{
-        background-color:Green;
-    }
+div table a:visited{
+
+  text-decoration: none;
+     color:red;
+}

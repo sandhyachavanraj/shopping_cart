@@ -1,13 +1,27 @@
+
+<div class="right1">
 <table>
   <thead>
   <th>Category Name</th>
+
 </thead>
 <tbody>
   <% @categories.each do |category| %>
     <tr>
       <td><%= category.name %> </td>
+      <td> <%= link_to "edit",{:action => :edit}     %></td>
+      <td><%= link_to "destroy",category, :method => :delete, :confirm => 'Are You Sure?' %></td>
+ 
     </tr>
-  </tbody>
-<% end %>
+    <% end %>
+
+    
+ </tbody>
+
 </table>
-<p><h3><%= link_to "Back", :action => "index", :controller => :users %></h3></p>
+<h3><%= link_to "Add New Category", {:action => :new, :controller => :categories} %></h3>
+</div>
+
+
+
+

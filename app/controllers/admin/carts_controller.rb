@@ -1,5 +1,6 @@
 class Admin::CartsController < ApplicationController
     layout 'admin'
+      before_filter :logged_in, :unless => :logged_in?
   def new
     @cart = Cart.new
   end
