@@ -6,10 +6,11 @@
   <% @categories.each do |category| %>
     <tr>
       <td><%= category.name %> </td>
-      <td><%= link_to "Edit" %></td>
-      <td><%= link_to "Destroy" %></td>
+      <td><%= link_to "Edit", edit_admin_category_path(category.id) %></td>
+      <td><%= link_to "Destroy", admin_category_path(category), :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   </tbody>
 <% end %>
 </table>
+<%= link_to "Add Category", new_admin_category_path %>
 <p><h3><%= link_to "Back", :action => "index", :controller => :users %></h3></p>

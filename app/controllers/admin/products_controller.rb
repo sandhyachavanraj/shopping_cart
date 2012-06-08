@@ -12,10 +12,9 @@ class Admin::ProductsController < ApplicationController
     @product = Product.new
   end
 
-  def create
+  def create    
     @product = Product.new(params[:product])
     @product.user_id = session[:user].id
-
     if @product.save
       flash[:notice] = "New prduct is created and saved successfully"
       redirect_to admin_products_path

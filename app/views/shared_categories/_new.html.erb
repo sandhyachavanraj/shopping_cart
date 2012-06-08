@@ -3,7 +3,7 @@
   <p><%= msg %></p>
 <% end %>
 
-<%= form_for @category do |c| %>
+<%= form_for @category, :url => admin_categories_path do |c| %>
   <%= c.label :name %><br/>
   <%= c.text_field :name %>
   <%= c.submit "Submit" %>
