@@ -9,6 +9,7 @@ class Admin::CartsController < ApplicationController
 
   def index
     @carts = Cart.all
+    #raise @carts.inspect
   end
 
   def create
