@@ -2,7 +2,7 @@
   <ul  class="categories"> <%= "Categories" %>
     <% c = Category.find(:all)%>
     <% c.each do |category| %>
-      <li><%= link_to category.name , list_category_path(category.id) %></li>
+      <li><%= link_to category.name.capitalize , list_category_path(category.id) %></li>
     <% end  %>
   </ul>
 </div>

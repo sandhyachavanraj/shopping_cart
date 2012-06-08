@@ -1,0 +1,13 @@
+<table>
+  <thead>
+  <th>Category Name</th>
+</thead>
+<tbody>
+  <% @categories.each do |category| %>
+    <tr>
+      <td><%= category.name %> </td>
+    </tr>
+  </tbody>
+<% end %>
+</table>
+<p><h3><%= link_to "Back", :action => "index", :controller => :users %></h3></p>

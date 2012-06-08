@@ -14,13 +14,14 @@
           <%= "Shopping_Cart" %><br/>
           <%  if session[:user] %>
             <h2><%= link_to "logout", logout_users_path %></h2>
+            <h3>welcome to Admin</h3>
             <%else%>
             <h2><%= link_to "login", login_users_path %></h2>
-            <h3>welcome to Admin</h3>
+            
               <%end%>
           </div><br/>
           <div  class="rightheader" >
-            <%= "Shopping Mart" %>
+            <h1> Shopping Mart </h1>
           </div>
         </div>
         <div class="bottom"  >
