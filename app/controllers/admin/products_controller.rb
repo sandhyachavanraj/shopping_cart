@@ -47,9 +47,11 @@ class Admin::ProductsController < ApplicationController
 
   def destroy
     @product = Product.find params[:id]
+
     @product.destroy
     flash[:notice] = "Successfully Destroyed"
     
+
     redirect_to admin_products_path
   end
 

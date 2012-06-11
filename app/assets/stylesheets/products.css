@@ -118,8 +118,8 @@ ul li.product_image{
 
 div  .right1
 {
-    float:right;
-    width:99%;
+    float:left;
+    width:80%;
 }
 
 div  .right
@@ -147,6 +147,9 @@ button.buttons
 {
     margin-top:30px;
     margin-left: 120px;
+
+}
+div.right1 ul.product_list{
 
 }
 
@@ -272,8 +275,20 @@ div#container div.top1 div.logo h3{
 
 div table a:visited{
 
-  text-decoration: none;
-     color:red;
+    text-decoration: none;
+    color:red;
 }
+div.rightheader a{
+    float: right;
+    margin-right: 84px;
+    font-size: 24px;
 
+}
+div.rightheader  h2{
+    margin-top: 106px;
+    margin-bottom: 0px;
+    margin-left: 43px;
+
+
+}
 

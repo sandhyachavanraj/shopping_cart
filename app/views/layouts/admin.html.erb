@@ -4,7 +4,7 @@
     <title>Admin</title>
     <%= stylesheet_link_tag 'products' %>
     <%= javascript_include_tag 'application' %>
-     <%= csrf_meta_tags %>
+    <%= csrf_meta_tags %>
   </head>
   <body>
     <div id="container">
@@ -12,31 +12,29 @@
         <div class="logo" >
           <%= image_tag "rails.png", :size=>"130x130"%><br/>
           <%= "Shopping_Cart" %><br/>
-       
-          </div><br/>
-          <div  class="rightheader" >
-            <div class="righthead1">  <h1> Shopping Mart </h1></div>
-            <div class="righthead2" >  <%  if session[:user] %>
-            <h2><%= link_to "logout", logout_users_path %></h2>
 
-           
+        </div><br/>
+        <div  class="rightheader" >
+          <div class="righthead1">  <h1> Shopping Mart </h1></div>
+          <h2>Welcome To Admin</h2>
+           <%  if session[:user] %>
+              <%= link_to "logout", logout_users_path %>
             <%else%>
-            <h2><%= link_to "login", login_users_path %></h2>
+              <%= link_to "login", login_users_path %>
+
 
               <%end%>
           </div>
           </div>
-        </div>
-     
-     
+    </div>
+          
+       
+
       <div class="bottom"  >
         <%= render :partial => 'layouts/menu' %>
       </div>
-      
       <div class="clear">
       </div>
- 
-    </div>
 
   </body>
 </html>
