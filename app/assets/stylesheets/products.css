@@ -118,8 +118,8 @@ ul li.product_image{
 
 div  .right1
 {
-    float:right;
-    width:99%;
+    float:left;
+    width:80%;
 }
 
 div  .right
@@ -148,6 +148,9 @@ button.buttons
     margin-top:30px;
     margin-left: 120px;
 
+}
+div.right1 ul.product_list{
+    
 }
 
 div.right1 ul.product_list li.product_image img{
@@ -275,4 +278,5 @@ div table a:visited{
   text-decoration: none;
      color:red;
 }
+
 
