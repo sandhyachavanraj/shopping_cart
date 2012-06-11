@@ -150,7 +150,7 @@ button.buttons
 
 }
 div.right1 ul.product_list{
-    
+
 }
 
 div.right1 ul.product_list li.product_image img{
@@ -275,8 +275,20 @@ div#container div.top1 div.logo h3{
 
 div table a:visited{
 
-  text-decoration: none;
-     color:red;
+    text-decoration: none;
+    color:red;
 }
+div.rightheader a{
+    float: right;
+    margin-right: 84px;
+    font-size: 24px;
 
+}
+div.rightheader  h2{
+    margin-top: 106px;
+    margin-bottom: 0px;
+    margin-left: 43px;
+
+
+}
 

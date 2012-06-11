@@ -28,7 +28,7 @@
 
               <td><%=  link_to "edit",{:action => :edit, :id => product.id}    %> </td>
               <td> <%=  link_to "show",{ :action => :show, :id => product.id}   %> </td>
-              <td><%=  link_to "destroy",product, :confirmation => "Are you sure?", :method => :delete  %>  </td></tr>
+              <td><%=  link_to "destroy", admin_product_path(product), :confirm => "Are you sure?", :method => :delete  %>  </td></tr>
           <% end %>
         </tbody>
       </table>
@@ -111,21 +111,23 @@
       else{
         return false;
       }
-      $('#one').text("count :" + count);
+    
+      
       $("input.emptycart").attr("disabled", false);
 
     }
   });
 
   $(document).ready(function(){
-
+  
     if (document.getElementById('c').value == 0){
       $("input.emptycart").attr("disabled", true);
     }
+  });
     $("input.emptycart").click(function(){
       var idList = new Array();
       var count;
-      count = jQuery('input[name=product_id[]]:checked').length;
+      count = jQuery('input[name=product_id[]]:checked').length;   
 
       if(count > 0){
         check = confirm("Are you sure?");
@@ -142,12 +144,12 @@
 
         }
         $("input.emptycart").attr("disabled", true);
-        $('#one').text("count :0");
+        $('#one').text("Count :0");
 
       }
     });
 
-  });
+
 
 
 
