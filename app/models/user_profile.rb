@@ -1,5 +1,8 @@
 class UserProfile < ActiveRecord::Base
   belongs_to :user
+  has_many :addresses, :as => :address
+
+
 
   def upload_image=(upload)
     self.image_url = upload.original_filename.to_s

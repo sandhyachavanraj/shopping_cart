@@ -1,0 +1,51 @@
+<div id="orderform">
+  <h2>New Order From</h2>
+  <% @order.errors.full_messages.each do|msg|%>
+    <p><%= msg %></p>
+  <% end %>
+
+  <%= form_for @order do |o| %>
+    <p><%= o.label :firstname %>
+      <br/>
+      <%= o.text_field :firstname %>
+    </p>
+    <p><%= o.label :lastname %>
+      <br/>
+      <%= o.text_field :lastname %>
+    </p>
+    <p>
+      <%= o.label :address_line1 %>
+      <br/>
+      <%= o.text_field :address_line1 %>
+    </p>
+    <p>
+      <%= o.label :address_line2 %>
+      <br/>
+      <%= o.text_field :address_line2 %>
+    </p>
+    <p>
+      <%= o.label :state %>
+      <br/>
+      <%= o.text_field :state %>
+    </p>
+    <p>
+      <%= o.label :country %>
+      <br/>
+      <%= o.text_field :country %>
+    </p>
+    <p>
+      <%= o.label :zipcode %>
+      <br/>
+      <%= o.text_field :zipcode %>
+    </p>
+    <p>
+      <%= o.label :amount %>
+      <br/>
+      <%= o.text_field :amount %>
+    </p>
+
+    <p><%= o.submit  "Submit" %></p>
+  <% end %>
+</div>
+<%= link_to "BackToProducts", products_path %>
+

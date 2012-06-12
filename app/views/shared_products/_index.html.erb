@@ -35,11 +35,13 @@
     </ul>
     <div class="clear"></div>
     <p><%= will_paginate @products %></p>
-  </div>
+
 
 <% else %>
-  <div id="products">
+ 
     <h2 class="list">Product list</h2>
+
+    <%= button_to "PlaceOrder", new_order_path, :method => :get %>
 
     <div id="buttons">
       <button id="one"> Count :<%= current_user.cart.cart_items.count %></button>
@@ -79,8 +81,9 @@
       <h3><%= link_to "Add To Cart", "JavaScript:void(0);", :class => "cart" %></h3>
     <% end %>
   </p>
+  </div>
 <% end %>
-</div>
+
 
 <script type="text/javascript">
 
@@ -112,7 +115,7 @@
         return false;
       }
     
-      
+      $('#one').text("Count :" + count);
       $("input.emptycart").attr("disabled", false);
 
     }
@@ -123,7 +126,7 @@
     if (document.getElementById('c').value == 0){
       $("input.emptycart").attr("disabled", true);
     }
-  });
+   
     $("input.emptycart").click(function(){
       var idList = new Array();
       var count;
@@ -143,12 +146,14 @@
           });
 
         }
-        $("input.emptycart").attr("disabled", true);
+        
         $('#one').text("Count :0");
-
-      }
+        $("input.emptycart").attr("disabled", true);
+        }
+      
     });
-
+    
+  });
 
 
 

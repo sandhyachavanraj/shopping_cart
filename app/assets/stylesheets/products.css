@@ -288,7 +288,14 @@ div.rightheader  h2{
     margin-top: 106px;
     margin-bottom: 0px;
     margin-left: 43px;
-
-
 }
-
+div#orderform{
+    width: 50%;
+    float: left;
+    margin-left: 20px;
+}
+div#new_address{
+    width: 50%;
+    float: left;
+    margin-left: 20px;
+}

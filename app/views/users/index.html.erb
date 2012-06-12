@@ -5,6 +5,7 @@
 
     <%= stylesheet_link_tag 'products' %>
     <%= javascript_include_tag 'application' %>
+    
   </head>
   <body>
 
@@ -12,6 +13,8 @@
   <h3><%= link_to "reset password", {:action => :reset_password} %>
     <%= link_to "edit user profile", {:action => :user_profile, :id => session[:user]} %>
     <%= link_to "AddNewProduct", {:action => :new, :controller => :products, :id => session[:user]} %>
+    <%= link_to "Address", new_address_path %>
+    
     <% if session[:user].admin == true %>
       <%= link_to "AddCategory", {:action => :new, :controller => :categories} %>
     <% end %>

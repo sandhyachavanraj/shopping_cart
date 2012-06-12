@@ -21,19 +21,20 @@ ShoppingCart::Application.routes.draw do
   end
 
   
-  resources :admin, :path => "users/admin"
-
   resources :products do
     member do
       get :disp_products      
     end
   end
   resources :carts
+  
   resources :cart_items  do
     collection do
       post :delete_items
     end
   end
+  resources :orders
+  resources :addresses
 
   match '/login' => 'users#login'
   match '/logout' => 'users#logout'
@@ -41,7 +42,7 @@ ShoppingCart::Application.routes.draw do
   match '/products' => 'products#index'
 
 
-  match '/admin' => 'admin/users#index'
+  match '/admin' => 'users#login'
 
   namespace :admin do
     resources :users do
@@ -50,6 +51,11 @@ ShoppingCart::Application.routes.draw do
         get :userprofilelist
       end
     end
+
+    resources :products
+    resources :categories
+    resources :carts
+
   end
   
 
@@ -105,6 +111,7 @@ ShoppingCart::Application.routes.draw do
   # root :to => 'welcome#index'
 
   root :to => 'users#index'
+
 
   # See how all your routes lay out with "rake routes"
 

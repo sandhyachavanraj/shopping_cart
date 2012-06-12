@@ -1,0 +1,21 @@
+<div class="form">
+  <table>
+    <thead>
+    <th>Mobile_Number</th>
+    <th>Phone_Number</th>
+    <th>Type</th>
+    <th>Address</th>
+    </thead>
+    <tbody>
+      <% @addresses.each do |ad| %>
+        <tr>
+          <td><%= ad.mobile_number %></td>
+          <td><%= ad.phone_number %></td>
+          <td><%= ad.type %></td>
+          <td><%= ad.Address %></td>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+
+</div>

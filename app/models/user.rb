@@ -2,6 +2,11 @@ class User < ActiveRecord::Base
   has_one :user_profile
   has_many :products
   has_one :cart
+  has_many :orders
+  has_many :addresses, :as => :address
+  accepts_nested_attributes_for :addresses, :user_profile
+
+  
 
   validates :name, :presence => true
   validates :password, :presence =>true, :confirmation =>true, :length => { :minimum => 5, :maximum => 8}
