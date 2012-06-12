@@ -27,5 +27,16 @@ class CartItemsController < ApplicationController
     current_user.cart.cart_items.destroy_all
       
   end
+
+  def update
+    @cart_item= CartItem.find params[:id]
+    if @cart_item.update_attributes(params[:cart_item])
+      flash[:notice] = "Updated Successfully"
+      redirect_to cart_item_path
+    else
+      render edit_cart_item_path
+    end
+  end
+
   
 end

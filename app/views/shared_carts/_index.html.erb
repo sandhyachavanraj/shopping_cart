@@ -14,8 +14,11 @@
           <td><%= cart.id %> </td>
           <td><%= link_to cart.user ? cart.user.name : "NA", admin_user_path(cart.user_id)  %></td>
           <td><%= link_to "destroy", admin_cart_path(cart), :confirm => "Are you sure?", :method => :delete %></td>
+          
+
         </tr>
       <% end %>
+        
     </tbody>
 
   </table>

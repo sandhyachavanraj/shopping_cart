@@ -2,7 +2,8 @@ class Product < ActiveRecord::Base
   belongs_to :category
   belongs_to :user
   has_many :cart_items
-  has_many :carts, :through => :cart_items 
+  has_many :carts, :through => :cart_items
+  #validates :quantity, :presence =>true, :length =>10,:numericality => true
 
   def upload_image=(upload)
     self.image_url = upload.original_filename.to_s

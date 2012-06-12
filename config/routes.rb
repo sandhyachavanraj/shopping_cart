@@ -1,5 +1,5 @@
 ShoppingCart::Application.routes.draw do
- 
+
   resources :users do
     collection do
       get :login
@@ -9,9 +9,9 @@ ShoppingCart::Application.routes.draw do
       get :user_profile
       put :update_profile
       get :userprofilelist
-      get :picture     
+      get :picture
     end
-   
+
   end
 
   resources :categories do
@@ -20,18 +20,17 @@ ShoppingCart::Application.routes.draw do
     end
   end
 
-  
-  resources :admin, :path => "users/admin"
-
   resources :products do
     member do
-      get :disp_products      
+      get :disp_products
     end
   end
   resources :carts
+
   resources :cart_items  do
     collection do
       post :delete_items
+      
     end
   end
 
@@ -41,7 +40,7 @@ ShoppingCart::Application.routes.draw do
   match '/products' => 'products#index'
 
 
-  match '/admin' => 'admin/users#index'
+  match '/admin' => 'users#login'
 
   namespace :admin do
     resources :users do
@@ -50,8 +49,13 @@ ShoppingCart::Application.routes.draw do
         get :userprofilelist
       end
     end
+
+    resources :products
+    resources :categories
+    resources :carts
+    resources :cart_items
   end
-  
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -105,6 +109,7 @@ ShoppingCart::Application.routes.draw do
   # root :to => 'welcome#index'
 
   root :to => 'users#index'
+
 
   # See how all your routes lay out with "rake routes"
 

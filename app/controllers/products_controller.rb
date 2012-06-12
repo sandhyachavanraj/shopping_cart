@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
   
 
   def index
-    return @products = User.find(params[:user_id]).products unless params[:user_id].blank?
+   return @products = User.find(params[:user_id]).products unless params[:user_id].blank?
     @products = Product.all
     @products=Product.paginate(:per_page => 12, :page => params[:page])
   end
