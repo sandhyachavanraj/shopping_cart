@@ -20,6 +20,7 @@ ShoppingCart::Application.routes.draw do
     end
   end
 
+
   resources :products do
     member do
       get :disp_products
@@ -27,12 +28,16 @@ ShoppingCart::Application.routes.draw do
   end
   resources :carts
 
+
+
   resources :cart_items  do
     collection do
       post :delete_items
       
     end
   end
+  resources :orders
+  resources :addresses
 
   match '/login' => 'users#login'
   match '/logout' => 'users#logout'
@@ -54,6 +59,7 @@ ShoppingCart::Application.routes.draw do
     resources :categories
     resources :carts
     resources :cart_items
+
   end
 
 

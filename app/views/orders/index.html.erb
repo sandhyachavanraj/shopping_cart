@@ -1,0 +1,32 @@
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+
+<table border="1">
+  <thead>
+  <th>FirstName</th>
+  <th>LastName</th>
+  <th>Address_Line1</th>
+  <th>Address_Line2</th>
+  <th>State</th>
+  <th>Country</th>
+  <th>ZioCode</th>
+  <th>Amount</th>
+</thead>
+<tbody>
+
+  <% @orders.each do |order| %>
+    <tr>
+      <td><%= order.firstname %> </td>
+      <td><%= order.lastname %> </td>
+      <td><%= order.address_line1 %> </td>
+      <td><%= order.address_line2 %> </td>
+      <td><%= order.state %> </td>
+      <td><%= order.country %> </td>
+      <td><%= order.zipcode %> </td>
+      <td><%= order.amount %> </td>
+    </tr>
+    <% end %>
+  </tbody>
+  </table>
+<%= link_to "Back", new_order_path %>

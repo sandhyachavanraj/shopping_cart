@@ -36,11 +36,13 @@
     </ul>
     <div class="clear"></div>
     <p><%= will_paginate @products %></p>
-  </div>
+
 
 <% else %>
-  <div id="products">
+ 
     <h2 class="list">Product list</h2>
+
+    <%= button_to "PlaceOrder", new_order_path, :method => :get %>
 
     <div id="buttons">
       <button id="one"> Count :<%= current_user.cart.cart_items.count %></button>
@@ -88,8 +90,9 @@
 
     <% end %>
   </p>
+  </div>
 <% end %>
-</div>
+
 
 <script type="text/javascript">
 
@@ -126,67 +129,71 @@
 
   $("a.cart").click(function(){
 
-  var idList = new Array();
-  var count = 0;
 
-  jQuery('input[name=product_id[]]:checked').each(function(){
-  idList.push(jQuery(this).val());
-  count += 1;
-  });
+    var idList = new Array();
+    var count = 0;
 
-  if(count == 0){
-  alert("Please select atleast 1 product");
-  }
-  else{
-  check = confirm("Are you sure you want to add these products to cart?");
-  if(check){
+    jQuery('input[name=product_id[]]:checked').each(function(){
+      idList.push(jQuery(this).val());
+      count += 1;
+    });
 
-  jQuery.ajax({
+    if(count == 0){
+      alert("Please select atleast 1 product");
+    }
+    else{
+      check = confirm("Are you sure you want to add these products to cart?");
+      if(check){
 
-  type: "POST",
-  url: '<%= carts_path %>',
-  data:  "id=" + idList
-  });
-  }
-  else{
-  return false;
-  }
+        jQuery.ajax({
 
+          type: "POST",
+          url: '<%= carts_path %>',
+          data:  "id=" + idList
+        });
+      }
+      else{
+        return false;
+      }
+    
+      $('#one').text("Count :" + count);
+      $("input.emptycart").attr("disabled", false);
 
-  $("input.emptycart").attr("disabled", false);
-
-  }
+    }
   });
 
   $(document).ready(function(){
+  
+    if (document.getElementById('c').value == 0){
+      $("input.emptycart").attr("disabled", true);
+    }
+   
+    $("input.emptycart").click(function(){
+      var idList = new Array();
+      var count;
+      count = jQuery('input[name=product_id[]]:checked').length;   
 
-  if (document.getElementById('c').value == 0){
-  $("input.emptycart").attr("disabled", true);
-  }
-  });
-  $("input.emptycart").click(function(){
-  var idList = new Array();
-  var count;
-  count = jQuery('input[name=product_id[]]:checked').length;
+      if(count > 0){
+        check = confirm("Are you sure?");
+        if(check){
+          jQuery.ajax({
+            type: "POST",
+            url: '<%= delete_items_cart_items_path %>',
+            data:  "id=" + idList
+          });
+          jQuery('input[name=product_id[]]:checked').each(function(){
+            jQuery(this).attr("checked", false);
 
-  if(count > 0){
-  check = confirm("Are you sure?");
-  if(check){
-  jQuery.ajax({
-  type: "POST",
-  url: '<%= delete_items_cart_items_path %>',
-  data:  "id=" + idList
-  });
-  jQuery('input[name=product_id[]]:checked').each(function(){
-  jQuery(this).attr("checked", false);
+          });
 
-  });
-
-  }
-  $("input.emptycart").attr("disabled", true);
-  $('#one').text("Count :0");
-
-  }
+        }
+        
+        $('#one').text("Count :0");
+        $("input.emptycart").attr("disabled", true);
+        }
+      
+    });
+    
   });
 
 
