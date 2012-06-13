@@ -1,0 +1,124 @@
+<div class="right1">
+ 
+  <h2 class="list">Product list</h2>
+
+  <%= button_to "PlaceOrder", new_order_path, :method => :get %>
+
+  <div id="buttons">
+    <button id="one"> Count :<%= current_user.cart.cart_items.count %></button>
+    <%= button_to "EmptyCart", "JavaScript:void(0);", :class => "emptycart" %>
+  </div>
+  <%= hidden_field_tag 'c', current_user.cart.cart_items.count %>
+
+  <ul class="product_list"  >
+    <% @products.each do |product|%>
+      <% cart_item = current_user.cart.cart_items.find_by_product_id(product.id);
+      checked = cart_item.present? ? true : false %>
+      <li class="product_image" id="product_image_<%=product.id%>">
+        <%= check_box_tag 'product_id[]', product.id, checked%>
+
+
+        <% if product.image_url.present? %>
+          <%= link_to (image_tag 'products/'+(product.image_url), :size=>"50x50"), product_path(product) %>
+        <% else %>
+          <%= link_to (image_tag 'products/'+('inde.jpeg'), :size => "50x50"), product_path(product) %>
+        <% end %>
+
+
+
+        <span><%= product.name %></span>
+      </li>
+    <% end %>
+
+  </ul>
+  <div class="clear"></div>
+ 
+  <p>
+    <% if session[:user] && session[:user].admin == true %>
+    <h3><%= link_to "AddCategory", {:action => :new, :controller => :categories} %></h3>
+  <% end %>
+
+  <%if @products.size > 0 && session[:user] && session[:user].admin == false%>
+    <h3><%= link_to "Add To Cart", "JavaScript:void(0);", :class => "cart" %></h3>
+  <% end %>
+</p>
+<%= link_to "Back", products_path %>
+</div>
+
+
+
+<script type="text/javascript">
+
+  $("a.cart").click(function(){
+
+    var idList = new Array();
+    var count = 0;
+
+    jQuery('input[name=product_id[]]:checked').each(function(){
+      idList.push(jQuery(this).val());
+      count += 1;
+    });
+
+    if(count == 0){
+      alert("Please select atleast 1 product");
+    }
+    else{
+      check = confirm("Are you sure you want to add these products to cart?");
+      if(check){
+
+        jQuery.ajax({
+
+          type: "POST",
+          url: '<%= carts_path %>',
+          data:  "id=" + idList
+        });
+      }
+      else{
+        return false;
+      }
+
+      $('#one').text("Count :" + count);
+      $("input.emptycart").attr("disabled", false);
+
+    }
+  });
+
+  $(document).ready(function(){
+
+    if (document.getElementById('c').value == 0){
+      $("input.emptycart").attr("disabled", true);
+    }
+
+    $("input.emptycart").click(function(){
+      var idList = new Array();
+      var count;
+      count = jQuery('input[name=product_id[]]:checked').length;
+
+      if(count > 0){
+        check = confirm("Are you sure?");
+        if(check){
+          jQuery.ajax({
+            type: "POST",
+            url: '<%= delete_items_cart_items_path %>',
+            data:  "id=" + idList
+          });
+          jQuery('input[name=product_id[]]:checked').each(function(){
+            jQuery(this).attr("checked", false);
+
+          });
+
+        }
+
+        $('#one').text("Count :0");
+        $("input.emptycart").attr("disabled", true);
+      }
+
+    });
+
+  });
+
+
+
+
+</script>
+

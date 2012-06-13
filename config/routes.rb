@@ -24,6 +24,7 @@ ShoppingCart::Application.routes.draw do
   resources :products do
     member do
       get :disp_products
+      
     end
   end
   resources :carts
@@ -34,6 +35,9 @@ ShoppingCart::Application.routes.draw do
     collection do
       post :delete_items
       
+    end
+    member do
+     put :set_quantity
     end
   end
   resources :orders

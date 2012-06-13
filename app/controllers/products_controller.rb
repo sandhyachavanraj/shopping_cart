@@ -59,4 +59,5 @@ class ProductsController < ApplicationController
     render :text => "File has been uploaded successfully"
   end
 
+  
 end
