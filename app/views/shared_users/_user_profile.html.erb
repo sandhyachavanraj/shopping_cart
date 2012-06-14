@@ -1,0 +1,30 @@
+<div id ="new_address">
+  <h2>UserProfile Form</h2>
+
+  <% if flash[:notice]  %>
+    <%= flash[:notice] %>
+  <% end %>
+
+  <%= nested_form_for @user_profile, :url => update_profile_user_path(@user), :html => {:method => :put} do |f| %>
+    <p> <%= f.label :upload_image, "Upload Image" %><br/>
+      <%= f.file_field :upload_image %></p>
+
+    <%= f.fields_for :addresses , :url => addresses_path(@addresses), :html => {:method => :post} do |adr| %>
+      <p> <%= adr.label :mobile_number %><br/>
+        <%= adr.phone_field :mobile_number %></p>
+      <p><%= adr.label :phone_number %><br/>
+        <%= adr.telephone_field :phone_number%></p>
+      <p> <%= adr.label :adr_type  %></p>
+      <%= select_tag :adr_type, options_for_select(%w(Select Billing_Address Permanent_Address)) %>
+      <p><%= adr.label :address %><br/>
+        <%= adr.text_area :address %></p>
+      <p><%= adr.submit  "Submit", :method => :get%></p>
+      <p><%=  adr.link_to_remove "Remove Address" %></p>
+    <%end%>
+
+    <p><%= f.link_to_add "Add another Address" , :addresses %></p>
+  <%end%>
+</div>
+
+
+

@@ -22,8 +22,8 @@ class AddressesController < ApplicationController
       render new_address_path
     end
   end
-  def upload_image
-    Address.save(params[:upload])
-    render :text => "File has been uploaded successfully"
-  end
+
+
+
+
 end

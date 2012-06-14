@@ -3,8 +3,8 @@
   <head>
     <title>Productapp</title>
     <%= stylesheet_link_tag 'products' %>
-   <%= javascript_include_tag :default, 'application' %>
-      <%= csrf_meta_tags %>
+    <%= javascript_include_tag :default, 'application' %>
+    <%= csrf_meta_tags %>
   </head>
   <body>
     <div id="container">
@@ -13,7 +13,6 @@
         <%= render :partial => 'layouts/sidebar' %>
         <%=yield%>
       </div>
-      
     </div>
   </body>
 </html>
