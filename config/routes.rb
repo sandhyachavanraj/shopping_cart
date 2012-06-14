@@ -6,7 +6,7 @@ ShoppingCart::Application.routes.draw do
       put :update_password
       post :authenticate
       get :logout
-      get :user_profile
+      get :userprofilelist
       get :picture
     end
 

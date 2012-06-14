@@ -23,7 +23,7 @@
       <% if session[:user] && session[:user].admin == true %>
         <td><%= link_to "edit", {:action => :edit, :id => user.id} %></td>
         <td><%= link_to "destroy", admin_user_path(user), :confirm => 'Are you sure?',:method => :delete %></td>
-        <td><%= link_to "userprofile", {:action => :userprofilelist, :id => user.try(:user_profile).try(:id)} %></td>
+        <td><%= link_to "userprofile", userprofilelist_users_path(current_user.user_profile.id) %></td>
 
       <% end  %>
 
