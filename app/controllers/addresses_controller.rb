@@ -6,8 +6,10 @@ class AddressesController < ApplicationController
   def index
     @addresses = Address.all
   end
+  
   def new
     @address = Address.new
+     @addresses= current_user.user_profile
   end
 
   def create
@@ -19,5 +21,9 @@ class AddressesController < ApplicationController
     else
       render new_address_path
     end
+  end
+  def upload_image
+    Address.save(params[:upload])
+    render :text => "File has been uploaded successfully"
   end
 end

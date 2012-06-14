@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   has_many :products
   has_one :cart
   has_many :orders
-  has_many :addresses, :as => :address
-  accepts_nested_attributes_for :addresses, :user_profile
+
+ 
 
   
 

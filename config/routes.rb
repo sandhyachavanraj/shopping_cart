@@ -7,9 +7,12 @@ ShoppingCart::Application.routes.draw do
       post :authenticate
       get :logout
       get :user_profile
-      put :update_profile
-      get :userprofilelist
       get :picture
+    end
+
+    member do
+      get :profile
+      put :update_profile
     end
 
   end
@@ -37,7 +40,10 @@ ShoppingCart::Application.routes.draw do
     end
   end
   resources :orders
-  resources :addresses
+  resources :addresses 
+  resources :user_profiles, :has_many => :addresses
+
+
 
   match '/login' => 'users#login'
   match '/logout' => 'users#logout'

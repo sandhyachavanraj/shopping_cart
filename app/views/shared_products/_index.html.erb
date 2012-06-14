@@ -62,8 +62,8 @@
             <%= link_to (image_tag 'products/'+(product.image_url), :size=>"50x50"), product_path(product) %>
           <% else %>
             <%= link_to (image_tag 'products/'+('inde.jpeg'), :size => "50x50"), product_path(product) %>
-          <% end %>
-
+         
+           <% end %>
 
 
           <span><%= product.name %> </span>

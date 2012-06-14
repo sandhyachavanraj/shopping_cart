@@ -103,7 +103,7 @@ class UsersController < ApplicationController
   end
 
 
-  def user_profile
+  def profile
     @user = User.find params[:id]
     @user_profile = @user.user_profile
   end
