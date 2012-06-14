@@ -10,13 +10,12 @@
   <body>
 
  <%  if current_user %>
-  <h3><%= link_to "reset password", {:action => :reset_password} %>
-    <%= link_to "edit user profile", profile_user_path(current_user.id) %>
-    <%= link_to "AddNewProduct", {:action => :new, :controller => :products, :id => session[:user]} %>
-    <%= link_to "Address", addresses_path %>
-    
+  <h3><%= link_to "reset password", reset_password_path %>
+    <%= link_to "edit user profile", user_profile_users_path(current_user.id) %>
+    <%= link_to "AddNewProduct", products_path(current_user) %>
+    <%= link_to "Address", new_address_path %>    
     <% if session[:user].admin == true %>
-      <%= link_to "AddCategory", {:action => :new, :controller => :categories} %>
+      <%= link_to "AddCategory", new_category_path %>
     <% end %>
   </h3>
     <%end%>
