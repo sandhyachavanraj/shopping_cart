@@ -1,8 +1,9 @@
 class UserProfile < ActiveRecord::Base
   belongs_to :user
-  has_many :addresses, :as => :address
+  has_many :addresses, :as => :adr , :dependent => :destroy
+  accepts_nested_attributes_for :addresses ,:allow_destroy => true
 
-
+#  attr_accessible :addresses_attributes
 
   def upload_image=(upload)
     self.image_url = upload.original_filename.to_s
@@ -10,8 +11,6 @@ class UserProfile < ActiveRecord::Base
     directory = "app/assets/images"
     path = File.join(directory, upload.original_filename)
     File.open(path, "wb") { |f| f.write(upload.read) }
-  end
-
-  
+  end 
   
 end

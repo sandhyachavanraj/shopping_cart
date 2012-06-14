@@ -1,20 +1,3 @@
-<div id ="new_address">
-  <h1>NewAddressForm</h1>
-  <%= form_for @address do |adr| %>
 
-    <%#= adr.label :upload_image, "Upload Image" %>
-      <%#= adr.file_field :upload_image %>
 
-    <p><%= adr.label :mobile_number %><br/>
-      <%= adr.phone_field :mobile_number %></p>
-    <p><%= adr.label :phone_number %><br/>
-      <%= adr.telephone_field :phone_number%></p>
-    <%= adr.label :Type %> :
-    <%= select_tag :Type, options_for_select(%w(Select Billing_Address Permanent_Address)) %>  
 
-    <p><%= adr.label :address %><br/>
-      <%= adr.text_area :address %></p>
-
-    <p><%= adr.submit  "Submit"%></p>
-  <% end %>
-</div>

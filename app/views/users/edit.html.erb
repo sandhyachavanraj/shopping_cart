@@ -2,7 +2,7 @@
 <% @user.errors.full_messages.each do|msg|%>
   <p><%= msg %></p>
 <% end %>
-
+<%#= link_to "Address", new_address_path %>
 <%= form_for @user, :method => :put do |s| %>
 
 <%= render :partial => "shared_users/form", :locals => {:s => s}%>

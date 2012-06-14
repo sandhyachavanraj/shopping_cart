@@ -103,8 +103,9 @@ class UsersController < ApplicationController
   end
 
 
-  def user_profile
-    @user = User.find (current_user.id)
+
+  def profile
+    @user = User.find params[:id]
     @user_profile = @user.user_profile
   end
 
