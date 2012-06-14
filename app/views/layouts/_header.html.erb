@@ -7,9 +7,9 @@
   <h1>Shopping Mart</h1>
 
   <div id="welcome">    
-    <%  if session[:user] %>
+    <%  if current_user %>
       <%= link_to "logout", logout_users_path %>
-      <h3>welcome to <%= session[:user].name %> <%=  link_to "Products", products_path %> <%=  link_to "New Product", new_product_path %></h3>
+      <h3>welcome to <%= current_user.name %> <%=  link_to "Products", products_path %> <%=  link_to "New Product", new_product_path %></h3>
     <% else %>
       <%= link_to "login", login_users_path %>
       <h3>welcome to guest</h3>
