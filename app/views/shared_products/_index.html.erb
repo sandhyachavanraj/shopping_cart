@@ -102,10 +102,10 @@
     jQuery($("input.checkbox")).each(function(){
 
       if($(this).attr("checked")){
-        $(this).siblings().attr("readonly",false);
+        $(this).siblings('input#product_'+$(this).val()).attr("readonly",false);
       }
       else{
-        $(this).siblings().attr("readonly",true);
+        $(this).siblings('input#product_'+$(this).val()).attr("readonly",true);
       }
     });
 
