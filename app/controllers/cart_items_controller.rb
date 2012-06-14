@@ -40,7 +40,7 @@ class CartItemsController < ApplicationController
   end
   
   def set_quantity
-    @cart_item = CartItem.find_by_product_id(params[:id])
+    @cart_item = current_user.cart.cart_items.find_by_product_id(params[:id])    
     @cart_item.quantity = params[:data]
     @cart_item.save
   
