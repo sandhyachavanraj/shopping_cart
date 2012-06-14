@@ -38,8 +38,8 @@
     <p><%= will_paginate @products %></p>
 
 
-<% else %>
- 
+  <% else %>
+
     <h2 class="list">Product list</h2>
 
     <%= button_to "PlaceOrder", new_order_path, :method => :get %>
@@ -55,7 +55,7 @@
       <% @products.each do |product|%>
         <% cart_item = current_user.cart.cart_items.find_by_product_id(product.id);
         checked = cart_item.present? ? true : false %>
-        <li class="product_image" id="product_image_<%=product.id%> ">
+        <li class="product_image" id="product_image_<%=product.id%> " value="<%=product.id%>">
 
 
           <% if product.image_url.present? %>
@@ -67,9 +67,10 @@
 
 
           <span><%= product.name %> </span>
+
           <div id="products">
-            <br/>  <%= check_box_tag 'product_id[]', product.id ,:id=> "cbox", :class=> "checkbox",:product_id => product.id%>
-            <br/> <%= number_field_tag  "number" ,"", :class => "product",:id => "product_#{product.id}"%>
+            <%= check_box_tag 'product_id[]', product.id, checked,:id=> "cbox_#{product.id}", :class=> "checkbox",:product_id => product.id %>
+            <br/> <%= number_field_tag  "number", value='', {:class => "product",:id => "product_#{product.id}"} %>
           </div>
 
 
@@ -97,38 +98,30 @@
 <script type="text/javascript">
 
   $(document).ready(function(){
-  $("div#products input:checkbox").click(function(){
-  if($(this).attr("checked"))
-  {
+        
+    jQuery($("input.checkbox")).each(function(){
 
-  ($("#product_"+$(this).val()).attr("readonly",false));
+      if($(this).attr("checked")){
+        $(this).siblings('input#product_'+$(this).val()).attr("readonly",false);
+      }
+      else{
+        $(this).siblings('input#product_'+$(this).val()).attr("readonly",true);
+      }
+    });
 
-
-  } 
-  else
-  {
-  ($("#product_"+$(this).val()).attr("readonly",true))
-  }
-
-
-
-
-  });
-  });
-
-  $(".product").change(
-  function()
-  {
-  id = $(this).val();
-  jQuery.ajax({
-  type :"PUT",
-  url  : "/cart_items/id/quantity",
-  data : "id=" + id
-  });
+    $("input.checkbox").click(function(){
+      if($(this).attr("checked")){        
+        $("#product_"+$(this).val()).attr("readonly",false);
+      }
+      else {
+        ($("#product_"+$(this).val()).attr("readonly",true));
+      }
+    });
+    
   });
 
+  
   $("a.cart").click(function(){
-
 
     var idList = new Array();
     var count = 0;
@@ -171,7 +164,7 @@
     $("input.emptycart").click(function(){
       var idList = new Array();
       var count;
-      count = jQuery('input[name=product_id[]]:checked').length;   
+      count = jQuery('input[name=product_id[]]:checked').length;
 
       if(count > 0){
         check = confirm("Are you sure?");
@@ -190,15 +183,26 @@
         
         $('#one').text("Count :0");
         $("input.emptycart").attr("disabled", true);
-        }
+      }
       
     });
     
+    $("input.product").change(function(){
+      var data = $(this).val()     
+      
+        pid = $(this).attr('id').split('product_')[1]
+        jQuery.ajax({
+          type:"PUT",
+          url: '/cart_items/'+pid+'/set_quantity',
+          data: 'data='+data
+
+        });
+        
+    
   });
 
-
-
-
+    
+});
 
 </script>
 
