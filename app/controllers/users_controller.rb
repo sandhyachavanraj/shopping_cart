@@ -94,7 +94,7 @@ class UsersController < ApplicationController
         redirect_to users_path
       else
         flash[:notice] = "password mismatch"
-        redirect_to :action => :reset_password
+        redirect_to reset_password_path
       end
     else
       flash[:notice] = "user is not available please create ur account"
@@ -102,16 +102,14 @@ class UsersController < ApplicationController
     end
   end
 
-
-
   def profile
     @user = User.find params[:id]
     @user_profile = @user.user_profile
+    @addresses = @user_profile.addresses
   end
 
-  def update_profile
+  def update_profile    
     @user_profile = UserProfile.find_by_user_id(params[:id])
-       
 
     if @user_profile.update_attributes(params[:user_profile])
       
@@ -119,8 +117,8 @@ class UsersController < ApplicationController
       redirect_to users_path
     else
       flash[:notice] = "userprofile not saved"
-      render :profile
 
+      render :profile
 
     end
   end

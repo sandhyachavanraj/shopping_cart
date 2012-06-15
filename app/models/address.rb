@@ -6,7 +6,5 @@ class Address < ActiveRecord::Base
   validates :mobile_number,:phone_number,:address, :adr_type, :presence => true,:uniqueness => true
   validates :phone_number, :length => {:in => 6..10}, :numericality => { :only_integer => true }
   validates :mobile_number, :length => {:is => 10}, :numericality => { :only_integer => true }
-   
-
-
+  
 end
