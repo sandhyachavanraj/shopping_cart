@@ -110,17 +110,18 @@ class UsersController < ApplicationController
   end
 
   def update_profile
-
-    @user_profile = UserProfile.find_by_id(params[:id])
+    @user_profile = UserProfile.find_by_user_id(params[:id])
+       
 
     if @user_profile.update_attributes(params[:user_profile])
+      
       flash[:notice] = "Success"
       redirect_to users_path
     else
       flash[:notice] = "userprofile not saved"
-      render :edit_profile
+      render :profile
 
-    
+
     end
   end
 

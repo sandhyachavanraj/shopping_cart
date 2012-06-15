@@ -1,7 +1,9 @@
 <div class="form">
   <h2>User Login Form</h2>
+
   <% if flash[:notice]  %>
     <%= flash[:notice] %>
+
   <% end %>
 
   <%= form_tag :authenticate_users do %>
