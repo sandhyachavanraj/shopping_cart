@@ -1,29 +1,14 @@
 class Address < ActiveRecord::Base
   belongs_to :adr , :polymorphic => true
-
   belongs_to :user
   belongs_to :user_profile
-# validates  :mobile_number ,:presence => true, :numericality => {:only_integer => true,:case_sensitive => false, :message => "Duplicasy is not allowed" },:length => { :is => 10,:too_short => "must have at least %{count} words",
-#   :too_long  => "must have at most %{count} words" }
-#  validates  :address , :allow_blank => false
-#  validates  :phone_number,:presence => true,:numericality => {:only_integer => true,:case_sensitive => false,:message => "Duplicasy is not allowed"},:length => { :is => 6 ,:too_short => "must have at least %{count} words",
-#   :too_long  => "must have at most %{count} words"}
-#attr_accessor :mobile_number, :phone_number
 
 
+ # validates  :mobile_number ,:presence => true, :numericality => {:only_integer => true,:case_sensitive => false, :message => "Duplicasy is not allowed" },:length => { :is => 10,:too_short => "must have at least %{count} words",
+              #  :too_long  => "must have at most %{count} words" },:inclusion => { :in => %w(0 1 2 3 4 5 6 7 8 9 ),:message => "%{value} is not a valid number" }
+  #validates  :address , :allow_blank => false
+  #validates  :phone_number,:presence => true,:numericality => {:only_integer => true,:case_sensitive => false,:message => "Duplicasy is not allowed"},:length => { :is => 6 ,:too_short => "must have at least %{count} words",
+              # :too_long  => "must have at most %{count} words"},:inclusion => { :in => %w(0 1 2 3 4 5 6 7 8 9 ), :message => "%{value} is not a valid number" }
 
-
-
-
-#def phone_field_tag(name, value = nil, options = {})
-#
-#  text_field_tag(name, value, options.stringify_keys.update("type" => "phone"))
-#end
-#
-#
-#
-#def mobile_field_tag(name, value = nil, option ={})
-#    text_field_tag(name, value , options.stringfy_keys.update("type" => "mobile"))
-#end
 
 end

@@ -9,7 +9,7 @@
     <p> <%= f.label :upload_image, "Upload Image" %><br/>
       <%= f.file_field :upload_image %></p>
 
-    <%= f.fields_for :addresses , :url => addresses_path(@addresses), :html => {:method => :post} do |adr| %>
+    <%= f.fields_for :addresses do |adr| %>
       <p> <%= adr.label :mobile_number %><br/>
         <%= adr.phone_field :mobile_number %></p>
       <p><%= adr.label :phone_number %><br/>
