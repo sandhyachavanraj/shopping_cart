@@ -121,7 +121,7 @@ class UsersController < ApplicationController
   end
 
   def userprofilelist
-    @userprofile = UserProfile.find params[:id]
+    @userprofile = UserProfile.find_by_user_id(params[:id])
   end
   
   def upload_file

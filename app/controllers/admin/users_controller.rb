@@ -73,7 +73,7 @@ class Admin::UsersController < ApplicationController
 
 
   def userprofilelist
-    @userprofile = UserProfile.find params[:id]
+    @userprofile = UserProfile.find_by_user_id( params[:id])
   end
 
 

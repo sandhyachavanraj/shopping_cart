@@ -25,13 +25,13 @@
             
             <td><%= link_to "edit", {:action => :edit, :id => user.id} %></td>
             <td><%= link_to "destroy", admin_user_path(user), :confirm => 'Are you sure?',:method => :delete %></td>
-            <td><%= link_to "userprofile", userprofilelist_users_path(current_user.user_profile.id) %></td>
+            <td><%= link_to "userprofile", userprofilelist_admin_users_path(current_user.user_profile.id) %></td>
 
           <% end  %>
 
           <% if session[:user] && session[:user].name == user.name && session[:user].admin != true %>
 
-            <td><%= link_to "userprofile", profile_user_path(current_user)%></td>
+            <td><%= link_to "userprofile", userprofilelist_users_path(current_user)%></td>
             <td><%= link_to "userproductlist", {:action => :index, :controller => :products, :user_id => session[:user].id} %></td>
           <% end %>
         </tr>
