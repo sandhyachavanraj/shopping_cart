@@ -9,7 +9,7 @@ class AddressesController < ApplicationController
   
   def new
     @address = Address.new
-     @addresses= current_user.user_profile
+    @addresses= current_user.user_profile
   end
 
   def create
@@ -22,8 +22,5 @@ class AddressesController < ApplicationController
       render new_address_path
     end
   end
-
-
-
 
 end

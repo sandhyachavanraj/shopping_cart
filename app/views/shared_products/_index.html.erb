@@ -79,7 +79,7 @@
 
     </ul>
     <div class="clear"></div>
-   
+
     <p>
       <% if session[:user] && session[:user].admin == true %>
       <h3><%= link_to "AddCategory", {:action => :new, :controller => :categories} %></h3>
