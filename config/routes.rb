@@ -44,7 +44,10 @@ ShoppingCart::Application.routes.draw do
     end
   end
   resources :orders
-  resources :addresses 
+  resources :addresses
+   
+ 
+  
   resources :user_profiles, :has_many => :addresses
 
 

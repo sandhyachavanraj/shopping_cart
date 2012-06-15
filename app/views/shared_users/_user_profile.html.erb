@@ -1,4 +1,5 @@
  <div id ="new_address">
+
   <h2>UserProfile Form</h2>
 
   <% if flash[:notice]  %>
@@ -9,7 +10,9 @@
     <p> <%= f.label :upload_image, "Upload Image" %><br/>
       <%= f.file_field :upload_image %></p>
 
-    <%= f.fields_for :addresses do |adr| %>
+
+    <%= f.fields_for :addresses , :url => addresses_path(@addresses), :html => {:method => :post} do |adr| %>
+
       <p> <%= adr.label :mobile_number %><br/>
         <%= adr.phone_field :mobile_number %></p>
       <p><%= adr.label :phone_number %><br/>
@@ -24,4 +27,8 @@
 
     <p><%= f.link_to_add "Add another Address" , :addresses %></p>
   <%end%>
+
 </div>
+
+
+

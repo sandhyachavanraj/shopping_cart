@@ -22,5 +22,5 @@ class AddressesController < ApplicationController
       render new_address_path
     end
   end
-  
+
 end
