@@ -43,4 +43,4 @@ gem 'client_side_validations'
 # gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 # gem 'will_paginate', '~> 3.0'
 gem 'will_paginate', :git => 'git://github.com/mislav/will_paginate.git', :branch => 'rails3'
-gem 'thin'
+#gem 'thin'

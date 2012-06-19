@@ -20,24 +20,28 @@ class UsersController < ApplicationController
    
   end
 
+
   def create
 #    @user = UserProfile.new
 #    @user.build_user(params[:user])
-    #    raise params.inspect
+
     @user=User.new(params[:user])
-    if @user.save!
-      
+    if @user.save
+
       UserMailer.welcome_user(@user).deliver
-     
-     flash[:notice] = "user saved successfully"
-       
+#      @user.send_activation_instructions!
+
+    flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
+
       redirect_to users_path
     else
-         
+         flash[:notice] = "There was a problem creating the user"
 
       render new_user_path
     end
   end
+
+
 
   def edit
     @user = User.find params[:id]
@@ -142,7 +146,16 @@ class UsersController < ApplicationController
   end
 
 
-  
+
+#def activate
+#
+# if @user.activate
+#    @user.send_activation_confirmation!
+#    redirect_to users_path
+#  else
+#    render  new_user_path
+#  end
+#end
 
 
 

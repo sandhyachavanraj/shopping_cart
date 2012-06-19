@@ -17,7 +17,7 @@ ShoppingCart::Application.configure do
   config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.delivery_method = :smtp
- 
+ #:address              => "smtpauth.sumerusolutions.com"
   
  ActionMailer::Base.smtp_settings = {
 
@@ -31,7 +31,7 @@ ShoppingCart::Application.configure do
 
   :enable_starttls_auto => true }
 
-
+config.action_mailer.default_url_options = { :host => "localhost:3000" }
 
 
   # Print deprecation notices to the Rails logger

@@ -39,8 +39,30 @@ class User < ActiveRecord::Base
     self.admin == true ? true:false
   end
 
-  
-  
+#  def active?
+#  active
+#end
+#
+#def activate!
+#  self.active = true
+#  save
+#end
+#
+#def deactivate!
+#  self.active = false
+#  save
+#end
+#
+#def send_activation_instructions!
+#  reset_perishable_token!
+#  Notifier.activation_instructions(self).deliver
+#end
+#
+#def send_activation_confirmation!
+#  reset_perishable_token!
+#  Notifier.activation_confirmation(self).deliver
+#end
+
 
 end
  

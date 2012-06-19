@@ -4,7 +4,7 @@ class UserMailer < ActionMailer::Base
   default :from => "shashank.agarwal@sumerusolutions.com"
   def welcome_user(user)
     @user = user
-    @url  = "http://www.gmail.com/login"
+   
     mail(:to => "#{@user.name} <#{@user.email}>", :subject => "Welcome")
     #attachments['shashank.jpg'] = File.read('#{Rails.root}app/assets/images/shashank.jpg')
   end

@@ -19,6 +19,7 @@ ShoppingCart::Application.configure do
 
   # Generate digests for assets URLs
   config.assets.digest = true
+  #:address              => "smtpauth.sumerusolutions.com",
 
 
     config.action_mailer.raise_delivery_errors = true
@@ -37,6 +38,7 @@ ShoppingCart::Application.configure do
 
   :enable_starttls_auto => true }
 
+#config.action_mailer.default_url_options = { :host => "localhost:3000" }
 
 
 
