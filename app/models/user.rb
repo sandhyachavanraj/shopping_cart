@@ -17,7 +17,6 @@ class User < ActiveRecord::Base
   before_save(:on => :create) do
     self.activation_code = SecureRandom.hex(13)    
   end
-
   
 
   def self.authenticate(email, password)

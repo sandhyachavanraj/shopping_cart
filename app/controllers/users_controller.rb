@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
 
   layout "products"
-
- 
   
-  before_filter :logged_in, :only => [:edit]
+  before_filter :logged_in, :only => [:edit, :reset_password]
+
+  
   
   def index
 
@@ -31,7 +31,8 @@ class UsersController < ApplicationController
     #      render new_user_path
     #    end
     @user = User.new(params[:user])
-    if @user.save      
+    if @user.save     
+      UserMailer.welcome_email(@user).deliver
       flash[:notice] = 'success'
       redirect_to users_path
     else
