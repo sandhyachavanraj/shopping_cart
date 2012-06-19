@@ -34,22 +34,13 @@ class UsersController < ApplicationController
     #    end
     @user=User.new(params[:user])
     if @user.save
-
-      UserMailer.welcome_user(@user).deliver
-      #      @user.send_activation_instructions!
-
       flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
-
       redirect_to users_path
+      
     else
       flash[:notice] = "There was a problem creating the user"
-
-
-
       render new_user_path
-
-    end
-  
+    end  
   end
 
 
@@ -157,17 +148,18 @@ class UsersController < ApplicationController
     render :text => "File has been uploaded successfully"
   end
 
-  #def activate
-  #
-  # if @user.activate
-  #    @user.send_activation_confirmation!
-  #    redirect_to users_path
-  #  else
-  #    render  new_user_path
-  #  end
-  #end
+ 
+  def active_user
+    @acode_user = User.find_by_activation_code(@user.activation_code)
+    raise @acode_user.inspect
+    if (@acode_user)
+      @user.active = true
+      redirect_to users_path
+    else
+      render new_user_path
+    end
 
-
+  end
 
  
   private
