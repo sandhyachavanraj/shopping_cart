@@ -12,7 +12,14 @@ class User < ActiveRecord::Base
   
   attr_accessor :confirm_password, :old_password
 
- 
+
+
+  before_save(:on => :create) do
+    self.activation_code = SecureRandom.hex(13)    
+  end
+
+  
+
   def self.authenticate(email, password)
     find_by_email_and_password(email, password)
   end

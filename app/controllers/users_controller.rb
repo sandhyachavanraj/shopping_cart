@@ -31,7 +31,6 @@ class UsersController < ApplicationController
     #      render new_user_path
     #    end
     @user = User.new(params[:user])
-    @user.activation_code = SecureRandom.hex(13)    
     if @user.save      
       flash[:notice] = 'success'
       redirect_to users_path
