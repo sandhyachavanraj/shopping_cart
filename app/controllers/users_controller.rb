@@ -149,16 +149,23 @@ class UsersController < ApplicationController
   end
 
   def activate_user
-    raise @user.activation_code.inspect
-    @userr = User.find_by_activation_code(@user.activation_code)
-    
-    if (@user)
+    @user = User.find_by_activation_code(params[:id])
+    if @user
       @user.active = true
       @user.save
-        redirect_to users_path
+      login = User.authenticate(@user.email, @user.password)
+      if (login )
+        session[:user] = login
+        flash[:notice] = "logged in suceesfully"
+        redirect_to  current_user.admin == true ? admin_users_path : users_path
       else
-        render  new_user_path
-      end    
+        flash[:notice] = "Incorrect Email/Password"
+        redirect_to login_users_path
+      end
+    else
+      flash[:notice] = "Invalid activation code"
+      redirect_to root_path
+    end   
   end
 
 
