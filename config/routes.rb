@@ -14,7 +14,7 @@ ShoppingCart::Application.routes.draw do
     member do
       get :profile
       put :update_profile
-      get :active_user
+      put :activate_user
     end
 
   end

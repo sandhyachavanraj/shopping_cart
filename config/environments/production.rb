@@ -28,7 +28,8 @@ ShoppingCart::Application.configure do
 
  ActionMailer::Base.smtp_settings = {
 
-  :address              => "smtpauth.sumerusolutions.com",
+  :address              => "localhost",
+  #:address              => "smtpauth.sumerusolutions.com",
   :port                 => 25,
   :domain               => 'sumerusolutions.com',
   :user_name            => 'shashank.agarwal@sumerusolutions.com',
@@ -38,7 +39,7 @@ ShoppingCart::Application.configure do
 
   :enable_starttls_auto => true }
 
-#config.action_mailer.default_url_options = { :host => "localhost:3000" }
+config.action_mailer.default_url_options = { :host => "localhost:3000" }
 
 
 
