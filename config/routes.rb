@@ -8,6 +8,7 @@ ShoppingCart::Application.routes.draw do
       get :logout
       get :userprofilelist
       get :picture
+      
     end
 
     member do
@@ -57,7 +58,7 @@ ShoppingCart::Application.routes.draw do
   match '/logout' => 'users#logout'
   match '/reset_password' => 'users#reset_password'
   match '/products' => 'products#index'
-
+ 
 
   match '/admin' => 'users#login'
 #match 'activate(/:activation_code)' => 'users#activate', :as => :activate_account

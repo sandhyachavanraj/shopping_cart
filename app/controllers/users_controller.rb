@@ -32,15 +32,15 @@ class UsersController < ApplicationController
     #      render new_user_path
     #    end
     @user=User.new(params[:user])
-    if @user.save
+    if @user.save      
       UserMailer.welcome_user(@user).deliver
-      #@user.send_activation_instructions!
       flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
-      redirect_to users_path
+      redirect_to users_path      
     else
       flash[:notice] = "There was a problem creating the user"
-      render new_user_path
+      render new_user_path     
     end
+  
   end
 
 
@@ -72,10 +72,10 @@ class UsersController < ApplicationController
   end
 
   
-  def authenticate   
+  def authenticate
     login = User.authenticate(params[:email], params[:password])
     if (login )
-      session[:user] = login      
+      session[:user] = login
       flash[:notice] = "logged in suceesfully"
       if current_user.admin == true
         redirect_to  admin_users_path
@@ -123,7 +123,7 @@ class UsersController < ApplicationController
     @addresses = @user_profile.addresses
   end
 
-  def update_profile    
+  def update_profile
     @user_profile = UserProfile.find_by_user_id(params[:id])
 
     if @user_profile.update_attributes(params[:user_profile])
@@ -148,6 +148,7 @@ class UsersController < ApplicationController
     render :text => "File has been uploaded successfully"
   end
 
+
   def activate_user
     @user = User.find_by_activation_code(params[:id])
     if @user
@@ -166,17 +167,17 @@ class UsersController < ApplicationController
       flash[:notice] = "Invalid activation code"
       redirect_to root_path
     end   
-  end
 
+  end
 
 
  
-  private
+private
 
-  def logged_in
-    redirect_to login_users_path unless session[:user]
+def logged_in
+  redirect_to login_users_path unless session[:user]
 
-  end
+end
 
   
    

@@ -8,7 +8,9 @@ class User < ActiveRecord::Base
 
   validates :name, :presence => true
   validates :password, :presence =>true, :confirmation =>true, :length => { :minimum => 5, :maximum => 12}
+
   validates :password_confirmation, :presence => true,  :if => :password_changed?
+
   
   attr_accessor :confirm_password, :old_password
 

@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,15 +9,17 @@
   </head>
   <body>
     <p>
+
       <h1> Welcome to Gmail</h1>
       <h2> Your User name is: <%= @user.email %> <br/> </h2>
-      <%%>
-       <%=  link_to "Click here to Confirm", activate_user_user_url(@user.activation_code) %>
+    
 
 
-    </p>
-
-
-  </body>
-
+    <%=  link_to "Click here to Confirm", activate_user_user_url(@user.activation_code) %>
+  </p>
+</body>
 </html>
+
+
+
+
