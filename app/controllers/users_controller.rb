@@ -16,16 +16,25 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+
+   
   end
 
   def create
-    @user = UserProfile.new
-    @user.build_user(params[:user])
+#    @user = UserProfile.new
+#    @user.build_user(params[:user])
     #    raise params.inspect
+    @user=User.new(params[:user])
     if @user.save!
-      flash[:notice] = "user saved successfully"
+      
+      UserMailer.welcome_user(@user).deliver
+     
+     flash[:notice] = "user saved successfully"
+       
       redirect_to users_path
     else
+         
+
       render new_user_path
     end
   end
@@ -59,7 +68,7 @@ class UsersController < ApplicationController
   
   def authenticate   
     login = User.authenticate(params[:email], params[:password])
-    if login
+    if (login )
       session[:user] = login      
       flash[:notice] = "logged in suceesfully"
       if current_user.admin == true
@@ -68,7 +77,7 @@ class UsersController < ApplicationController
         redirect_to  users_path
       end
     else
-      flash[:notice] = "incoreect email/password"
+      flash[:notice] = "Incorrect Email/Password"
       redirect_to login_users_path
     end
   end
@@ -132,7 +141,15 @@ class UsersController < ApplicationController
     render :text => "File has been uploaded successfully"
   end
 
+
   
+
+
+
+
+
+
+
  
   private
 

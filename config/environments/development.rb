@@ -14,7 +14,25 @@ ShoppingCart::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.delivery_method = :smtp
+ 
+  
+ ActionMailer::Base.smtp_settings = {
+
+  :address              => "smtpauth.sumerusolutions.com",
+  :port                 => 25,
+  :domain               => 'sumerusolutions.com',
+  :user_name            => 'shashank.agarwal@sumerusolutions.com',
+  :password             => '169baikabagh',
+  :authentication       => 'plain',
+  :openssl_verify_mode => 'none',
+
+  :enable_starttls_auto => true }
+
+
+
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -34,4 +52,6 @@ ShoppingCart::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  SERVERHOST = "localhost:3000/"
 end

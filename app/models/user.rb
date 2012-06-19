@@ -9,9 +9,11 @@ class User < ActiveRecord::Base
   
 
   validates :name, :presence => true
-  validates :password, :presence =>true, :confirmation =>true, :length => { :minimum => 5, :maximum => 8}
-  validates :email, :presence => true,
-    :format => {:with =>  /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/, :message => "testststs" }
+  validates :password, :presence =>true, :confirmation =>true, :length => { :minimum => 5, :maximum => 12}
+#  validates :email, :presence => true,
+#    :format => {:with =>  /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/, :message => "testststs" }
+
+#    validates :password_confirmation, :if => :password_changed?
   attr_accessor :confirm_password, :old_password
 
   #  validate :old_password,:if => Proc.new{|x| (errors.add(:base,"sdfsfdsdf");return self) if !x.old_password.blank?}
