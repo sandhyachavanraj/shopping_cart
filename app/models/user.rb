@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   validates :name, :presence => true
   validates :password, :presence =>true, :confirmation =>true, :length => { :minimum => 5, :maximum => 12}
-  validates_presence_of :password_confirmation, :if => :password_changed?
+  validates :password_confirmation, :presence => true,  :if => :password_changed?
   
   attr_accessor :confirm_password, :old_password
 
@@ -42,32 +42,34 @@ class User < ActiveRecord::Base
     self.admin == true ? true:false
   end
 
-#  def active?
-#  active
+#def exist
+#  if find_by_id(id).nil?
+#
+#  end
 #end
 #
-#def activate!
+#
+#def activate
 #  self.active = true
 #  save
 #end
-#
+##
 #def deactivate!
 #  self.active = false
 #  save
 #end
 #
-#def send_activation_instructions!
-#  reset_perishable_token!
-#  Notifier.activation_instructions(self).deliver
+#def send_activation_instructions
+#  UserMailer.activation_instructions(self).deliver
 #end
 #
 #def send_activation_confirmation!
-#  reset_perishable_token!
-#  Notifier.activation_confirmation(self).deliver
+#  UserMailer.activation_confirmation(self).deliver
 #end
 
 
 end
+
  
 
  

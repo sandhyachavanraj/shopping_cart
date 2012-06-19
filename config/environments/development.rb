@@ -17,15 +17,14 @@ ShoppingCart::Application.configure do
   config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.delivery_method = :smtp
- #:address              => "smtpauth.sumerusolutions.com"
   
  ActionMailer::Base.smtp_settings = {
 
   :address              => "smtpauth.sumerusolutions.com",
   :port                 => 25,
   :domain               => 'sumerusolutions.com',
-  :user_name            => 'karanam.sandhya@sumerusolutions.com',
-  :password             => 'sandhyavinay',
+  :user_name            => 'shashank.agarwal@sumerusolutions.com',
+  :password             => '169baikabagh',
   :authentication       => 'plain',
   :openssl_verify_mode => 'none',
 
@@ -52,5 +51,5 @@ config.action_mailer.default_url_options = { :host => "localhost:3000" }
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  SERVERHOST = "localhost:3000/"
+  #SERVERHOST = "localhost:3000/"
 end
