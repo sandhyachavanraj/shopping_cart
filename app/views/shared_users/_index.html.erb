@@ -30,7 +30,6 @@
           <% end  %>
 
           <% if session[:user] && session[:user].name == user.name && session[:user].admin != true %>
-
             <td><%= link_to "userprofile", userprofilelist_users_path(current_user)%></td>
             <td><%= link_to "userproductlist", {:action => :index, :controller => :products, :user_id => session[:user].id} %></td>
           <% end %>

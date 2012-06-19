@@ -24,15 +24,14 @@ ShoppingCart::Application.configure do
   :address              => "smtpauth.sumerusolutions.com",
   :port                 => 25,
   :domain               => 'sumerusolutions.com',
-  :user_name            => 'shashank.agarwal@sumerusolutions.com',
-  :password             => '169baikabagh',
+  :user_name            => 'karanam.sandhya@sumerusolutions.com',
+  :password             => 'sandhyavinay',
   :authentication       => 'plain',
   :openssl_verify_mode => 'none',
 
   :enable_starttls_auto => true }
 
 config.action_mailer.default_url_options = { :host => "localhost:3000" }
-
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log

@@ -11,10 +11,8 @@
       <%= email_field_tag(:email) %></p>
     <p><%= label_tag(:password, "Password") %><br/>
       <%= password_field_tag(:password) %></p>
-        <p><%= label_tag(:password_confirmation, "confirmation password") %>
-      <%= password_field_tag(:password_confirmation) %> </p>
 
-      <p><%= submit_tag  "Login"  %>
+    <p><%= submit_tag  "Login"  %>
       <%= link_to "NewUser", new_user_path %></p>
   <% end %>
 

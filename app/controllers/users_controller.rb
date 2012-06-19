@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
 
   layout "products"
-
- 
   
-  before_filter :logged_in, :only => [:edit]
+  before_filter :logged_in, :only => [:edit, :reset_password]
+
+  
   
   def index
 
@@ -22,23 +22,34 @@ class UsersController < ApplicationController
 
 
   def create
-#    @user = UserProfile.new
-#    @user.build_user(params[:user])
 
+    #    @user = UserProfile.new
+    #    @user.build_user(params[:user])
+    #    raise params.inspect
+    #    if @user.save!
+    #      flash[:notice] = "user saved successfully"
+    #      redirect_to users_path
+    #    else
+    #      render new_user_path
+    #    end
     @user=User.new(params[:user])
     if @user.save
 
       UserMailer.welcome_user(@user).deliver
-#      @user.send_activation_instructions!
+      #      @user.send_activation_instructions!
 
-    flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
+      flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
 
       redirect_to users_path
     else
-         flash[:notice] = "There was a problem creating the user"
+      flash[:notice] = "There was a problem creating the user"
+
+
 
       render new_user_path
+
     end
+  
   end
 
 
@@ -137,6 +148,7 @@ class UsersController < ApplicationController
   end
 
   def userprofilelist
+    #    raise params[:id].inspect
     @userprofile = UserProfile.find_by_user_id(params[:id])
   end
   
@@ -145,21 +157,15 @@ class UsersController < ApplicationController
     render :text => "File has been uploaded successfully"
   end
 
-
-
-#def activate
-#
-# if @user.activate
-#    @user.send_activation_confirmation!
-#    redirect_to users_path
-#  else
-#    render  new_user_path
-#  end
-#end
-
-
-
-
+  #def activate
+  #
+  # if @user.activate
+  #    @user.send_activation_confirmation!
+  #    redirect_to users_path
+  #  else
+  #    render  new_user_path
+  #  end
+  #end
 
 
 

@@ -2,21 +2,21 @@ class User < ActiveRecord::Base
   has_one :user_profile
   has_many :products
   has_one :cart
-  has_many :orders
-
- 
+  has_many :orders 
 
   
 
   validates :name, :presence => true
   validates :password, :presence =>true, :confirmation =>true, :length => { :minimum => 5, :maximum => 12}
-#  validates :email, :presence => true,
-#    :format => {:with =>  /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/, :message => "testststs" }
-
-#    validates :password_confirmation, :if => :password_changed?
+  validates_presence_of :password_confirmation, :if => :password_changed?
+  
   attr_accessor :confirm_password, :old_password
 
-  #  validate :old_password,:if => Proc.new{|x| (errors.add(:base,"sdfsfdsdf");return self) if !x.old_password.blank?}
+
+
+  before_save(:on => :create) do
+    self.activation_code = SecureRandom.hex(13)    
+  end
   
 
   def self.authenticate(email, password)
@@ -26,6 +26,9 @@ class User < ActiveRecord::Base
   def self.update_password(password, confirm_password)
     password != confirm_password ? false : true
   end
+
+
+  
 
   def self.userprofilelist(id)
     find_by_id(id)

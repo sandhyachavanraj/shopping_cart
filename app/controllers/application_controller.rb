@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery 
   
-  helper_method :current_user, :logged_in
+  helper_method :current_user, :logged_in, :verify_connection
   
   
   def current_user   
@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
     current_user != nil
   end
 
+  
   protected
   def logged_in
     redirect_to login_users_path
