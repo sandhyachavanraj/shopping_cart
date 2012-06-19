@@ -19,15 +19,26 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = UserProfile.new
-    @user.build_user(params[:user])
-    #    raise params.inspect
+    #    @user = UserProfile.new
+    #    @user.build_user(params[:user])
+    #    #    raise params.inspect
+    #    if @user.save!
+    #      flash[:notice] = "user saved successfully"
+    #      redirect_to users_path
+    #    else
+    #      render new_user_path
+    #    end
+    @user = User.new(params[:user])
+#    raise @user.inspect
     if @user.save!
-      flash[:notice] = "user saved successfully"
+       # Tell the UserMailer to send a welcome Email after save
+      UserMailer.welcome_email(@user).deliver
+      flash[:notice] = 'success'
       redirect_to users_path
     else
-      render new_user_path
+      render :text => "not saved"
     end
+  
   end
 
   def edit
@@ -121,6 +132,7 @@ class UsersController < ApplicationController
   end
 
   def userprofilelist
+#    raise params[:id].inspect
     @userprofile = UserProfile.find_by_user_id(params[:id])
   end
   
