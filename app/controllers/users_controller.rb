@@ -16,6 +16,8 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+
+   
   end
 
   def create
@@ -29,14 +31,13 @@ class UsersController < ApplicationController
     #      render new_user_path
     #    end
     @user = User.new(params[:user])
-#    raise @user.inspect
-    if @user.save!
-       # Tell the UserMailer to send a welcome Email after save
-      UserMailer.welcome_email(@user).deliver
+    @user.activation_code = SecureRandom.hex(13)    
+    if @user.save      
       flash[:notice] = 'success'
       redirect_to users_path
     else
-      render :text => "not saved"
+      render new_user_path
+
     end
   
   end
@@ -70,7 +71,7 @@ class UsersController < ApplicationController
   
   def authenticate   
     login = User.authenticate(params[:email], params[:password])
-    if login
+    if (login )
       session[:user] = login      
       flash[:notice] = "logged in suceesfully"
       if current_user.admin == true
@@ -79,7 +80,7 @@ class UsersController < ApplicationController
         redirect_to  users_path
       end
     else
-      flash[:notice] = "incoreect email/password"
+      flash[:notice] = "Incorrect Email/Password"
       redirect_to login_users_path
     end
   end
@@ -121,18 +122,21 @@ class UsersController < ApplicationController
 
   def update_profile    
     @user_profile = UserProfile.find_by_user_id(params[:id])
+
     if @user_profile.update_attributes(params[:user_profile])
+      
       flash[:notice] = "Success"
       redirect_to users_path
     else
       flash[:notice] = "userprofile not saved"
-      #      render :nothing=>true
+
       render :profile
+
     end
   end
 
   def userprofilelist
-#    raise params[:id].inspect
+    #    raise params[:id].inspect
     @userprofile = UserProfile.find_by_user_id(params[:id])
   end
   
@@ -141,7 +145,6 @@ class UsersController < ApplicationController
     render :text => "File has been uploaded successfully"
   end
 
-  
  
   private
 

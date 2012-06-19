@@ -20,6 +20,30 @@ ShoppingCart::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+
+    config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.delivery_method = :smtp
+
+ ActionMailer::Base.smtp_settings = {
+
+  :address              => "smtpauth.sumerusolutions.com",
+  :port                 => 25,
+  :domain               => 'sumerusolutions.com',
+  :user_name            => 'shashank.agarwal@sumerusolutions.com',
+  :password             => '169baikabagh',
+  :authentication       => 'plain',
+  :openssl_verify_mode => 'none',
+
+  :enable_starttls_auto => true }
+
+
+
+
+
+
+
+
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
 

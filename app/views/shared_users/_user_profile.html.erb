@@ -4,11 +4,9 @@
   <% @user_profile.errors.full_messages.each do|msg|%>
     <p><%= msg %></p>
   <% end %>
-
   <%= nested_form_for @user_profile, :url => update_profile_user_path(@user), :html => {:method => :put} do |f| %>
     <p> <%= f.label :upload_image, "Upload Image" %><br/>
       <%= f.file_field :upload_image %></p>
-
 
     <%= f.fields_for :addresses  do |adr| %>
 

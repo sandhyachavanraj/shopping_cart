@@ -16,15 +16,22 @@ ShoppingCart::Application.configure do
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = true
 
-  config.action_mailer.delivery_method = :sendmail
-  config.action_mailer.smtp_settings = {
-    :address              => "smtp.gmail.com",
-    :port                 => 587,
-    :domain               => 'localhost',
-    :user_name            => "karanam.sandhya121@gmail.com",
-    :password             => "AmmA_NannA",
-    :authentication       => "plain",
-    :enable_starttls_auto => true  }
+  config.action_mailer.delivery_method = :smtp
+ 
+  
+ ActionMailer::Base.smtp_settings = {
+
+  :address              => "smtpauth.sumerusolutions.com",
+  :port                 => 25,
+  :domain               => 'sumerusolutions.com',
+  :user_name            => 'karanam.sandhya@sumerusolutions.com',
+  :password             => 'sandhyavinay',
+  :authentication       => 'plain',
+  :openssl_verify_mode => 'none',
+
+  :enable_starttls_auto => true }
+
+
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -44,4 +51,6 @@ ShoppingCart::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  SERVERHOST = "localhost:3000/"
 end

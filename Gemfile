@@ -19,7 +19,7 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
-
+gem 'mail' 
 gem 'jquery-rails'
 gem "nested_form"
 # To use ActiveModel has_secure_password
@@ -43,3 +43,4 @@ gem 'client_side_validations'
 # gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 # gem 'will_paginate', '~> 3.0'
 gem 'will_paginate', :git => 'git://github.com/mislav/will_paginate.git', :branch => 'rails3'
+gem 'thin'
