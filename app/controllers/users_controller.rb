@@ -32,151 +32,140 @@ class UsersController < ApplicationController
     #      render new_user_path
     #    end
     @user=User.new(params[:user])
-    if @user.save
-      <<<<<<< HEAD
-      =======
-        UserMailer.welcome_user(@user).deliver
-      #@user.send_activation_instructions!
-      >>>>>>> 5df03f5b97a8a60ed53b87f33feba0774cff8f3c
+    if @user.save      
+      UserMailer.welcome_user(@user).deliver
       flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
-      redirect_to users_path
-      
+      redirect_to users_path      
     else
       flash[:notice] = "There was a problem creating the user"
-      render new_user_path
-      <<<<<<< HEAD
-    end  
-    =======
+      render new_user_path     
     end
-  >>>>>>> 5df03f5b97a8a60ed53b87f33feba0774cff8f3c
-end
-
-
-
-def edit
-  @user = User.find params[:id]
-end
-
-def update
-  @user = User.find params[:id]
-  if @user.update_attributes(params[:user])
-    flash[:notice] = "Success"
-    redirect_to users_path
-  else
-    render edit_user_path
-  end
-end
-
-def show
-  @user = User.find params[:id]
-end
   
-def destroy
-  @user = User.find params[:id]
-  #@user.cleanup
-  flash[:notice] = "Successfully Destroyed"
-  @user.destroy
-  redirect_to users_path
-end
-
-  
-def authenticate   
-  login = User.authenticate(params[:email], params[:password])
-  if (login )
-    session[:user] = login
-    flash[:notice] = "logged in suceesfully"
-    if current_user.admin == true
-      redirect_to  admin_users_path
-    else
-      redirect_to  users_path
-    end
-  else
-    flash[:notice] = "Incorrect Email/Password"
-    redirect_to login_users_path
   end
-end
 
-def logout
-  reset_session
-  flash[:notice] = "log out successfully"
-  redirect_to users_path
-    
-end
 
-def update_password
-  @user = User.find_by_id_and_password(session[:user].id, params[:old_password])
 
-  if @user
-    flash[:notice] ="user available"
-      
-    if User.update_password(params[:password], params[:confirm_password])
-      @user.password = params[:password]
-      @user.save!
+  def edit
+    @user = User.find params[:id]
+  end
 
-      flash[:notice] = "Successfully Updated"
+  def update
+    @user = User.find params[:id]
+    if @user.update_attributes(params[:user])
+      flash[:notice] = "Success"
       redirect_to users_path
     else
-      flash[:notice] = "password mismatch"
-      redirect_to reset_password_path
+      render edit_user_path
     end
-  else
-    flash[:notice] = "user is not available please create ur account"
-    redirect_to login_users_path
   end
-end
 
-def profile
-  @user = User.find params[:id]
-  @user_profile = @user.user_profile
-  @addresses = @user_profile.addresses
-end
-
-def update_profile    
-  @user_profile = UserProfile.find_by_user_id(params[:id])
-
-  if @user_profile.update_attributes(params[:user_profile])
-      
-    flash[:notice] = "Success"
-    redirect_to users_path
-  else
-    flash[:notice] = "userprofile not saved"
-
-    render :profile
-
+  def show
+    @user = User.find params[:id]
   end
-end
-
-def userprofilelist
-  #    raise params[:id].inspect
-  @userprofile = UserProfile.find_by_user_id(params[:id])
-end
   
-def upload_file
-  UserProfile.save(params[:upload])
-  render :text => "File has been uploaded successfully"
-end
-
-
-def activate_user
-  raise @user.activation_code.inspect
-  @userr = User.find_by_activation_code(@user.activation_code)
-    
-  if (@user)
-    @user.active = true
-    @user.save
+  def destroy
+    @user = User.find params[:id]
+    #@user.cleanup
+    flash[:notice] = "Successfully Destroyed"
+    @user.destroy
     redirect_to users_path
-  else
-    render  new_user_path
   end
-end
 
-end
+  
+  def authenticate
+    login = User.authenticate(params[:email], params[:password])
+    if (login )
+      session[:user] = login
+      flash[:notice] = "logged in suceesfully"
+      if current_user.admin == true
+        redirect_to  admin_users_path
+      else
+        redirect_to  users_path
+      end
+    else
+      flash[:notice] = "Incorrect Email/Password"
+      redirect_to login_users_path
+    end
+  end
+
+  def logout
+    reset_session
+    flash[:notice] = "log out successfully"
+    redirect_to users_path
+    
+  end
+
+  def update_password
+    @user = User.find_by_id_and_password(session[:user].id, params[:old_password])
+
+    if @user
+      flash[:notice] ="user available"
+      
+      if User.update_password(params[:password], params[:confirm_password])
+        @user.password = params[:password]
+        @user.save!
+
+        flash[:notice] = "Successfully Updated"
+        redirect_to users_path
+      else
+        flash[:notice] = "password mismatch"
+        redirect_to reset_password_path
+      end
+    else
+      flash[:notice] = "user is not available please create ur account"
+      redirect_to login_users_path
+    end
+  end
+
+  def profile
+    @user = User.find params[:id]
+    @user_profile = @user.user_profile
+    @addresses = @user_profile.addresses
+  end
+
+  def update_profile
+    @user_profile = UserProfile.find_by_user_id(params[:id])
+
+    if @user_profile.update_attributes(params[:user_profile])
+      
+      flash[:notice] = "Success"
+      redirect_to users_path
+    else
+      flash[:notice] = "userprofile not saved"
+
+      render :profile
+
+    end
+  end
+
+  def userprofilelist
+    #    raise params[:id].inspect
+    @userprofile = UserProfile.find_by_user_id(params[:id])
+  end
+  
+  def upload_file
+    UserProfile.save(params[:upload])
+    render :text => "File has been uploaded successfully"
+  end
+
+
+  def activate_user   
+    @userr = User.find_by_activation_code(params[:id])    
+    if (@user)
+      @user.active = true
+      @user.save
+      redirect_to users_path
+    else
+      render  new_user_path
+    end
+  end
+
 
  
 private
 
 def logged_in
-redirect_to login_users_path unless session[:user]
+  redirect_to login_users_path unless session[:user]
 
 end
 

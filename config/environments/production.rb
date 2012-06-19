@@ -28,12 +28,11 @@ ShoppingCart::Application.configure do
 
  ActionMailer::Base.smtp_settings = {
 
-  :address              => "localhost",
-  #:address              => "smtpauth.sumerusolutions.com",
+  :address              => "smtpauth.sumerusolutions.com",
   :port                 => 25,
   :domain               => 'sumerusolutions.com',
-  :user_name            => 'shashank.agarwal@sumerusolutions.com',
-  :password             => '169baikabagh',
+  :user_name            => 'sandhya.karanam@sumerusolutions.com',
+  :password             => 'sandhyavinay',
   :authentication       => 'plain',
   :openssl_verify_mode => 'none',
 
