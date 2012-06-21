@@ -18,6 +18,7 @@ ShoppingCart::Application.routes.draw do
     end
 
   end
+  
 
   resources :categories do
     member do
@@ -42,7 +43,7 @@ ShoppingCart::Application.routes.draw do
       
     end
     member do
-     put :set_quantity
+      put :set_quantity
     end
   end
   resources :orders
@@ -61,9 +62,9 @@ ShoppingCart::Application.routes.draw do
  
 
   match '/admin' => 'users#login'
-#match 'activate(/:activation_code)' => 'users#activate', :as => :activate_account
-#match 'send_activation(/:user_id)' => 'users#send_activation', :as => :send_activation
- namespace :admin do
+  #match 'activate(/:activation_code)' => 'users#activate', :as => :activate_account
+  #match 'send_activation(/:user_id)' => 'users#send_activation', :as => :send_activation
+  namespace :admin do
     resources :users do
       collection do
         get :user_profile
