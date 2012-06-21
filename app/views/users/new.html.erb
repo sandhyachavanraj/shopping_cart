@@ -1,13 +1,50 @@
 <div class="form">
-<h2>New User Registartion from</h2>
-<% @user.errors.full_messages.each do|msg|%>
-  <p><%= msg %></p>
-<% end %>
+  <h2>New User Registartion from</h2>
 
-<%= form_for @user do |s| %>
-  <%= render :partial => "shared_users/form", :locals => {:s => s} %>
-  <p><%= s.submit  "REGISTER ME" %></p>
-<% end %>
+
+
+  <%= form_for @user do |s| %>
+    <%= render :partial => "shared_users/form", :locals => {:s => s} %>
+    <div class="submit">
+  <%#*<p><%= s.submit  "REGISTER ME" %>
+    </div>
+  <% end %>
 </div>
 
- <%= link_to "Back", login_users_path %>
+<script type="text/javascript">
+  $(document).ready(function(){
+    jQuery('#new_user').submit(function(){
+      if((jQuery('#user_name').val() == "")){
+        jQuery("#name_error").css("background-color", "red");
+        jQuery("#name_error").html("name cannot be blank");
+        jQuery("#name_error").show();
+        return false;
+      }
+      if((jQuery('#user_name').val()).length < 5){
+        jQuery("#name_error").css("background-color", "red");
+        jQuery("#name_error").html("name contain atleast 5 characters");
+        jQuery("#name_error").show();
+        return false;
+      }
+
+
+      if((jQuery('#user_email').val() == "")){
+         jQuery("#email_error").css("background-color", "red");
+         jQuery("#email_error").html("email cannot be blank");
+         jQuery("#email_error").show();
+         return false;
+
+          <%#*alert("Email cannot be blank");%>
+       }
+      if(!(jQuery('#user_email').val()).match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)){
+           jQuery("#email_error").html("Enter valid email address");
+           jQuery("#email_error").show();
+           return false;
+
+          <%#*alert("Enter valid email address");%>
+       }
+  });
+
+  });
+
+</script>

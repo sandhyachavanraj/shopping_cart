@@ -15,9 +15,7 @@ class UsersController < ApplicationController
 
 
   def new
-    @user = User.new
-
-   
+    @user = User.new   
   end
 
 
@@ -171,13 +169,13 @@ class UsersController < ApplicationController
   end
 
 
- 
-private
+   
+  private
 
-def logged_in
-  redirect_to login_users_path unless session[:user]
+  def logged_in
+    redirect_to login_users_path unless session[:user]
 
-end
+  end
 
   
    
