@@ -4,50 +4,31 @@
     <p><%= msg %></p>
   <% end %>
 
+
   <%= form_for @order do |o| %>
 
-   
-    <p><%= o.label :firstname %>
-      <br/>
-      <%= o.text_field :firstname %>
-    </p>
-    <p><%= o.label :lastname %>
-      <br/>
-      <%= o.text_field :lastname %>
-    </p>
-    <p>
-      <%= o.label :address_line1 %>
-      <br/>
-      <%= o.text_field :address_line1 %>
-    </p>
-    <p>
-      <%= o.label :address_line2 %>
-      <br/>
-      <%= o.text_field :address_line2 %>
-    </p>
-    <p>
-      <%= o.label :state %>
-      <br/>
-      <%= o.text_field :state %>
-    </p>
-    <p>
-      <%= o.label :country %>
-      <br/>
-      <%= o.text_field :country %>
-    </p>
-    <p>
-      <%= o.label :zipcode %>
-      <br/>
-      <%= o.text_field :zipcode %>
-    </p>
-    <p>
-      <%= o.label :amount %>
-      <br/>
-      <%= o.text_field :amount %>
-    </p>
+    <p><%= o.label :first_name %><br/>
+      <%= o.text_field :first_name %></p>
+    <p><%= o.label :last_name %><br/>
+      <%= o.text_field :last_name %></p>
 
+    <%= o.fields_for :addresses do |adr| %>
+      <p> <%= adr.label :mobile_number %><br/>
+        <%= adr.phone_field :mobile_number %></p>
+      <p> <%= adr.label :phone_number %><br/>
+        <%= adr.telephone_field :phone_number %></p>
+      <p> <%= adr.label :address_line1 %><br/>
+        <%= adr.text_area :address_line1 %></p>
+      <p> <%= adr.label :address_line2 %><br/>
+        <%= adr.text_area :address_line2 %></p>
+      <p> <%= adr.label :state %><br/>
+        <%= adr.text_field :state %></p>
+      <p> <%= adr.label :country %><br/>
+        <%= adr.text_field :country %></p>
+      <p> <%= adr.label :zipcode %><br/>
+        <%= adr.text_field :zipcode %></p>
+    <% end %>
     <p><%= o.submit  "Submit" %></p>
   <% end %>
 </div>
 <%= link_to "BackToProducts", products_path %>
-

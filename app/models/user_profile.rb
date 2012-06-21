@@ -1,9 +1,10 @@
 class UserProfile < ActiveRecord::Base
   belongs_to :user
-  has_many :addresses, :as => :adr , :dependent => :destroy
+  has_many :addresses, :as => :adr, :dependent => :destroy
+ # validates :image_url, :presence => true
   accepts_nested_attributes_for :addresses ,:allow_destroy => true
 
-validates :image_url, :presence => true
+
 
 
   def upload_image=(upload)

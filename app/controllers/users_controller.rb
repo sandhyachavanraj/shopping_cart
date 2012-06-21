@@ -2,9 +2,7 @@ class UsersController < ApplicationController
 
   layout "products"
   
-  before_filter :logged_in, :only => [:edit, :reset_password]
-
-  
+  before_filter :logged_in, :only => [:edit, :reset_password]  
   
   def index
 
@@ -15,35 +13,31 @@ class UsersController < ApplicationController
 
 
   def new
-    @user = User.new
-
-   
+    @user = User.new   
   end
 
 
   def create
-    #    @user = UserProfile.new
-    #    @user.build_user(params[:user])
-    #    raise params.inspect
-    #    if @user.save!
-    #      flash[:notice] = "user saved successfully"
-    #      redirect_to users_path
-    #    else
-    #      render new_user_path
-    #    end
-    @user=User.new(params[:user])
-    if @user.save      
-      UserMailer.welcome_user(@user).deliver
-      flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
-      redirect_to users_path      
-    else
-      flash[:notice] = "There was a problem creating the user"
-      render new_user_path     
-    end
-  
+        @user = UserProfile.new
+        @user.build_user(params[:user])
+        
+        if @user.save!
+          flash[:notice] = "user saved successfully"
+          redirect_to users_path
+        else
+          render new_user_path
+        end
+#    @user=User.new(params[:user])
+#    if @user.save
+#      # Tell the UserMailer to send a welcome Email after save
+#      UserMailer.welcome_user(@user).deliver
+#      flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
+#      redirect_to users_path
+#    else
+#      flash[:notice] = "There was a problem creating the user"
+#      render new_user_path
+#    end
   end
-
-
 
   def edit
     @user = User.find params[:id]
@@ -120,14 +114,17 @@ class UsersController < ApplicationController
   def profile
     @user = User.find params[:id]
     @user_profile = @user.user_profile
-    @addresses = @user_profile.addresses
+    @addresses=@user_profile.addresses
   end
 
   def update_profile
+    
     @user_profile = UserProfile.find_by_user_id(params[:id])
+   
+
+   raise params[:user_profile].inspect
 
     if @user_profile.update_attributes(params[:user_profile])
-      
       flash[:notice] = "Success"
       redirect_to users_path
     else
@@ -139,7 +136,7 @@ class UsersController < ApplicationController
   end
 
   def userprofilelist
-    #    raise params[:id].inspect
+     
     @userprofile = UserProfile.find_by_user_id(params[:id])
   end
   
@@ -153,7 +150,7 @@ class UsersController < ApplicationController
     @user = User.find_by_activation_code(params[:id])
     if @user
       @user.active = true
-      @user.save
+      @user .save
       login = User.authenticate(@user.email, @user.password)
       if (login )
         session[:user] = login
@@ -166,19 +163,15 @@ class UsersController < ApplicationController
     else
       flash[:notice] = "Invalid activation code"
       redirect_to root_path
-    end   
+    end
 
   end
-
-
  
-private
+  private
 
-def logged_in
-  redirect_to login_users_path unless session[:user]
+  def logged_in
+    redirect_to login_users_path unless session[:user]
 
-end
-
-  
+  end  
    
 end
