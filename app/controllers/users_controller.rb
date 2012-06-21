@@ -20,24 +20,24 @@ class UsersController < ApplicationController
 
 
   def create
-    #    @user = UserProfile.new
-    #    @user.build_user(params[:user])
-    #    raise params.inspect
-    #    if @user.save!
-    #      flash[:notice] = "user saved successfully"
-    #      redirect_to users_path
-    #    else
-    #      render new_user_path
-    #    end
-    @user=User.new(params[:user])
-    if @user.save      
-      UserMailer.welcome_user(@user).deliver
-      flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
-      redirect_to users_path      
-    else
-      flash[:notice] = "There was a problem creating the user"
-      render new_user_path     
-    end
+        @user = UserProfile.new
+        @user.build_user(params[:user])
+        
+        if @user.save!
+          flash[:notice] = "user saved successfully"
+          redirect_to users_path
+        else
+          render new_user_path
+        end
+#    @user=User.new(params[:user])
+#    if @user.save
+#      UserMailer.welcome_user(@user).deliver
+#      flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
+#      redirect_to users_path
+#    else
+#      flash[:notice] = "There was a problem creating the user"
+#      render new_user_path
+#    end
   
   end
 
@@ -118,12 +118,12 @@ class UsersController < ApplicationController
   def profile
     @user = User.find params[:id]
     @user_profile = @user.user_profile
+    
     @addresses = @user_profile.addresses
   end
 
   def update_profile
     @user_profile = UserProfile.find_by_user_id(params[:id])
-
     if @user_profile.update_attributes(params[:user_profile])
       
       flash[:notice] = "Success"
