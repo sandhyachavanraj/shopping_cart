@@ -3,7 +3,7 @@ class UserProfile < ActiveRecord::Base
   has_many :addresses, :as => :adr , :dependent => :destroy
   accepts_nested_attributes_for :addresses ,:allow_destroy => true
 
-validates :image_url, :presence => true
+#validates :image_url, :presence => true
 
 
   def upload_image=(upload)
