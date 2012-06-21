@@ -1,13 +1,43 @@
-<p><%= s.label :name %><br/>
-  <%= s.text_field :name %></p>
 
-<p><%= s.label :email %><br/>
-  <%= s.email_field :email %></p>
+<div  class="error_explanation">
 
-<p><%= s.label :password %><br/>
-  <%= s.password_field :password%></p>
+  <%= s.label :name %>
+</div>
+<div class="field_with_errors">
+  <%= s.text_field :name%>
+  <div id="name_error" ></div>
+</div><br/>
 
-<p><%= s.label :password_confirmation %><br/>
-  <%= s.password_field :password_confirmation %> </p>
+
+
+<div class="error_explanation">
+  <%= s.label :email %>
+</div>
+
+<div class="field_with_errors">
+  <%= s.text_field :email %>
+  <div id="email_error" ></div>
+
+</div>
+
+<div class="error_explanation">
+  <%= s.label :password %>
+</div>
+<div class="field_with_errors">
+  <%= s.password_field :password%>
+
+
+</div>
+
+<div class="error_explanation">
+  <%= s.label :password_confirmation %>
+</div>
+
+<div class="field_with_errors">
+  <%= s.password_field :password_confirmation %>
+
+</div>
+<p><%= s.submit  "REGISTER ME", :class => "a"  %></p>
+
 
 
