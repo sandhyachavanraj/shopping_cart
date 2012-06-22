@@ -3,10 +3,11 @@ class UserProfile < ActiveRecord::Base
   
   #  has_many :addresses, :as => :adr, :dependent => :destroy
   # validates :image_url, :presence => true
-  #  accepts_nested_attributes_for :addresses ,:allow_destroy => true
 
-  has_one :billing_address, :as => :adr, :class_name => "Address"
-  has_one :shipping_address, :as => :adr, :class_name => "Address"
+
+  has_one :billing_address, :class_name => "Address",:conditions => ["address_type =?","billing_address"]
+  has_one :shipping_address, :class_name => "Address",:conditions => ["address_type = ?","shipping_address"]
+  
 
   def upload_image=(upload)
     self.image_url = upload.original_filename.to_s

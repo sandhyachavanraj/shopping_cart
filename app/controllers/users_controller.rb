@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
 
   def new
-    @user = User.new   
+    @user = User.new
   end
 
 
@@ -113,25 +113,24 @@ class UsersController < ApplicationController
 
   def profile
     @user = User.find params[:id]
+    @billing_address = @user.user_profile.billing_address
+    @shipping_address = @user.user_profile.shipping_address
     @user_profile = @user.user_profile
-    @addresses=@user_profile.addresses
+  
+    #    raise @address.inspect
   end
 
   def update_profile
-    
+     
     @user_profile = UserProfile.find_by_user_id(params[:id])
-   
-
-    raise params[:user_profile].inspect
-
-    if @user_profile.update_attributes(params[:user_profile])
+    if @user_profile.update_attributes(:upload_image => params[:user_profile][:upload_image])
+      @user_profile.build_billing_address.update_attributes(params[:user_profile][:billing_address])
+      @user_profile.build_shipping_address.update_attributes(params[:user_profile][:shipping_address])
       flash[:notice] = "Success"
       redirect_to users_path
     else
       flash[:notice] = "userprofile not saved"
-
       render :profile
-
     end
   end
 
