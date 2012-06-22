@@ -17,13 +17,9 @@
 
   <% @orders.each do |order| %>
     <tr>
-      <td><%= order.firstname %> </td>
-      <td><%= order.lastname %> </td>
-      <td><%= order.address_line1 %> </td>
-      <td><%= order.address_line2 %> </td>
-      <td><%= order.state %> </td>
-      <td><%= order.country %> </td>
-      <td><%= order.zipcode %> </td>
+      <td><%= order.first_name %> </td>
+      <td><%= order.last_name %> </td>
+      
       <td><%= order.amount %> </td>
     </tr>
     <% end %>

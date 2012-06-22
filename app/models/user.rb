@@ -3,8 +3,10 @@ class User < ActiveRecord::Base
   has_many :products
   has_one :cart
   has_many :orders 
+ 
+  #has_one :address , :as => :billing_address
+ 
 
-  
 
   validates :name, :presence => true,  :format => {:with => /^[a-z0-9]{4}+[-a-z0-9]*[a-z0-9]+$/i }
 
@@ -15,23 +17,19 @@ class User < ActiveRecord::Base
 
 
   validates :password, :presence =>true, :confirmation =>true, :length => { :minimum => 5, :maximum => 12}
-
   validates :password_confirmation, :presence => true,  :if => :password_changed?
-
   
   attr_accessor :confirm_password, :old_password
 
-
-
   before_save(:on => :create) do
-    self.activation_code = SecureRandom.hex(13)    
+    self.activation_code = SecureRandom.hex(13)
   end
   
 
   def self.authenticate(email, password)
     find_by_email_and_password(email, password)
   end
- 
+
   def self.update_password(password, confirm_password)
     password != confirm_password ? false : true
   end
@@ -51,34 +49,8 @@ class User < ActiveRecord::Base
     self.admin == true ? true:false
   end
 
-  #def exist
-  #  if find_by_id(id).nil?
-  #
-  #  end
-  #end
-  #
-  #
-  #def activate
-  #  self.active = true
-  #  save
-  #end
-  ##
-  #def deactivate!
-  #  self.active = false
-  #  save
-  #end
-  #
-  #def send_activation_instructions
-  #  UserMailer.activation_instructions(self).deliver
-  #end
-  #
-  #def send_activation_confirmation!
-  #  UserMailer.activation_confirmation(self).deliver
-  #end
-
-
 end
 
- 
+
 
  

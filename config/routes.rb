@@ -7,7 +7,7 @@ ShoppingCart::Application.routes.draw do
       post :authenticate
       get :logout
       get :userprofilelist
-      get :picture
+      get :picture    
       
     end
 
