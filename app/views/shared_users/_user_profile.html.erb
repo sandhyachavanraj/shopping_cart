@@ -7,7 +7,9 @@
     <p><%= msg %></p>
   <% end %>
 
+    
   <%= nested_form_for @user_profile, :url => update_profile_user_path(@user), :html => {:method => :put} do |f| %>
+
 
 
     <p><%= f.label :upload_image, "Upload Image" %><br/>
@@ -42,6 +44,5 @@
   <%end%>
 
 </div>
-
 
 
