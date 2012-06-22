@@ -9,6 +9,7 @@ class UserProfile < ActiveRecord::Base
   has_one :shipping_address, :class_name => "Address",:conditions => ["address_type = ?","shipping_address"]
   
 
+
   def upload_image=(upload)
     self.image_url = upload.original_filename.to_s
     self.content_type = upload.content_type.chomp

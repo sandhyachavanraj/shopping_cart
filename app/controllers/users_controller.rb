@@ -18,25 +18,25 @@ class UsersController < ApplicationController
 
 
   def create
-    @user = UserProfile.new
-    @user.build_user(params[:user])
+        @user = UserProfile.new
+        @user.build_user(params[:user])
         
-    if @user.save!
-      flash[:notice] = "user saved successfully"
-      redirect_to users_path
-    else
-      render new_user_path
-    end
-    #    @user=User.new(params[:user])
-    #    if @user.save
-    #      # Tell the UserMailer to send a welcome Email after save
-    #      UserMailer.welcome_user(@user).deliver
-    #      flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
-    #      redirect_to users_path
-    #    else
-    #      flash[:notice] = "There was a problem creating the user"
-    #      render new_user_path
-    #    end
+        if @user.save!
+          flash[:notice] = "user saved successfully"
+          redirect_to users_path
+        else
+          render new_user_path
+        end
+#    @user=User.new(params[:user])
+#    if @user.save
+#      UserMailer.welcome_user(@user).deliver
+#      flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
+#      redirect_to users_path
+#    else
+#      flash[:notice] = "There was a problem creating the user"
+#      render new_user_path
+#    end
+  
   end
 
   def edit
@@ -116,8 +116,7 @@ class UsersController < ApplicationController
     @billing_address = @user.user_profile.billing_address
     @shipping_address = @user.user_profile.shipping_address
     @user_profile = @user.user_profile
-  
-    #    raise @address.inspect
+
   end
 
   def update_profile
@@ -126,6 +125,7 @@ class UsersController < ApplicationController
     if @user_profile.update_attributes(:upload_image => params[:user_profile][:upload_image])
       @user_profile.build_billing_address.update_attributes(params[:user_profile][:billing_address])
       @user_profile.build_shipping_address.update_attributes(params[:user_profile][:shipping_address])
+
       flash[:notice] = "Success"
       redirect_to users_path
     else

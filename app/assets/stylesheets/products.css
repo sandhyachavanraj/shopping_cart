@@ -299,3 +299,22 @@ div#new_address{
     float: left;
     margin-left: 20px;
 }
+
+
+
+.field_with_errors
+{
+  padding: 2px;
+  background-color: white;
+  display: table;
+}
+
+.error_explanation
+{
+  width: 450px;
+ 
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+
+}
