@@ -1,48 +1,69 @@
 <div id ="new_address">
-
   <h2>UserProfile Form</h2>
 
-  
-  <% @user_profile.errors.full_messages.each do|msg|%>   
+  <% @user_profile.errors.full_messages.each do|msg|%>
     <p><%= msg %></p>
   <% end %>
 
-    
+  <% @user_profile.billing_address.errors.full_messages.each do|msg|%>
+    <p><%= msg %></p>
+  <% end %>
+
+    <% @user_profile.shipping_address.errors.full_messages.each do|msg|%>
+    <p><%= msg %></p>
+  <% end %>
+
   <%= form_for @user_profile, :url => update_profile_user_path(@user), :html => {:method => :put} do |f| %>
-
-
-
-    <p><%= f.label :upload_image, "Upload Image" %><br/>
+           
+    <p> <%= f.label :upload_image, "Upload Image" %><br/>
       <%= f.file_field :upload_image %></p>
 
+    <div>
+      <h1>Billing Address</h1>
+      <%= f.fields_for :billing_address,@billing_address ,:validates => true do |adr| %>
 
-    <%= f.fields_for :adr do |adr| %>
-      <p><%= adr.label :mobile_number %><br/>
-        <%= adr.phone_field :mobile_number %></p>
-      <p><%= adr.label :phone_number %><br/>
-        <%= adr.telephone_field :phone_number%></p>
+        <p> <%= adr.label :mobile_number %><br/>
+          <%= adr.phone_field :mobile_number %></p>
+        <p><%= adr.label :phone_number %><br/>
+          <%= adr.telephone_field :phone_number%></p>
+        <p><%= adr.label :address_line1 %><br/>
+          <%= adr.text_area :address_line1 %></p>
+        <p><%= adr.label :address_line2 %><br/>
+          <%= adr.text_area :address_line2 %></p>
+        <p><%= adr.label :state %><br/>
+          <%= adr.text_field :state %></p>
+        <p><%= adr.label :country %><br/>
+          <%= adr.text_field :country %></p>
+        <p><%= adr.label :zipcode %><br/>
+          <%= adr.text_field :zipcode %></p>
+        <%= adr.hidden_field :address_type, :value => 'billing_address' %>
+      <%end%>
+    </div>
 
-      <p> <%= adr.label :adr_type  %><br/>
-         <%= adr.select :adr_type, options_for_select(%w(Select Billing_Address Permanent_Address)) %></p>
-       <p><%= adr.label :address_line1 %><br/>
-        <%= adr.text_area :address_line1 %></p>
-      <p><%= adr.label :address_line2 %><br/>
-        <%= adr.text_area :address_line2 %></p>
-      <p><%= adr.label :state %><br/>
-        <%= adr.text_field :state %></p>
-      <p><%= adr.label :country %><br/>
-        <%= adr.text_field :country %></p>
-      <p><%= adr.label :zipcode %><br/>
-        <%= adr.text_field :zipcode %></p>
-
-
-      <%#*<p><%=  adr.link_to_remove "Remove Address" %>
-    <%end%>
+    <div>
+      <h1>Shipping Address</h1>
+      <%= f.fields_for :shipping_address,@shipping_address , :validates => true do |adr| %>
       
-    <%#*<p><%= f.link_to_add "Add another Address" , :address %>
-    <p><%= f.submit  "Submit", :method => :get%></p>
-  <%end%>
+
+        <p> <%= adr.label :mobile_number %><br/>
+          <%= adr.phone_field :mobile_number %></p>
+        <p><%= adr.label :phone_number %><br/>
+          <%= adr.telephone_field :phone_number%></p>
+        <p><%= adr.label :address_line1 %><br/>
+          <%= adr.text_area :address_line1 %></p>
+        <p><%= adr.label :address_line2 %><br/>
+          <%= adr.text_area :address_line2 %></p>
+        <p><%= adr.label :state %><br/>
+          <%= adr.text_field :state %></p>
+        <p><%= adr.label :country %><br/>
+          <%= adr.text_field :country %></p>
+        <p><%= adr.label :zipcode %><br/>
+          <%= adr.text_field :zipcode %></p>
+        <%= adr.hidden_field :address_type, :value => 'shipping_address' %>
+      <%end%>
+
+      <p><%= f.submit  "Submit", :method => :get%></p>
+    <%end%>
+  </div>
 
 </div>
-
-

@@ -1,14 +1,14 @@
 class UserProfile < ActiveRecord::Base
   belongs_to :user
 
-  #attr_accessible :address_attributes
+
   attr_accessor :adr
-
-  has_one :billing_address, :as => :adr, :class_name => "Address",:dependent => :destroy
-  has_one :permanent_address, :as => :adr, :class_name => "Address",:dependent => :destroy
-
-  accepts_nested_attributes_for :billing_address, :permanent_address
-
+  #validates_associated :billing_address, :shipping_address
+  #accepts_nested_attributes_for :billing_address, :shipping_address
+  has_one :billing_address, :class_name => "Address",:conditions => ["address_type =?","billing_address"]
+ has_one :shipping_address, :class_name => "Address",:conditions => ["address_type = ?","shipping_address"]
+ validates :billing_address,:presence => true
+  validates :shipping_address,:presence => true
 
 
   def upload_image=(upload)
@@ -26,3 +26,4 @@ class UserProfile < ActiveRecord::Base
 
  
 end
+
