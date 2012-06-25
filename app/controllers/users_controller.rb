@@ -18,24 +18,24 @@ class UsersController < ApplicationController
 
 
   def create
-        @user = UserProfile.new
-        @user.build_user(params[:user])
+    @user = UserProfile.new
+    @user.build_user(params[:user])
         
-        if @user.save!
-          flash[:notice] = "user saved successfully"
-          redirect_to users_path
-        else
-          render new_user_path
-        end
-#    @user=User.new(params[:user])
-#    if @user.save
-#      UserMailer.welcome_user(@user).deliver
-#      flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
-#      redirect_to users_path
-#    else
-#      flash[:notice] = "There was a problem creating the user"
-#      render new_user_path
-#    end
+    if @user.save
+      flash[:notice] = "user saved successfully"
+      redirect_to users_path
+    else
+      render new_user_path
+    end
+    #    @user=User.new(params[:user])
+    #    if @user.save
+    #      UserMailer.welcome_user(@user).deliver
+    #      flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
+    #      redirect_to users_path
+    #    else
+    #      flash[:notice] = "There was a problem creating the user"
+    #      render new_user_path
+    #    end
   
   end
 
@@ -113,18 +113,20 @@ class UsersController < ApplicationController
 
   def profile
     @user = User.find params[:id]
+    @user_profile = @user.user_profile
     @billing_address = @user.user_profile.billing_address
     @shipping_address = @user.user_profile.shipping_address
-    @user_profile = @user.user_profile
-
   end
 
-  def update_profile
-     
+  def update_profile    
     @user_profile = UserProfile.find_by_user_id(params[:id])
+   
     if @user_profile.update_attributes(:upload_image => params[:user_profile][:upload_image])
-      @user_profile.build_billing_address.update_attributes(params[:user_profile][:billing_address])
-      @user_profile.build_shipping_address.update_attributes(params[:user_profile][:shipping_address])
+       
+      @address = Address.find_or_create_by_user_profile_id_and_address_type(@user_profile.id, "billing_address")
+      @address.update_attributes(params[:user_profile][:billing_address])
+      @address1 = Address.find_or_create_by_user_profile_id(@user_profile.id, "shipping_address")
+      @address1.update_attributes(params[:user_profile][:shipping_address])
 
       flash[:notice] = "Success"
       redirect_to users_path
@@ -139,7 +141,7 @@ class UsersController < ApplicationController
     @userprofile = UserProfile.find_by_user_id(params[:id])
   end
   
-  def upload_file
+  def upload_file    
     UserProfile.save(params[:upload])
     render :text => "File has been uploaded successfully"
   end
