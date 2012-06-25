@@ -1,11 +1,14 @@
 class UserProfile < ActiveRecord::Base
   belongs_to :user
 
+  #attr_accessible :address_attributes
+  attr_accessor :adr
 
-  accepts_nested_attributes_for :addresses ,:allow_destroy => true
+  has_one :billing_address, :as => :adr, :class_name => "Address",:dependent => :destroy
+  has_one :permanent_address, :as => :adr, :class_name => "Address",:dependent => :destroy
 
-  has_one :billing_address, :as => :adr, :class_name => "Address"
-  has_one :shipping_address, :as => :adr, :class_name => "Address"
+  accepts_nested_attributes_for :billing_address, :permanent_address
+
 
 
   def upload_image=(upload)

@@ -8,7 +8,7 @@
   <% end %>
 
     
-  <%= nested_form_for @user_profile, :url => update_profile_user_path(@user), :html => {:method => :put} do |f| %>
+  <%= form_for @user_profile, :url => update_profile_user_path(@user), :html => {:method => :put} do |f| %>
 
 
 
@@ -16,7 +16,7 @@
       <%= f.file_field :upload_image %></p>
 
 
-    <%= f.fields_for :addresses, :validates => true  do |adr| %>
+    <%= f.fields_for :adr do |adr| %>
       <p><%= adr.label :mobile_number %><br/>
         <%= adr.phone_field :mobile_number %></p>
       <p><%= adr.label :phone_number %><br/>
@@ -36,10 +36,10 @@
         <%= adr.text_field :zipcode %></p>
 
 
-      <p><%=  adr.link_to_remove "Remove Address" %></p>
+      <%#*<p><%=  adr.link_to_remove "Remove Address" %>
     <%end%>
       
-    <p><%= f.link_to_add "Add another Address" , :addresses %></p>
+    <%#*<p><%= f.link_to_add "Add another Address" , :address %>
     <p><%= f.submit  "Submit", :method => :get%></p>
   <%end%>
 

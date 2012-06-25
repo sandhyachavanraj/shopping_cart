@@ -114,14 +114,15 @@ class UsersController < ApplicationController
   def profile
     @user = User.find params[:id]
     @user_profile = @user.user_profile
-    @addresses = @user_profile.addresses
-  end
+   
+
+   end
 
   def update_profile
     
     @user_profile = UserProfile.find_by_user_id(params[:id])
-    if @user_profile.update_attributes(params[:user_profile])
-      flash[:notice] = "Success"
+       if @user_profile.update_attributes(params[:user_profile])
+       flash[:notice] = "Success"
       redirect_to users_path
     else
       flash[:notice] = "userprofile not saved"
