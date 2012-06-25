@@ -125,7 +125,7 @@ class UsersController < ApplicationController
        
       @address = Address.find_or_create_by_user_profile_id_and_address_type(@user_profile.id, "billing_address")
       @address.update_attributes(params[:user_profile][:billing_address])
-      @address1 = Address.find_or_create_by_user_profile_id(@user_profile.id, "shipping_address")
+      @address1 = Address.find_or_create_by_user_profile_id_and_address_type(@user_profile.id, "shipping_address")
       @address1.update_attributes(params[:user_profile][:shipping_address])
 
       flash[:notice] = "Success"
