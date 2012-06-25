@@ -1,9 +1,10 @@
 <div id ="new_address">
   <h2>UserProfile Form</h2>
 
-  <% @user_profile.errors.full_messages.each do|msg|%>
-    <p><%= msg %></p>
-  <% end %>
+<% @user_profile.errors.full_messages.each do|msg|%>
+<p><%= msg %></p>
+<% end %>
+
 
 
   <%= form_for @user_profile, :url => update_profile_user_path(@user), :html => {:method => :put} do |f| %>
@@ -13,6 +14,7 @@
     <div>
       <h1>Billing Address</h1>
       <%= f.fields_for :billing_address,@billing_address do |adr| %>
+
         <p> <%= adr.label :mobile_number %><br/>
           <%= adr.phone_field :mobile_number %></p>
         <p><%= adr.label :phone_number %><br/>
@@ -56,5 +58,4 @@
   </div>
 
 </div>
-  
-  
+

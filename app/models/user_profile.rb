@@ -6,10 +6,12 @@ class UserProfile < ActiveRecord::Base
  
 #  validates_associated :billing_address
 #  validates_associated :shipping_address
-   
+
+  #accepts_nested_attributes_for :billing_address
+
   has_one :billing_address, :class_name => "Address",:conditions => ["address_type =?","billing_address"]
   has_one :shipping_address, :class_name => "Address",:conditions => ["address_type = ?","shipping_address"]
-  
+  # validates :billing_address, :shipping_address, :presence => true
   
 
   def upload_image=(upload)  

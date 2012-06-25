@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   before_filter :logged_in, :only => [:edit, :reset_password]  
   
   def index
-
     @users = User.all
 
     @users = User.paginate(:page => params[:page], :per_page => 8)
@@ -85,8 +84,7 @@ class UsersController < ApplicationController
   def logout
     reset_session
     flash[:notice] = "log out successfully"
-    redirect_to users_path
-    
+    redirect_to users_path    
   end
 
   def update_password
@@ -121,12 +119,12 @@ class UsersController < ApplicationController
   def update_profile    
     @user_profile = UserProfile.find_by_user_id(params[:id])
    
-    if @user_profile.update_attributes(:upload_image => params[:user_profile][:upload_image])
-       
-      @address = Address.find_or_create_by_user_profile_id_and_address_type(@user_profile.id, "billing_address")
-      @address.update_attributes(params[:user_profile][:billing_address])
-      @address1 = Address.find_or_create_by_user_profile_id_and_address_type(@user_profile.id, "shipping_address")
-      @address1.update_attributes(params[:user_profile][:shipping_address])
+#    if @user_profile.update_attributes(:upload_image => params[:user_profile][:upload_image])
+      if current_user.user_profile.billing_address.blank? ? current_user.update_profile.billing_address.find_or_create_by_user_profile_id_and_address_type(@user_profile.id, "billing_address") : current_user.update_profile.billing_address.update_attributes(params[:user_profile][:billing_address])
+      @billing_address = Address.find_or_create_by_user_profile_id_and_address_type(@user_profile.id, "billing_address")
+      @billing_address.update_attributes(params[:user_profile][:billing_address])
+      @shipping_address = Address.find_or_create_by_user_profile_id_and_address_type(@user_profile.id, "shipping_address")
+      @shipping_address.update_attributes(params[:user_profile][:shipping_address])
 
       flash[:notice] = "Success"
       redirect_to users_path
@@ -136,8 +134,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def userprofilelist
-     
+  def userprofilelist     
     @userprofile = UserProfile.find_by_user_id(params[:id])
   end
   
