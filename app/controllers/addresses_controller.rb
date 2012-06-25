@@ -9,8 +9,8 @@ class AddressesController < ApplicationController
   
   def new
     @addresses = Address.new
-    @addresses= current_user.user_profile
+#    @addresses= current_user.user_profile
   end
 
-
+  
 end
