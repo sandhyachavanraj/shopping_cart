@@ -1,34 +1,64 @@
-<div id="orderform">
-  <h2>New Order From</h2>
-  <% @order.errors.full_messages.each do|msg|%>
+<div id ="new_address">
+  <h2>UserProfile Form</h2>
+
+  <% @user_profile.errors.full_messages.each do|msg|%>
+    <p><%= msg %></p>
+  <% end %>
+
+  <% @billing_address.errors.full_messages.each do|msg|%>
     <p><%= msg %></p>
   <% end %>
 
 
-  <%= form_for @order do |o| %>
 
-    <p><%= o.label :first_name %><br/>
-      <%= o.text_field :first_name %></p>
-    <p><%= o.label :last_name %><br/>
-      <%= o.text_field :last_name %></p>
 
-    <%= o.fields_for :addresses do |adr| %>
-      <p> <%= adr.label :mobile_number %><br/>
-        <%= adr.phone_field :mobile_number %></p>
-      <p> <%= adr.label :phone_number %><br/>
-        <%= adr.telephone_field :phone_number %></p>
-      <p> <%= adr.label :address_line1 %><br/>
-        <%= adr.text_area :address_line1 %></p>
-      <p> <%= adr.label :address_line2 %><br/>
-        <%= adr.text_area :address_line2 %></p>
-      <p> <%= adr.label :state %><br/>
-        <%= adr.text_field :state %></p>
-      <p> <%= adr.label :country %><br/>
-        <%= adr.text_field :country %></p>
-      <p> <%= adr.label :zipcode %><br/>
-        <%= adr.text_field :zipcode %></p>
-    <% end %>
-    <p><%= o.submit  "Submit" %></p>
-  <% end %>
+  <%= form_for @user_profile, :url => update_profile_order_path(current_user), :html => {:method => :put} do |f| %>
+    <p> <%= f.label :upload_image, "Upload Image" %><br/>
+      <%= f.file_field :upload_image %></p>
+
+    <div>
+      <h1>Billing Address</h1>
+      <%= f.fields_for :billing_address,@billing_address do |adr| %>
+        <p> <%= adr.label :mobile_number %><br/>
+          <%= adr.phone_field :mobile_number %></p>
+          <p><%= adr.label :phone_number %><br/>
+          <%= adr.telephone_field :phone_number%></p>
+        <p><%= adr.label :address_line1 %><br/>
+          <%= adr.text_area :address_line1 %></p>
+        <p><%= adr.label :address_line2 %><br/>
+          <%= adr.text_area :address_line2 %></p>
+        <p><%= adr.label :state %><br/>
+          <%= adr.text_field :state %></p>
+        <p><%= adr.label :country %><br/>
+          <%= adr.text_field :country %></p>
+        <p><%= adr.label :zipcode %><br/>
+          <%= adr.text_field :zipcode %></p>
+        <%= adr.hidden_field :address_type, :value => 'billing_address' %>
+      <%end%>
+    </div>
+
+    <div>
+      <h1>Shipping Address</h1>
+      <%= f.fields_for :shipping_address, @shipping_address  do |adr| %>
+       <p> <%= adr.label :mobile_number %><br/>
+          <%= adr.phone_field :mobile_number %></p>
+        <p><%= adr.label :phone_number %><br/>
+          <%= adr.telephone_field :phone_number%></p>
+        <p><%= adr.label :address_line1 %><br/>
+          <%= adr.text_area :address_line1 %></p>
+        <p><%= adr.label :address_line2 %><br/>
+          <%= adr.text_area :address_line2 %></p>
+        <p><%= adr.label :state %><br/>
+          <%= adr.text_field :state %></p>
+        <p><%= adr.label :country %><br/>
+          <%= adr.text_field :country %></p>
+        <p><%= adr.label :zipcode %><br/>
+          <%= adr.text_field :zipcode %></p>
+        <%= adr.hidden_field :address_type, :value => 'shipping_address' %>
+      <%end%>
+
+      <p><%= f.submit  "Submit", :method => :get%></p>
+    <%end%>
+  </div>
+
 </div>
-<%= link_to "BackToProducts", products_path %>
