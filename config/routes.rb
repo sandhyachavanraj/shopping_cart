@@ -46,7 +46,11 @@ ShoppingCart::Application.routes.draw do
       put :set_quantity
     end
   end
-  resources :orders
+  resources :orders do
+    member do
+      put :update_profile
+    end
+  end
   resources :addresses
    
  

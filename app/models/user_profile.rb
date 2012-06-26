@@ -1,7 +1,8 @@
 class UserProfile < ActiveRecord::Base
   belongs_to :user
 
- 
+  validates :image_url, :presence => true
+
   has_one :billing_address, :class_name => "Address",:conditions => ["address_type =?","billing_address"]
   has_one :shipping_address, :class_name => "Address",:conditions => ["address_type = ?","shipping_address"]
 
