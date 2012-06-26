@@ -11,6 +11,7 @@
 
 
 
+
   <%= form_for @user_profile, :url => update_profile_user_path(@user), :html => {:method => :put} do |f| %>
     <p> <%= f.label :upload_image, "Upload Image" %><br/>
       <%= f.file_field :upload_image %></p>
@@ -18,11 +19,9 @@
     <div>
       <h1>Billing Address</h1>
       <%= f.fields_for :billing_address,@billing_address do |adr| %>
-
-
         <p> <%= adr.label :mobile_number %><br/>
           <%= adr.phone_field :mobile_number %></p>
-        <p><%= adr.label :phone_number %><br/>
+          <p><%= adr.label :phone_number %><br/>
           <%= adr.telephone_field :phone_number%></p>
         <p><%= adr.label :address_line1 %><br/>
           <%= adr.text_area :address_line1 %></p>
@@ -40,8 +39,8 @@
 
     <div>
       <h1>Shipping Address</h1>
-      <%= f.fields_for :shipping_address,@shipping_address do |adr| %>
-        <p> <%= adr.label :mobile_number %><br/>
+      <%= f.fields_for :shipping_address, @shipping_address  do |adr| %>
+       <p> <%= adr.label :mobile_number %><br/>
           <%= adr.phone_field :mobile_number %></p>
         <p><%= adr.label :phone_number %><br/>
           <%= adr.telephone_field :phone_number%></p>
@@ -63,4 +62,3 @@
   </div>
 
 </div>
-

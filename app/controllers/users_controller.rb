@@ -109,17 +109,17 @@ class UsersController < ApplicationController
     end
   end
 
-  def profile
+ def profile
     @user = User.find params[:id]
     @user_profile = @user.user_profile
     @billing_address = @user.user_profile.billing_address
     @shipping_address = @user.user_profile.shipping_address
   end
 
+
   def update_profile    
     @user_profile = UserProfile.find_by_user_id(params[:id])    
     @billing_address = current_user.user_profile.billing_address.blank? ? current_user.user_profile.billing_address.new(params[:billing_address]) : current_user.user_profile.billing_address
-   
     if @billing_address.new_record?
       res = @billing_address.save
     else
@@ -132,6 +132,12 @@ class UsersController < ApplicationController
       render :profile
     end
   end
+#      if current_user.user_profile.shipping_address.blank?
+
+#     @shipping_address = Address.find_or_create_by_user_profile_id_and_address_type(@user_profile.id, "shipping_address")
+#      @shipping_address.update_attributes(params[:user_profile][:shipping_address])
+#
+#  end
 
   def userprofilelist     
     @userprofile = UserProfile.find_by_user_id(params[:id])

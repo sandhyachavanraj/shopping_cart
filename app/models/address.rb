@@ -1,6 +1,7 @@
-class Address < ActiveRecord::Base  
-
+class Address < ActiveRecord::Base
+  
   belongs_to :user_profile
+
 
 
     validates :state, :country, :presence => true, :format => {:with => /^[a-z]+$/, :message => " can only contain characters" }

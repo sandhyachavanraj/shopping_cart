@@ -4,8 +4,7 @@ class UserProfile < ActiveRecord::Base
   has_one :billing_address, :class_name => "Address",:conditions => ["address_type =?","billing_address"]
   has_one :shipping_address, :class_name => "Address",:conditions => ["address_type = ?","shipping_address"]
 
-#  validates :image_url, :presence => true
- 
+
   def upload_image=(upload)  
     self.image_url = upload.original_filename.to_s
     self.content_type = upload.content_type.chomp
@@ -18,6 +17,5 @@ class UserProfile < ActiveRecord::Base
       File.delete("#{Rails.root}/app/assets/images/#{self.image_url}")
     end
   end
+ end
 
- 
-end
