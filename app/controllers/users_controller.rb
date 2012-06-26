@@ -122,13 +122,9 @@ class UsersController < ApplicationController
   def update_profile    
     @user_profile = UserProfile.find_by_user_id(params[:id])
    
-    if @user_profile.update_attributes(:upload_image => params[:user_profile][:upload_image])
-       
-      @address = Address.find_or_create_by_user_profile_id_and_address_type(@user_profile.id, "billing_address")
-      @address.update_attributes(params[:user_profile][:billing_address])
-      @address1 = Address.find_or_create_by_user_profile_id_and_address_type(@user_profile.id, "shipping_address")
-      @address1.update_attributes(params[:user_profile][:shipping_address])
-
+   if current_user.user_profile.billing_address.blank?
+       @billing_address = Address.find_or_create_by_user_profile_id_and_address_type(@user_profile.id, "billing_address")
+     @billing_address= current_user.user_profile.billing_address.update_attributes(params[:user_profile][:billing_address])
       flash[:notice] = "Success"
       redirect_to users_path
     else
@@ -136,6 +132,12 @@ class UsersController < ApplicationController
       render :profile
     end
   end
+#      if current_user.user_profile.shipping_address.blank?
+
+#     @shipping_address = Address.find_or_create_by_user_profile_id_and_address_type(@user_profile.id, "shipping_address")
+#      @shipping_address.update_attributes(params[:user_profile][:shipping_address])
+#
+#  end
 
   def userprofilelist
      
