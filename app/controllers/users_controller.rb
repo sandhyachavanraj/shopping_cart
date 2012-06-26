@@ -120,6 +120,7 @@ class UsersController < ApplicationController
 
   def update_profile
     @user_profile = UserProfile.find_by_user_id(params[:id])
+
     #    @user_profile.update_attributes(:upload_image => params[:user_profile][:upload_iamge])
 
     @billing_address=current_user.user_profile.billing_address.blank? ? current_user.user_profile.billing_address.new(params[:billing_address]) : current_user.user_profile.billing_address
@@ -138,6 +139,8 @@ class UsersController < ApplicationController
     else
       render :profile
     end
+   
+
   end
 
 
