@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   before_filter :logged_in, :only => [:edit, :reset_password]  
   
   def index
-
     @users = User.all
 
     @users = User.paginate(:page => params[:page], :per_page => 8)
@@ -85,8 +84,7 @@ class UsersController < ApplicationController
   def logout
     reset_session
     flash[:notice] = "log out successfully"
-    redirect_to users_path
-    
+    redirect_to users_path    
   end
 
   def update_password
@@ -131,6 +129,7 @@ class UsersController < ApplicationController
     end
     if res
       flash[:notice]="success"
+
       redirect_to users_path
     else
       render :profile
@@ -138,8 +137,7 @@ class UsersController < ApplicationController
   end
 
 
-  def userprofilelist
-     
+  def userprofilelist     
     @userprofile = UserProfile.find_by_user_id(params[:id])
   end
   

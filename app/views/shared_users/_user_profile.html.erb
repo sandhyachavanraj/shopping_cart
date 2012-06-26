@@ -7,9 +7,10 @@
     <p><%= msg %></p>
   <% end %>
 
-     <% @billing_address.errors.full_messages{:mobile_number} .each do|msg|%>
-    <%= msg %>
-    <%  end %>
+  <% @billing_address.errors.full_messages.each do|msg|%>
+    <p><%= msg %></p>
+  <% end %>
+
 
   <%= form_for @user_profile, :url => update_profile_user_path(@user), :html => {:method => :put} do |f| %>
     <p> <%= f.label :upload_image, "Upload Image" %><br/>
@@ -19,10 +20,9 @@
       <h1>Billing Address</h1>
       <%= f.fields_for :billing_address,@billing_address do |adr| %>
 
+
         <p> <%= adr.label :mobile_number %><br/>
           <%= adr.phone_field :mobile_number %></p>
-     
-     
           <p><%= adr.label :phone_number %><br/>
           <%= adr.telephone_field :phone_number%></p>
         <p><%= adr.label :address_line1 %><br/>
@@ -39,9 +39,25 @@
       <%end%>
     </div>
 
-  
- 
-
+    <div>
+      <h1>Shipping Address</h1>
+      <%= f.fields_for :shipping_address, @shipping_address  do |adr| %>
+       <p> <%= adr.label :mobile_number %><br/>
+          <%= adr.phone_field :mobile_number %></p>
+        <p><%= adr.label :phone_number %><br/>
+          <%= adr.telephone_field :phone_number%></p>
+        <p><%= adr.label :address_line1 %><br/>
+          <%= adr.text_area :address_line1 %></p>
+        <p><%= adr.label :address_line2 %><br/>
+          <%= adr.text_area :address_line2 %></p>
+        <p><%= adr.label :state %><br/>
+          <%= adr.text_field :state %></p>
+        <p><%= adr.label :country %><br/>
+          <%= adr.text_field :country %></p>
+        <p><%= adr.label :zipcode %><br/>
+          <%= adr.text_field :zipcode %></p>
+        <%= adr.hidden_field :address_type, :value => 'shipping_address' %>
+      <%end%>
       <p><%= f.submit  "Submit", :method => :get%></p>
     <%end%>
   
