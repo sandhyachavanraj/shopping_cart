@@ -7,9 +7,11 @@
     <p><%= msg %></p>
   <% end %>
 
+ 
   <% @billing_address.errors.full_messages.each do|msg|%>
     <p><%= msg %></p>
   <% end %>
+
 
 
   <%= form_for @user_profile, :url => update_profile_user_path(@user), :html => {:method => :put} do |f| %>
@@ -61,4 +63,5 @@
       <p><%= f.submit  "Submit", :method => :get%></p>
     <%end%>
   
+</div>
 </div>

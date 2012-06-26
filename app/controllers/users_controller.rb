@@ -114,14 +114,14 @@ class UsersController < ApplicationController
     
     @user_profile = @user.user_profile
     @billing_address = @user.user_profile.billing_address
-   # @shipping_address = @user.user_profile.shipping_address
+   @shipping_address = @user.user_profile.shipping_address
   end
 
 
   def update_profile    
     @user_profile = UserProfile.find_by_user_id(params[:id])
      
-    @billing_address=current_user.user_profile.billing_address.blank? ? current_user.user_profile.billing.address.new(params[:billing_address]) : current_user.user_profile.billing_address
+    @billing_address=current_user.user_profile.billing_address.blank? ? current_user.user_profile.billing_address.new(params[:billing_address]) : current_user.user_profile.billing_address
     if @billing_address.new_record?
       res=@billing_address.save
     else
@@ -134,6 +134,8 @@ class UsersController < ApplicationController
     else
       render :profile
     end
+   
+
   end
 
 
