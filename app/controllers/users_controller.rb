@@ -117,19 +117,18 @@ class UsersController < ApplicationController
   end
 
   def update_profile    
-    @user_profile = UserProfile.find_by_user_id(params[:id])
+    @user_profile = UserProfile.find_by_user_id(params[:id])    
+    @billing_address = current_user.user_profile.billing_address.blank? ? current_user.user_profile.billing_address.new(params[:billing_address]) : current_user.user_profile.billing_address
    
-#    if @user_profile.update_attributes(:upload_image => params[:user_profile][:upload_image])
-      if current_user.user_profile.billing_address.blank? ? current_user.update_profile.billing_address.find_or_create_by_user_profile_id_and_address_type(@user_profile.id, "billing_address") : current_user.update_profile.billing_address.update_attributes(params[:user_profile][:billing_address])
-      @billing_address = Address.find_or_create_by_user_profile_id_and_address_type(@user_profile.id, "billing_address")
-      @billing_address.update_attributes(params[:user_profile][:billing_address])
-      @shipping_address = Address.find_or_create_by_user_profile_id_and_address_type(@user_profile.id, "shipping_address")
-      @shipping_address.update_attributes(params[:user_profile][:shipping_address])
-
+    if @billing_address.new_record?
+      res = @billing_address.save
+    else
+      @billing_address.update_attributes(params[:user_profile][:billing_addres])
+    end
+    if res
       flash[:notice] = "Success"
       redirect_to users_path
     else
-      flash[:notice] = "userprofile not saved"
       render :profile
     end
   end

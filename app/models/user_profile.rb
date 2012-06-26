@@ -1,19 +1,11 @@
 class UserProfile < ActiveRecord::Base
   belongs_to :user
-  
-  #  has_many :addresses, :as => :adr, :dependent => :destroy
-#  validates :image_url, :presence => true
- 
-#  validates_associated :billing_address
-#  validates_associated :shipping_address
-
-  #accepts_nested_attributes_for :billing_address
 
   has_one :billing_address, :class_name => "Address",:conditions => ["address_type =?","billing_address"]
   has_one :shipping_address, :class_name => "Address",:conditions => ["address_type = ?","shipping_address"]
-  # validates :billing_address, :shipping_address, :presence => true
-  
 
+#  validates :image_url, :presence => true
+ 
   def upload_image=(upload)  
     self.image_url = upload.original_filename.to_s
     self.content_type = upload.content_type.chomp
