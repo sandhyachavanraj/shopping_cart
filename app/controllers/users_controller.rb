@@ -109,27 +109,31 @@ class UsersController < ApplicationController
     end
   end
 
- def profile
+  def profile
     @user = User.find params[:id]
-    
+
     @user_profile = @user.user_profile
     @billing_address = @user.user_profile.billing_address
-   # @shipping_address = @user.user_profile.shipping_address
+    @shipping_address = @user.user_profile.shipping_address
   end
 
 
-  def update_profile    
+  def update_profile
     @user_profile = UserProfile.find_by_user_id(params[:id])
-     
-    @billing_address=current_user.user_profile.billing_address.blank? ? current_user.user_profile.billing.address.new(params[:billing_address]) : current_user.user_profile.billing_address
-    if @billing_address.new_record?
-      res=@billing_address.save
-    else
-      @billing_address.update_attributes(params[:user_profile][:billing_address])
-    end
-    if res
-      flash[:notice]="success"
+    #    @user_profile.update_attributes(:upload_image => params[:user_profile][:upload_iamge])
 
+    @billing_address=current_user.user_profile.billing_address.blank? ? current_user.user_profile.billing_address.new(params[:billing_address]) : current_user.user_profile.billing_address
+    @shipping_address=current_user.user_profile.shipping_address.blank? ? current_user.user_profile.shipping_address.new(params[:shipping_address]) : current_user.user_profile.shipping_address
+    if @billing_address.new_record? && @shipping_address.new_record?
+      res=@billing_address.save
+      res1 = @shipping_address.save
+    else
+      @billing_address.update_attributes!(params[:user_profile][:billing_address])
+      @shipping_address.update_attributes!(params[:user_profile][:shipping_address])
+    end
+
+    if res || res1
+      flash[:notice]="success"
       redirect_to users_path
     else
       render :profile
