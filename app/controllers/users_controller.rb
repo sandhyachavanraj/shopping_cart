@@ -6,7 +6,6 @@ class UsersController < ApplicationController
   
   def index
     @users = User.all
-
     @users = User.paginate(:page => params[:page], :per_page => 8)
   end
 
@@ -123,23 +122,20 @@ class UsersController < ApplicationController
 
     #    @user_profile.update_attributes(:upload_image => params[:user_profile][:upload_iamge])
 
-    @billing_address=current_user.user_profile.billing_address.blank? ? current_user.user_profile.billing_address.new(params[:billing_address]) : current_user.user_profile.billing_address
-    @shipping_address=current_user.user_profile.shipping_address.blank? ? current_user.user_profile.shipping_address.new(params[:shipping_address]) : current_user.user_profile.shipping_address
-    if @billing_address.new_record? && @shipping_address.new_record?
+    @billing_address=current_user.user_profile.billing_address.blank? ? current_user.user_profile.create_billing_address(params[:user_profile][:billing_address]) : current_user.user_profile.billing_address
+ 
+    if @billing_address.new_record? 
       res=@billing_address.save
-      res1 = @shipping_address.save
     else
-      @billing_address.update_attributes!(params[:user_profile][:billing_address])
-      @shipping_address.update_attributes!(params[:user_profile][:shipping_address])
+      @billing_address.update_attributes(params[:user_profile][:billing_address])
     end
 
-    if res || res1
+    if res 
       flash[:notice]="success"
       redirect_to users_path
     else
       render :profile
-    end
-   
+    end  
 
   end
 
